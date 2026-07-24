@@ -1,4 +1,5 @@
-import { createProject, getCurrentUser } from "@/Services/ProjectServices";
+import { createProject } from "@/Services/projectServices";
+import { getCurrentUser } from "@/Services/userServices";
 import { redirect, notFound } from "next/navigation";
 
 interface TemplatePageProps {

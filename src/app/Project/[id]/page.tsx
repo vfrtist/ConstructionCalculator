@@ -1,4 +1,4 @@
-import { loadProject } from "@/Services/ProjectServices";
+import { loadProject } from "@/Services/projectServices";
 import ProjectEditor from "./ProjectEditor";
 import { notFound } from "next/navigation";
 

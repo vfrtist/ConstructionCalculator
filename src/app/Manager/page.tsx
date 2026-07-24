@@ -1,10 +1,8 @@
 import FileGroup from "@/UI/Manager/FileGroup";
 import "@/Stylings/Manager.css";
-import {
-	getAllTemplates,
-	getCurrentUser,
-	getUserRecentProjects,
-} from "@/Services/ProjectServices";
+import { getUserRecentProjects } from "@/Services/projectServices";
+import { getCurrentUser } from "@/Services/userServices";
+import { getAllTemplates } from "@/Services/templateServices";
 
 export default async function Manager() {
 	const user = await getCurrentUser();

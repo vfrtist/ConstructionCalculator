@@ -1,19 +1,10 @@
-import postgres from "postgres";
-import { Project1, Project2, BlankTemplate } from "@/Data/TestData";
-import {
-	Project,
-	ProjectSummary,
-	Template,
-	User,
-	UserRole,
-} from "@/lib/structures";
+import { Project, ProjectSummary } from "@/lib/structures";
 import { newProject } from "@/lib/objects";
-
-// Blank structures
+import { sql } from "./db";
+import { addProjectUser } from "./userServices";
+import { getTemplate } from "./templateServices";
 
 // Database functions
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
-
 export async function getUserRecentProjects(userID: string) {
 	try {
 		const projects = await sql<ProjectSummary[]>`
@@ -68,40 +59,4 @@ export async function createProject(
 
 export async function updateProject(projectID: string, query: string) {
 	// await sql, generalized
-}
-
-// Project User
-export async function addProjectUser(
-	userID: string,
-	projectID: string,
-	role: UserRole,
-) {
-	// insert into ProjectUsers with data.
-}
-
-// Templates
-export async function getAllTemplates() {
-	try {
-		const templates = await sql<ProjectSummary[]>`
-		SELECT
-			t.id,
-			t.name,
-			t.updated_at,
-			t.description
-		FROM Templates;`;
-		return templates;
-	} catch (error) {
-		console.error("Database Error:", error);
-		throw new Error("Failed to get all templates.");
-	}
-}
-
-export async function getTemplate(templateID: string) {
-	const templates = [BlankTemplate];
-	const template = templates.find((t) => t.id === templateID);
-	return template ?? null;
-}
-
-export async function getCurrentUser(): Promise<User> {
-	return { id: "test-user-for-now" };
 }
