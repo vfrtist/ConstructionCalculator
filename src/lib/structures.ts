@@ -24,13 +24,23 @@ export interface BoardData {
 
 export type ProjectBoards = Record<string, BoardData>;
 
-export interface Project {
+export interface ProjectSummary {
 	id: string;
 	name: string;
 	updatedAt: string;
+	description?: string;
+}
+
+export interface Project extends ProjectSummary {
 	boards: ProjectBoards;
 }
 
-export interface Template extends Project {
-	description: string;
+export type Template = Omit<Project, "updatedAt">;
+
+export type ProjectType = "project" | "template";
+
+export type UserRole = "owner" | "editor" | "viewer";
+
+export interface User {
+	id: string;
 }

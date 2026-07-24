@@ -1,5 +1,6 @@
 import { loadProject } from "@/Services/ProjectServices";
 import ProjectEditor from "./ProjectEditor";
+import { notFound } from "next/navigation";
 
 interface ProjectPageProps {
 	params: Promise<{
@@ -9,10 +10,10 @@ interface ProjectPageProps {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
 	const { id } = await params;
-	const project = await loadProject(id);
+	const project = await loadProject(id); // The sticking point
 
 	if (!project) {
-		return <div>Project not found</div>;
+		notFound();
 	}
 
 	return <ProjectEditor project={project} />;

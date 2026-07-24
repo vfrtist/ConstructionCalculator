@@ -1,14 +1,21 @@
-import { Project } from "@/lib/structures";
+import { ProjectSummary, ProjectType } from "@/lib/structures";
 import Link from "next/link";
 
 export interface FileTileProps {
-	project: Project;
+	project: ProjectSummary;
+	type: ProjectType;
 }
 
-export default function FileTile({ project }: FileTileProps) {
+export default function FileTile({ project, type }: FileTileProps) {
 	return (
 		<li className="FileTile">
-			<Link href={`Project/${project.id}`}>
+			<Link
+				href={
+					type === "project"
+						? `project/${project.id}`
+						: `template/${project.id}`
+				}
+			>
 				<div>{project.name}</div>
 			</Link>
 		</li>

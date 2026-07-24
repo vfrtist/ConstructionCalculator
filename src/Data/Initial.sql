@@ -1,5 +1,5 @@
 CREATE TABLE
-    Users (
+    users (
         id CHAR(36) PRIMARY KEY,
         --
         username VARCHAR(50) NOT NULL UNIQUE,
@@ -9,7 +9,7 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    Projects (
+    projects (
         id CHAR(36) PRIMARY KEY,
         -- 
         name VARCHAR(100) NOT NULL,
@@ -20,25 +20,35 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    Templates (
+    templates (
         id CHAR(36) PRIMARY KEY,
         -- 
         name VARCHAR(100) NOT NULL,
         description VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         data JSON NOT NULL
     );
 
 CREATE TABLE
-    ProjectUsers (
+    projects (
+        id CHAR(36) PRIMARY KEY,
+        -- 
+        name VARCHAR(100) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        is_public BOOLEAN DEFAULT TRUE,
+        data JSON NOT NULL
+    );
+
+CREATE TABLE
+    project_users (
         PRIMARY KEY (userID, projectID),
         -- 
         role enum ('owner', 'editor', 'viewer') NOT NULL,
         --
-        userID INT NOT NULL,
-        projectID INT NOT NULL,
+        userID CHAR(36) NOT NULL,
+        projectID CHAR(36) NOT NULL,
         --
-        FOREIGN KEY (userID) references Users (id),
-        FOREIGN KEY (projectID) references Projects (id)
+        FOREIGN KEY (userID) references users (id),
+        FOREIGN KEY (projectID) references projects (id)
     )
