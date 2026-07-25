@@ -4,21 +4,24 @@ import Card from "@/UI/Generic/Card";
 import ThemeButton from "@/UI/Generic/ThemeButton";
 import { useState, SetStateAction } from "react";
 import { Project, ProjectBoards } from "@/lib/structures";
-import { newBoardData } from "@/lib/objects";
+import { newProjectBoards } from "@/lib/objects";
+import { updateProject } from "@/Services/projectServices";
+import { useAutoSave } from "@/Hooks/autosave";
 
 interface ProjectEditorProps {
-	project: Project;
+	initialProject: Project;
 }
 
-export default function ProjectEditor({ project }: ProjectEditorProps) {
-	const [projectData, setProject] = useState<Project>(project);
+export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
+	const [project, setProject] = useState<Project>(initialProject);
+
+	useAutoSave(project, updateProject);
 
 	function addBoard() {
 		setProject((prev) => {
-			const newId = crypto.randomUUID();
 			return {
 				...prev,
-				boards: { ...prev.boards, [newId]: newBoardData() },
+				boards: { ...prev.boards, ...newProjectBoards() },
 			};
 		});
 	}
@@ -26,7 +29,6 @@ export default function ProjectEditor({ project }: ProjectEditorProps) {
 	function setProjectData(updater: SetStateAction<ProjectBoards>) {
 		setProject((prev) => ({
 			...prev,
-			updatedAt: new Date().toISOString(),
 			boards:
 				typeof updater === "function" ? updater(prev.boards) : updater,
 		}));
@@ -34,7 +36,7 @@ export default function ProjectEditor({ project }: ProjectEditorProps) {
 
 	return (
 		<>
-			{Object.entries(projectData.boards).map(([id, card]) => (
+			{Object.entries(project.boards).map(([id, card]) => (
 				<Card
 					key={id}
 					id={id}

@@ -2,7 +2,7 @@ import { ProjectSummary } from "@/lib/structures";
 import { sql } from "./db";
 import { BlankTemplate } from "@/Data/TestData";
 
-export async function getAllTemplates() {
+export async function fetchAllTemplates() {
 	try {
 		const templates = await sql<ProjectSummary[]>`
 		SELECT
@@ -18,7 +18,7 @@ export async function getAllTemplates() {
 	}
 }
 
-export async function getTemplate(templateID: string) {
+export async function fetchTemplate(templateID: string) {
 	const templates = [BlankTemplate];
 	const template = templates.find((t) => t.id === templateID);
 	return template ?? null;

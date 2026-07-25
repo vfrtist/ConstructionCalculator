@@ -1,5 +1,3 @@
-"use client";
-
 import { createContext, SetStateAction, useState, Dispatch } from "react";
 import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
@@ -35,6 +33,7 @@ export const CardContext = createContext<CardData>({
 
 export default function Card({ id, data, setProjectData }: CardProps) {
 	const [cardState, setCardState] = useState<CardState>("cut");
+
 	function updaterFunction(updater: (prev: BoardData) => BoardData) {
 		setProjectData((prev) => ({
 			...prev,

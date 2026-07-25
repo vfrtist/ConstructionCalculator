@@ -1,14 +1,14 @@
 import FileGroup from "@/UI/Manager/FileGroup";
 import "@/Stylings/Manager.css";
-import { getUserRecentProjects } from "@/Services/projectServices";
-import { getCurrentUser } from "@/Services/userServices";
-import { getAllTemplates } from "@/Services/templateServices";
+import { fetchUserRecentProjects } from "@/Services/projectServices";
+import { fetchCurrentUser } from "@/Services/userServices";
+import { fetchAllTemplates } from "@/Services/templateServices";
 
 export default async function Manager() {
-	const user = await getCurrentUser();
+	const user = await fetchCurrentUser();
 	const [templates, recents] = await Promise.all([
-		getAllTemplates(),
-		getUserRecentProjects(user.id),
+		fetchAllTemplates(),
+		fetchUserRecentProjects(user.id),
 	]);
 	return (
 		<>

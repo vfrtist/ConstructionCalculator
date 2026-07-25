@@ -1,11 +1,10 @@
 import { Project, ProjectSummary } from "@/lib/structures";
 import { newProject } from "@/lib/objects";
 import { sql } from "./db";
-import { addProjectUser } from "./userServices";
-import { getTemplate } from "./templateServices";
+import { createProjectUser } from "./userServices";
 
 // Database functions
-export async function getUserRecentProjects(userID: string) {
+export async function fetchUserRecentProjects(userID: string) {
 	try {
 		const projects = await sql<ProjectSummary[]>`
 		SELECT
@@ -24,13 +23,13 @@ export async function getUserRecentProjects(userID: string) {
 	}
 }
 
-export async function loadProject(projectID: string): Promise<Project> {
+export async function fetchProject(projectID: string): Promise<Project> {
 	try {
 		const project = await sql<Project[]>`
 		SELECT
 			*
 		FROM projects
-		WHERE projects.id = ${projectID}
+		WHERE id = ${projectID}
 		LIMIT 1;`;
 		return project[0];
 	} catch (error) {
@@ -41,22 +40,24 @@ export async function loadProject(projectID: string): Promise<Project> {
 
 export async function createProject(
 	userID: string,
-	templateID: string,
 	name: string,
+	data: Project,
 ): Promise<Project | null> {
-	const template = await getTemplate(templateID);
-
-	if (!template) {
-		throw new Error("Template not found");
-	}
-
-	const project = newProject(name, template.boards);
+	const project = newProject(name, data.boards);
 	// insert into Projects
-	await addProjectUser(userID, project.id, "owner");
-
+	await createProjectUser(userID, project.id, "owner");
 	return project;
 }
 
-export async function updateProject(projectID: string, query: string) {
-	// await sql, generalized
+export async function updateProject(project: Project) {
+	const { id, name, boards } = project;
+	const data = JSON.stringify(boards);
+
+	await sql`
+	UPDATE projects
+	SET 
+		name = ${name}, 
+		data = ${data}
+	WHERE id = ${id}
+	`;
 }

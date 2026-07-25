@@ -1,5 +1,6 @@
 import { createProject } from "@/Services/projectServices";
-import { getCurrentUser } from "@/Services/userServices";
+import { fetchTemplate } from "@/Services/templateServices";
+import { fetchCurrentUser } from "@/Services/userServices";
 import { redirect, notFound } from "next/navigation";
 
 interface TemplatePageProps {
@@ -11,9 +12,18 @@ interface TemplatePageProps {
 export default async function TemplatePage({ params }: TemplatePageProps) {
 	const { id } = await params;
 
-	const user = await getCurrentUser();
+	const user = await fetchCurrentUser();
+	const template = await fetchTemplate(id);
+	const now = new Date().toISOString();
 
-	const project = await createProject(user.id, id, "Untitled Project");
+	if (!template) {
+		notFound();
+	}
+
+	const project = await createProject(user.id, "Untitled Project", {
+		...template,
+		updatedAt: now,
+	});
 
 	if (!project) {
 		notFound();
