@@ -3,13 +3,19 @@ import "@/Stylings/Manager.css";
 import { fetchUserRecentProjects } from "@/Services/projectServices";
 import { fetchCurrentUser } from "@/Services/userServices";
 import { fetchAllTemplates } from "@/Services/templateServices";
+import { redirect } from "next/navigation";
 
 export default async function Manager() {
 	const user = await fetchCurrentUser();
+
+	if (!user) {
+		redirect("/login/");
+	}
 	const [templates, recents] = await Promise.all([
 		fetchAllTemplates(),
 		fetchUserRecentProjects(user.id),
 	]);
+
 	return (
 		<>
 			<h1>Manager</h1>

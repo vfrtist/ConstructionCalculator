@@ -1,9 +1,9 @@
-import { newProject } from "@/lib/objects";
-import { Project, ProjectBoards, Template } from "@/lib/structures";
+import { newProject, convertToTemplate } from "@/lib/objects";
+import { ProjectBoards } from "@/lib/structures";
 
 const Data1: ProjectBoards = {
-	["board1"]: {
-		name: "Board 1",
+	[crypto.randomUUID()]: {
+		name: "Two by Four",
 		boardLength: 96,
 		cutInputs: [
 			{ id: crypto.randomUUID(), length: 93, name: "", qty: 6 },
@@ -22,8 +22,8 @@ const Data1: ProjectBoards = {
 		],
 	},
 
-	["board2"]: {
-		name: "Board 2",
+	[crypto.randomUUID()]: {
+		name: "Two by Six",
 		boardLength: 144,
 		cutInputs: [
 			{
@@ -47,8 +47,8 @@ const Data1: ProjectBoards = {
 		],
 	},
 
-	["board3"]: {
-		name: "Board 3",
+	[crypto.randomUUID()]: {
+		name: "One by Four",
 		boardLength: 96,
 		cutInputs: [
 			{
@@ -71,8 +71,8 @@ const Data1: ProjectBoards = {
 			},
 		],
 	},
-	["board4"]: {
-		name: "Board 4",
+	[crypto.randomUUID()]: {
+		name: "One by Four",
 		boardLength: 96,
 		cutInputs: [
 			{
@@ -86,8 +86,8 @@ const Data1: ProjectBoards = {
 };
 
 const Data2: ProjectBoards = {
-	["board5"]: {
-		name: "Board 5",
+	[crypto.randomUUID()]: {
+		name: "Four by Four",
 		boardLength: 96,
 		cutInputs: [
 			{
@@ -99,8 +99,8 @@ const Data2: ProjectBoards = {
 		],
 	},
 
-	["board6"]: {
-		name: "Board 6",
+	[crypto.randomUUID()]: {
+		name: "Trim Boards",
 		boardLength: 96,
 		cutInputs: [
 			{
@@ -118,8 +118,8 @@ const Data2: ProjectBoards = {
 		],
 	},
 
-	["board7"]: {
-		name: "Board 7",
+	[crypto.randomUUID()]: {
+		name: "One by Two",
 		boardLength: 96,
 		cutInputs: [
 			{
@@ -150,8 +150,8 @@ const Data2: ProjectBoards = {
 		],
 	},
 
-	["board8"]: {
-		name: "Board 8",
+	[crypto.randomUUID()]: {
+		name: "Battens",
 		boardLength: 96,
 		cutInputs: [
 			{
@@ -188,21 +188,6 @@ const Data2: ProjectBoards = {
 	},
 };
 
-export const Project1: Project = {
-	id: "lskdfflkjsdfd-lksddflkjsdfd",
-	name: "Project 1",
-	updatedAt: new Date().toISOString(),
-	boards: Data1,
-};
-
-export const Project2: Project = {
-	id: "slksdjfjfjfjfjfjfjfjfj",
-	name: "Project 2",
-	updatedAt: new Date().toISOString(),
-	boards: Data2,
-};
-
-export const BlankTemplate: Template = {
-	...newProject("Blank Project"),
-	description: "An empty project.",
-};
+export const DemoTemplate = convertToTemplate(
+	newProject("Demo", "", { ...Data1, ...Data2 }),
+);

@@ -28,7 +28,7 @@ export interface ProjectSummary {
 	id: string;
 	name: string;
 	updatedAt: string;
-	description?: string;
+	description: string;
 }
 
 export interface Project extends ProjectSummary {

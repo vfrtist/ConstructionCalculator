@@ -19,7 +19,9 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
 	if (!template) {
 		notFound();
 	}
-
+	if (!user) {
+		redirect("/login/");
+	}
 	const project = await createProject(user.id, "Untitled Project", {
 		...template,
 		updatedAt: now,
@@ -29,5 +31,5 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
 		notFound();
 	}
 
-	redirect(`/Project/${project.id}`);
+	redirect(`/project/${project.id}`);
 }

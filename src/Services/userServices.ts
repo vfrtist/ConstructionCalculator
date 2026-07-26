@@ -1,9 +1,14 @@
-import { User, UserRole } from "@/lib/structures";
-import { sql } from "./db";
-import bcrypt from "bcryptjs";
+import { UserRole } from "@/lib/structures";
+import { sql, createClient } from "./db";
 
-export async function fetchCurrentUser(): Promise<User> {
-	return { id: "test-user-for-now" };
+export async function fetchCurrentUser() {
+	const supabase = await createClient();
+
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+
+	return user;
 }
 
 export async function createProjectUser(
@@ -13,20 +18,18 @@ export async function createProjectUser(
 ) {
 	return await sql`
 	INSERT INTO project_users
-	(userID, projectID, role)
+		(userID, projectID, role)
 	VALUES
-	(${userID}, ${projectID}, ${role})
+		(${userID}, ${projectID}, ${role})
 	ON CONFLICT (userID) DO NOTHING;
 	`;
 }
 
-export async function createNewUser(email: string, userPassword: string) {
-	const hashedPassword = await bcrypt.hash(userPassword, 10);
-	const id = crypto.randomUUID();
+export async function createNewUser(id: string, username: string) {
 	return await sql`
 	INSERT INTO users
-	(id, email, password, created_at)
+		(id, username)
 	VALUES
-	(${id}, ${email}, ${hashedPassword}, ${new Date().toISOString()})
+		(${id}, ${username})
 	`;
 }

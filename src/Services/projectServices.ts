@@ -1,5 +1,4 @@
 import { Project, ProjectSummary } from "@/lib/structures";
-import { newProject } from "@/lib/objects";
 import { sql } from "./db";
 import { createProjectUser } from "./userServices";
 
@@ -38,25 +37,34 @@ export async function fetchProject(projectID: string): Promise<Project> {
 	}
 }
 
-export async function createProject(
-	userID: string,
-	name: string,
-	data: Project,
-): Promise<Project | null> {
-	const project = newProject(name, data.boards);
-	// insert into Projects
-	await createProjectUser(userID, project.id, "owner");
-	return project;
+export async function createProject(userID: string, project: Project) {
+	const { id, name, description, boards } = project;
+	const data = JSON.stringify(boards);
+
+	try {
+		await sql`
+		INSERT INTO projects
+			(id, name, description, data)
+		VALUES
+			(${id}, ${name}, ${description}, ${data})
+		`;
+	} catch (error) {
+		console.error("Database error:", error);
+		throw new Error("failed to create project");
+	}
+
+	await createProjectUser(userID, id, "owner");
 }
 
 export async function updateProject(project: Project) {
-	const { id, name, boards } = project;
+	const { id, name, description, boards } = project;
 	const data = JSON.stringify(boards);
 
 	await sql`
 	UPDATE projects
 	SET 
 		name = ${name}, 
+		description = ${description}, 
 		data = ${data}
 	WHERE id = ${id}
 	`;
