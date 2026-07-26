@@ -2,7 +2,7 @@ import { createBrowserClient, createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import postgres from "postgres";
 
-export const supabase = createBrowserClient(
+export const browserCall = createBrowserClient(
 	process.env.SUPABASE_URL!,
 	process.env.SUPABASE_ANON_KEY!,
 );
