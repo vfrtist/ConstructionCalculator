@@ -6,7 +6,7 @@ export default function NotFound() {
 			<h1>Project not found</h1>
 			<p>{`The project you're looking for doesn't exist.`}</p>
 
-			<Link href="/Manager">Return to Manager</Link>
+			<Link href="/manager">Return to Manager</Link>
 		</>
 	);
 }

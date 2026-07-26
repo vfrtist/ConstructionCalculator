@@ -1,3 +1,4 @@
+import { convertToProject } from "@/lib/objects";
 import { createProject } from "@/Services/projectServices";
 import { fetchTemplate } from "@/Services/templateServices";
 import { fetchCurrentUser } from "@/Services/userServices";
@@ -14,7 +15,6 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
 
 	const user = await fetchCurrentUser();
 	const template = await fetchTemplate(id);
-	const now = new Date().toISOString();
 
 	if (!template) {
 		notFound();
@@ -22,10 +22,7 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
 	if (!user) {
 		redirect("/login/");
 	}
-	const project = await createProject(user.id, "Untitled Project", {
-		...template,
-		updatedAt: now,
-	});
+	const project = await createProject(user.id, convertToProject(template));
 
 	if (!project) {
 		notFound();

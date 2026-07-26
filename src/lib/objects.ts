@@ -33,5 +33,13 @@ export function newProject(
 }
 
 export function convertToTemplate(project: Project): Template {
-	return { ...project };
+	return { ...project, boards: structuredClone(project.boards) };
+}
+
+export function convertToProject(template: Template): Project {
+	return {
+		...template,
+		boards: structuredClone(template.boards),
+		updatedAt: new Date().toISOString(),
+	};
 }
