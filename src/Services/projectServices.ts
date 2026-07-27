@@ -3,7 +3,7 @@
 import { Project, ProjectSummary, ProjectDB } from "@/lib/structures";
 import { sql } from "./db";
 import { createProjectUser } from "./userServices";
-import { dbToProject, projectToDB } from "@/lib/objects";
+import { dbToProject, duplicateProject, projectToDB } from "@/lib/objects";
 
 // Database functions
 export async function fetchUserRecentProjects(userID: string) {
@@ -42,7 +42,8 @@ export async function fetchProject(projectID: string): Promise<Project> {
 }
 
 export async function createProject(userID: string, project: Project) {
-	const { id, name, description, data } = projectToDB(project);
+	const clone = duplicateProject(project);
+	const { id, name, description, data } = projectToDB(clone);
 
 	try {
 		await sql`

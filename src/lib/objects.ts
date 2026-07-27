@@ -3,8 +3,6 @@ import {
 	BoardData,
 	Project,
 	ProjectBoards,
-	Template,
-	TemplateDB,
 	ProjectDB,
 } from "./structures";
 
@@ -34,28 +32,12 @@ export function newProject(
 	};
 }
 
-export function convertToTemplate(project: Project): Template {
+export function duplicateProject(project: Project): Project {
 	return { ...project, data: structuredClone(project.data) };
-}
-
-export function convertToProject(template: Template): Project {
-	return {
-		...template,
-		data: structuredClone(template.data),
-		updatedAt: new Date().toISOString(),
-	};
-}
-
-export function dbToTemplate(db: TemplateDB): Template {
-	return { ...db, data: JSON.parse(db.data) };
 }
 
 export function dbToProject(db: ProjectDB): Project {
 	return { ...db, data: JSON.parse(db.data) };
-}
-
-export function templateToDB(template: Template): TemplateDB {
-	return { ...template, data: JSON.stringify(template.data) };
 }
 
 export function projectToDB(project: Project): ProjectDB {

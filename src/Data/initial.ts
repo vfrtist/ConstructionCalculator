@@ -1,4 +1,4 @@
-import { newProject, convertToTemplate } from "@/lib/objects";
+import { newProject, duplicateProject } from "@/lib/objects";
 import { sql } from "@/Services/db";
 import { createTemplate } from "@/Services/templateServices";
 import { DemoTemplate } from "./TestData";
@@ -31,6 +31,7 @@ export async function seed() {
         name VARCHAR(100) NOT NULL,
         description VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         data JSON NOT NULL
     );`;
 
@@ -50,14 +51,14 @@ export async function seed() {
     project_users (
         PRIMARY KEY (userID, projectID),
         role VARCHAR(10) NOT NULL
-    CHECK (role IN ('owner', 'editor', 'viewer')),
+        CHECK (role IN ('owner', 'editor', 'viewer')),
         userID UUID NOT NULL,
         projectID UUID NOT NULL,
         FOREIGN KEY (userID) references users (id),
         FOREIGN KEY (projectID) references projects (id)
     );`;
 
-	const blankTemplate = convertToTemplate(
+	const blankTemplate = duplicateProject(
 		newProject(
 			"Blank Template",
 			"Start from scratch with a blank template",

@@ -1,8 +1,8 @@
 "use server";
 
-import { ProjectSummary, Template, TemplateDB } from "@/lib/structures";
+import { Project, ProjectDB, ProjectSummary } from "@/lib/structures";
 import { sql } from "./db";
-import { dbToTemplate, templateToDB } from "@/lib/objects";
+import { dbToProject, projectToDB } from "@/lib/objects";
 
 export async function fetchAllTemplates() {
 	try {
@@ -19,22 +19,22 @@ export async function fetchAllTemplates() {
 	}
 }
 
-export async function fetchTemplate(templateID: string): Promise<Template> {
+export async function fetchTemplate(templateID: string): Promise<Project> {
 	try {
-		const template = await sql<TemplateDB[]>`
+		const template = await sql<ProjectDB[]>`
 		SELECT *
 		FROM templates
 		WHERE id = ${templateID}
 		`;
-		return dbToTemplate(template[0]);
+		return dbToProject(template[0]);
 	} catch (error) {
 		console.error("Database Error:", error);
 		throw new Error("Failed to find matching template.");
 	}
 }
 
-export async function createTemplate(template: Template) {
-	const { id, name, description, data } = templateToDB(template);
+export async function createTemplate(template: Project) {
+	const { id, name, description, data } = projectToDB(template);
 	try {
 		await sql`
 		INSERT INTO templates

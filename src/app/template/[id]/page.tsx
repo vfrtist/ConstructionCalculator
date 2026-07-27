@@ -1,4 +1,3 @@
-import { convertToProject } from "@/lib/objects";
 import { createProject } from "@/Services/projectServices";
 import { fetchTemplate } from "@/Services/templateServices";
 import { fetchCurrentUser } from "@/Services/serverServices";
@@ -23,10 +22,7 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
 		redirect("/login/");
 	}
 
-	const project = convertToProject(template);
-	console.log(project);
-
-	const projectID = await createProject(user.id, project);
+	const projectID = await createProject(user.id, template);
 
 	if (!projectID) {
 		notFound();
