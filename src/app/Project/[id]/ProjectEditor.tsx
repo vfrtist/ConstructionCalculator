@@ -21,7 +21,7 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 		setProject((prev) => {
 			return {
 				...prev,
-				boards: { ...prev.boards, ...newProjectBoards() },
+				data: { ...prev.data, ...newProjectBoards() },
 			};
 		});
 	}
@@ -30,13 +30,13 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 		setProject((prev) => ({
 			...prev,
 			boards:
-				typeof updater === "function" ? updater(prev.boards) : updater,
+				typeof updater === "function" ? updater(prev.data) : updater,
 		}));
 	}
 
 	return (
 		<>
-			{Object.entries(project.boards).map(([id, card]) => (
+			{Object.entries(project.data).map(([id, card]) => (
 				<Card
 					key={id}
 					id={id}

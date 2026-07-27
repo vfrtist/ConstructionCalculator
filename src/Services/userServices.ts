@@ -1,18 +1,9 @@
 "use server";
 import { UserRole } from "@/lib/structures";
-import { sql, createClient } from "./db";
-import { redirect } from "next/navigation";
-
-export async function fetchCurrentUser() {
-	const client = await createClient();
-	const {
-		data: { user },
-	} = await client.auth.getUser();
-	return user;
-}
+import { sql } from "./db";
+import { serverClient } from "./serverServices";
 
 // will be useful maybe to implement getSession().session.user after fetch current.
-
 export async function fetchUserExists(email: string) {
 	const results = await sql`
 	SELECT 1
@@ -43,7 +34,6 @@ export async function createProjectUser(
 	(userID, projectID, role)
 	VALUES
 	(${userID}, ${projectID}, ${role})
-	ON CONFLICT (userID) DO NOTHING;
 	`;
 }
 
@@ -57,7 +47,8 @@ export async function createNewUser(id: string, email: string) {
 }
 
 export async function signUp(email: string, password: string) {
-	const client = await createClient();
+	const client = await serverClient();
+
 	const { data, error } = await client.auth.signUp({
 		email,
 		password,
@@ -65,28 +56,11 @@ export async function signUp(email: string, password: string) {
 
 	if (error) {
 		console.error(error.message);
-		return;
+		return false;
 	}
 
 	if (data.user) {
 		await createNewUser(data.user.id, email);
 	}
-	redirect("/manager");
-}
-export async function signIn(email: string, password: string) {
-	const client = await createClient();
-	const { error } = await client.auth.signInWithPassword({
-		email,
-		password,
-	});
-
-	if (error) {
-		console.error(error.message);
-		return;
-	}
-	redirect("/manager");
-}
-
-export async function signOut() {
-	// Supabase signOut
+	return true;
 }

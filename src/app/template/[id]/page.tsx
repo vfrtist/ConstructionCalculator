@@ -1,7 +1,7 @@
 import { convertToProject } from "@/lib/objects";
 import { createProject } from "@/Services/projectServices";
 import { fetchTemplate } from "@/Services/templateServices";
-import { fetchCurrentUser } from "@/Services/userServices";
+import { fetchCurrentUser } from "@/Services/serverServices";
 import { redirect, notFound } from "next/navigation";
 
 interface TemplatePageProps {
@@ -22,11 +22,15 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
 	if (!user) {
 		redirect("/login/");
 	}
-	const project = await createProject(user.id, convertToProject(template));
 
-	if (!project) {
+	const project = convertToProject(template);
+	console.log(project);
+
+	const projectID = await createProject(user.id, project);
+
+	if (!projectID) {
 		notFound();
 	}
 
-	redirect(`/project/${project.id}`);
+	redirect(`/project/${projectID}`);
 }

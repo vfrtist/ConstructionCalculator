@@ -1,7 +1,7 @@
 import FileGroup from "@/UI/Manager/FileGroup";
 import "@/Stylings/Manager.css";
 import { fetchUserRecentProjects } from "@/Services/projectServices";
-import { fetchCurrentUser } from "@/Services/userServices";
+import { fetchCurrentUser } from "@/Services/serverServices";
 import { fetchAllTemplates } from "@/Services/templateServices";
 import { redirect } from "next/navigation";
 
@@ -9,7 +9,7 @@ export default async function Manager() {
 	const user = await fetchCurrentUser();
 
 	if (!user) {
-		redirect("/login/");
+		redirect("/login");
 	}
 	const [templates, recents] = await Promise.all([
 		fetchAllTemplates(),

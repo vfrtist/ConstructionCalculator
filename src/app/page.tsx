@@ -1,3 +1,11 @@
+import { fetchCurrentUser } from "@/Services/serverServices";
+import { redirect } from "next/navigation";
+
 export default async function Home() {
-	return <h1>Home</h1>;
+	const user = await fetchCurrentUser();
+
+	if (!user) {
+		redirect("/login");
+	}
+	redirect("/manager");
 }

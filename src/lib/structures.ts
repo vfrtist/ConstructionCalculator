@@ -32,7 +32,7 @@ export interface ProjectSummary {
 }
 
 export interface Project extends ProjectSummary {
-	boards: ProjectBoards;
+	data: ProjectBoards;
 }
 
 export type Template = Omit<Project, "updatedAt">;
@@ -43,4 +43,12 @@ export type UserRole = "owner" | "editor" | "viewer";
 
 export interface User {
 	id: string;
+}
+
+export interface ProjectDB extends Omit<Project, "data"> {
+	data: string;
+}
+
+export interface TemplateDB extends Omit<Template, "data"> {
+	data: string;
 }

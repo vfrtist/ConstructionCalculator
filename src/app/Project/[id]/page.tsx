@@ -15,6 +15,5 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 	if (!project) {
 		notFound();
 	}
-
 	return <ProjectEditor initialProject={project} />;
 }
