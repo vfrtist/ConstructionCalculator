@@ -61,15 +61,14 @@ export async function createProject(userID: string, project: Project) {
 }
 
 export async function updateProject(project: Project) {
-	const { id, name, description, data } = project;
-	const json = JSON.stringify(data);
+	const { id, name, description, data } = projectToDB(project);
 
 	await sql`
 	UPDATE projects
 	SET 
 		name = ${name}, 
 		description = ${description}, 
-		data = ${json}
+		data = ${data}
 	WHERE id = ${id}
 	`;
 }

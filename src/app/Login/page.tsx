@@ -19,7 +19,6 @@ export default function Login() {
 
 		const formData = new FormData(e.currentTarget);
 		const email = formData.get("email")?.toString();
-		const password = formData.get("password")?.toString();
 
 		if (!email) return; // Should redirect to "please fill in email"
 		if (userExists == null) {
@@ -27,10 +26,12 @@ export default function Login() {
 			return;
 		}
 
-		if (!password) return; // Should redirect to "please fill in passwword"
+		const password = formData.get("password")?.toString();
+		if (!password) return; // Should redirect to "please fill in password"
+
 		if (!userExists) {
-			setExists(await signUp(email, password));
-			return;
+			if (!await signUp(email, password)) return;
+			setExists(true);
 		}
 
 		if (await signIn(email, password)) redirect("/manager");
