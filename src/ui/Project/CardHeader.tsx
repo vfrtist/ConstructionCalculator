@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { CardContext } from "./Card";
+import { CardContext } from "../Project/Card";
 
-export default function CardHeader({ }) {
-	const { boardLength, setBoardLength, setName, name } = useContext(CardContext);
+export default function CardHeader({}) {
+	const { boardLength, setBoardLength, setName, name } =
+		useContext(CardContext);
 
 	return (
 		<form action="" className="CutBoardHeader">

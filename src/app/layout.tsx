@@ -1,7 +1,6 @@
 import "@/styles/main.css";
 import "@/styles/colors.css";
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
 	title: "Construction Board Calculator",
@@ -13,20 +12,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en">
-			<body>
-				<main>
-					{children}
-					<ul>
-						<h1>Navigation</h1>
-						<li>
-							<Link href="/login">Login</Link>
-						</li>
-						<li>
-							<Link href="/manager">Manager</Link>
-						</li>
-					</ul>
-				</main>
-			</body>
+			<body>{children}</body>
 		</html>
 	);
 }

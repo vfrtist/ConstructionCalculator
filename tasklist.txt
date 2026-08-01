@@ -16,10 +16,11 @@ Done
     -Select all projects for a specific user
     -Select data from a specific project
     -Create new project from a template
+-Create debounce and direct saving methods for data execution.
+    -Overwrite data for a specific project
 
 
 General Tasks
--Create debounce and direct saving methods for data execution.
 -Create header
 
 
@@ -34,14 +35,11 @@ Logon
 
 
 Visuals
+-Add splash screen for loading w/ logo and hero color
+-Design color scheme
 -Add subtle saving ui (think video game book writing animation) probably in the header. Possibly floating.
 -Find more references
 -Make icons
-
-SQL
--Queries needed:
-    -Overwrite data for a specific project
-
 
 Project
 -*low priority* Rename and re-folder "Card" pieces into ProjectCard pieces. They are not generic.

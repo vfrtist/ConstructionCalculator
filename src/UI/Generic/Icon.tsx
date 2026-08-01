@@ -1,13 +1,19 @@
 import { IconKey, IconList } from "@/data/IconList";
 
-export interface IconProps {
+export interface IconProps extends React.SVGProps<SVGSVGElement> {
 	iconKey: IconKey;
 }
 
-export default function Icon({ iconKey }: IconProps) {
+export default function Icon({ iconKey, ...iconProps }: IconProps) {
 	const { id, viewbox, path } = IconList[iconKey];
 	return (
-		<svg key={id} className="Icon" version="1.1" viewBox={viewbox}>
+		<svg
+			{...iconProps}
+			key={id}
+			className={`Icon ${iconProps.className || ""}`}
+			version="1.1"
+			viewBox={viewbox}
+		>
 			<path d={path} />
 		</svg>
 	);

@@ -1,12 +1,13 @@
 "use client";
 
-import Card from "@/ui/Generic/Card";
+import Card from "@/ui/Project/Card";
 import ThemeButton from "@/ui/Generic/ThemeButton";
 import { useState, SetStateAction } from "react";
 import { Project, ProjectBoards } from "@/lib/structures";
 import { newProjectBoards } from "@/lib/objects";
 import { updateProject } from "@/services/projectServices";
 import { useAutoSave } from "@/hooks/autosave";
+import Header from "@/ui/Generic/Header";
 
 interface ProjectEditorProps {
 	initialProject: Project;
@@ -35,6 +36,7 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 
 	return (
 		<>
+			<Header title={project.name} />
 			{Object.entries(project.data).map(([id, card]) => (
 				<Card
 					key={id}

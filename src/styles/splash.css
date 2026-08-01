@@ -1,0 +1,29 @@
+.splashContainer {
+	background: var(--theme-main-dark);
+	display: grid;
+	place-items: center;
+	width: 100dvw;
+	height: 100dvh;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	animation: ScrollUp 1.2s cubic-bezier(0.43, -0.28, 0.94, 0.46) 3.2s 1 normal
+		forwards;
+}
+
+.Icon {
+	&.splash {
+		fill: var(--theme-main-light);
+		width: 80px;
+	}
+}
+
+@keyframes ScrollUp {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-100%);
+	}
+}

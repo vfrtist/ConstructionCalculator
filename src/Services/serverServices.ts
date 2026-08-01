@@ -3,6 +3,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { createNewUser } from "./userServices";
+import { cache } from "react";
 
 export async function serverClient() {
 	const cookieStore = await cookies();
@@ -31,13 +32,13 @@ export async function serverClient() {
 	);
 }
 
-export async function fetchCurrentUser() {
+export const fetchCurrentUser = cache(async () => {
 	const client = await serverClient();
 	const {
 		data: { user },
 	} = await client.auth.getUser();
 	return user;
-}
+});
 
 export async function signUp(email: string, password: string) {
 	const client = await serverClient();

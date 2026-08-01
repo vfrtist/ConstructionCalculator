@@ -8,7 +8,7 @@ export default function ThemeButton({
 	return (
 		<button
 			{...buttonProps}
-			className={`ThemeButton ${buttonProps.className}`}
+			className={`ThemeButton ${buttonProps.className || ""}`}
 		>
 			{children}
 		</button>

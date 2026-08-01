@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CardContext } from "./Card";
+import { CardContext } from "../Project/Card";
 import CutListBody from "@/ui/CutList/CutListBody";
 import BoardListBody from "@/ui/BoardList/BoardListBody";
 

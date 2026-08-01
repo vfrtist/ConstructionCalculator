@@ -21,14 +21,14 @@ export default function Login() {
 		const formData = new FormData(e.currentTarget);
 		const email = formData.get("email")?.toString();
 
-		if (!email) return; // Should redirect to "please fill in email"
+		if (!email) return; // Should show "please fill in email"
 		if (userExists == null) {
 			setExists(await fetchUserExists(email));
 			return;
 		}
 
 		const password = formData.get("password")?.toString();
-		if (!password) return; // Should redirect to "please fill in password"
+		if (!password) return; // Should show "please fill in password"
 
 		if (!userExists) {
 			if (!(await signUp(email, password))) return;
@@ -39,7 +39,7 @@ export default function Login() {
 	}
 
 	return (
-		<>
+		<main>
 			<h1>Login</h1>
 
 			<form
@@ -66,6 +66,6 @@ export default function Login() {
 					{captions[`${userExists}`]}
 				</ThemeButton>
 			</form>
-		</>
+		</main>
 	);
 }

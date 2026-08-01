@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { CardContext } from "@/ui/Generic/Card";
+import { CardContext } from "@/ui/Project/Card";
 import Board from "./Board";
 import { getCutBoards, getCompactCutBoards } from "@/lib/optimizer";
 import "@/styles/BoardList.css";

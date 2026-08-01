@@ -24,5 +24,10 @@ export async function signIn(email: string, password: string) {
 }
 
 export async function signOut() {
-	// Supabase signOut
+	const { error } = await browserClient().auth.signOut();
+	if (error) {
+		console.error(error.message);
+		return false;
+	}
+	return true;
 }

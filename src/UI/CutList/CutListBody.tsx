@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import CutBoardLine from "./CutListLine";
 import ThemeButton from "@/ui/Generic/ThemeButton";
-import { CardContext } from "@/ui/Generic/Card";
+import { CardContext } from "@/ui/Project/Card";
 import { newCutInput } from "@/lib/objects";
 import "@/styles/CutList.css";
 

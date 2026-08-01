@@ -1,0 +1,22 @@
+header {
+	background: var(--theme-main-dark);
+	color: var(--font-color-light);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 2dvw;
+
+	* {
+		color: var(--font-color-light);
+	}
+
+	h1 {
+		font-size: 20px;
+	}
+}
