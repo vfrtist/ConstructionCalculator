@@ -1,9 +1,10 @@
 "use client";
-import { fetchUserExists, signUp } from "@/Services/userServices";
-import { signIn } from "@/Services/browserServices";
+import { fetchUserExists } from "@/services/userServices";
+import { signUp } from "@/services/serverServices";
+import { signIn } from "@/services/browserServices";
 import { useState } from "react";
 import "@/Stylings/login.css";
-import ThemeButton from "@/UI/Generic/ThemeButton";
+import ThemeButton from "@/ui/Generic/ThemeButton";
 import { redirect } from "next/navigation";
 
 export default function Login() {
@@ -30,7 +31,7 @@ export default function Login() {
 		if (!password) return; // Should redirect to "please fill in password"
 
 		if (!userExists) {
-			if (!await signUp(email, password)) return;
+			if (!(await signUp(email, password))) return;
 			setExists(true);
 		}
 

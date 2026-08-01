@@ -1,6 +1,6 @@
-import { createProject } from "@/Services/projectServices";
-import { fetchTemplate } from "@/Services/templateServices";
-import { fetchCurrentUser } from "@/Services/serverServices";
+import { createProject } from "@/services/projectServices";
+import { fetchTemplate } from "@/services/templateServices";
+import { fetchCurrentUser } from "@/services/serverServices";
 import { redirect, notFound } from "next/navigation";
 
 interface TemplatePageProps {

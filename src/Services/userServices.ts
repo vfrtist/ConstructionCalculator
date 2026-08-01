@@ -1,7 +1,6 @@
 "use server";
 import { UserRole } from "@/lib/structures";
 import { sql } from "./db";
-import { serverClient } from "./serverServices";
 
 // will be useful maybe to implement getSession().session.user after fetch current.
 export async function fetchUserExists(email: string) {
@@ -44,23 +43,4 @@ export async function createNewUser(id: string, email: string) {
 	VALUES
 	(${id}, ${email})
 	`;
-}
-
-export async function signUp(email: string, password: string) {
-	const client = await serverClient();
-
-	const { data, error } = await client.auth.signUp({
-		email,
-		password,
-	});
-
-	if (error) {
-		console.error(error.message);
-		return false;
-	}
-
-	if (data.user) {
-		await createNewUser(data.user.id, email);
-	}
-	return true;
 }

@@ -1,12 +1,12 @@
 "use client";
 
-import Card from "@/UI/Generic/Card";
-import ThemeButton from "@/UI/Generic/ThemeButton";
+import Card from "@/ui/Generic/Card";
+import ThemeButton from "@/ui/Generic/ThemeButton";
 import { useState, SetStateAction } from "react";
 import { Project, ProjectBoards } from "@/lib/structures";
 import { newProjectBoards } from "@/lib/objects";
-import { updateProject } from "@/Services/projectServices";
-import { useAutoSave } from "@/Hooks/autosave";
+import { updateProject } from "@/services/projectServices";
+import { useAutoSave } from "@/hooks/autosave";
 
 interface ProjectEditorProps {
 	initialProject: Project;

@@ -1,4 +1,4 @@
-import { fetchProject } from "@/Services/projectServices";
+import { fetchProject } from "@/services/projectServices";
 import ProjectEditor from "./ProjectEditor";
 import { notFound } from "next/navigation";
 

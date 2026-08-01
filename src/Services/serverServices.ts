@@ -2,6 +2,7 @@
 
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { createNewUser } from "./userServices";
 
 export async function serverClient() {
 	const cookieStore = await cookies();
@@ -36,4 +37,23 @@ export async function fetchCurrentUser() {
 		data: { user },
 	} = await client.auth.getUser();
 	return user;
+}
+
+export async function signUp(email: string, password: string) {
+	const client = await serverClient();
+
+	const { data, error } = await client.auth.signUp({
+		email,
+		password,
+	});
+
+	if (error) {
+		console.error(error.message);
+		return false;
+	}
+
+	if (data.user) {
+		await createNewUser(data.user.id, email);
+	}
+	return true;
 }

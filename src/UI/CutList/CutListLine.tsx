@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CardContext } from "@/UI/Generic/Card";
+import { CardContext } from "@/ui/Generic/Card";
 import { CutInput } from "@/lib/structures";
 
 interface CutBoardLineProps {

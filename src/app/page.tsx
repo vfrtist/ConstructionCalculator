@@ -1,4 +1,4 @@
-import { fetchCurrentUser } from "@/Services/serverServices";
+import { fetchCurrentUser } from "@/services/serverServices";
 import { redirect } from "next/navigation";
 
 export default async function Home() {

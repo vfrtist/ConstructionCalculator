@@ -1,8 +1,8 @@
-import FileGroup from "@/UI/Manager/FileGroup";
+import FileGroup from "@/ui/Manager/FileGroup";
 import "@/Stylings/Manager.css";
-import { fetchUserRecentProjects } from "@/Services/projectServices";
-import { fetchCurrentUser } from "@/Services/serverServices";
-import { fetchAllTemplates } from "@/Services/templateServices";
+import { fetchUserRecentProjects } from "@/services/projectServices";
+import { fetchCurrentUser } from "@/services/serverServices";
+import { fetchAllTemplates } from "@/services/templateServices";
 import { redirect } from "next/navigation";
 
 export default async function Manager() {

@@ -1,6 +1,6 @@
 import { newProject, duplicateProject } from "@/lib/objects";
-import { sql } from "@/Services/db";
-import { createTemplate } from "@/Services/templateServices";
+import { sql } from "@/services/db";
+import { createTemplate } from "@/services/templateServices";
 import { DemoTemplate } from "./TestData";
 
 export async function seed() {
