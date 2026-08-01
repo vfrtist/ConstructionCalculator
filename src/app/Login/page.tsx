@@ -3,7 +3,7 @@ import { fetchUserExists } from "@/services/userServices";
 import { signUp } from "@/services/serverServices";
 import { signIn } from "@/services/browserServices";
 import { useState } from "react";
-import "@/Stylings/login.css";
+import "@/styles/login.css";
 import ThemeButton from "@/ui/Generic/ThemeButton";
 import { redirect } from "next/navigation";
 

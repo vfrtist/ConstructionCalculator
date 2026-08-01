@@ -2,7 +2,7 @@ import { useContext, useMemo } from "react";
 import { CardContext } from "@/ui/Generic/Card";
 import Board from "./Board";
 import { getCutBoards, getCompactCutBoards } from "@/lib/optimizer";
-import "@/Stylings/BoardList.css";
+import "@/styles/BoardList.css";
 
 export default function BoardListBody() {
 	const { boardLength, cutInputs } = useContext(CardContext);

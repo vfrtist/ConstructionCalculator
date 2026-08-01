@@ -1,5 +1,5 @@
-import "@/Stylings/main.css";
-import "@/Stylings/colors.css";
+import "@/styles/main.css";
+import "@/styles/colors.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 

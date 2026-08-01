@@ -1,5 +1,5 @@
 import FileGroup from "@/ui/Manager/FileGroup";
-import "@/Stylings/Manager.css";
+import "@/styles/Manager.css";
 import { fetchUserRecentProjects } from "@/services/projectServices";
 import { fetchCurrentUser } from "@/services/serverServices";
 import { fetchAllTemplates } from "@/services/templateServices";

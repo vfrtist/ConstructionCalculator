@@ -14,7 +14,6 @@ interface ProjectEditorProps {
 
 export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 	const [project, setProject] = useState<Project>(initialProject);
-
 	useAutoSave(project, updateProject);
 
 	function addBoard() {
@@ -27,10 +26,10 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 	}
 
 	function setProjectData(updater: SetStateAction<ProjectBoards>) {
+		console.log("updating project");
 		setProject((prev) => ({
 			...prev,
-			boards:
-				typeof updater === "function" ? updater(prev.data) : updater,
+			data: typeof updater === "function" ? updater(prev.data) : updater,
 		}));
 	}
 

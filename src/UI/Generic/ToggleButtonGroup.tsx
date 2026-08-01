@@ -1,5 +1,5 @@
 import React from "react";
-import "@/Stylings/ToggleButtonGroup.css";
+import "@/styles/ToggleButtonGroup.css";
 import { ToggleButtonProps } from "./ToggleButton";
 
 export interface SettingsGroupProp<T> {
@@ -27,7 +27,7 @@ export default function ToggleButtonGroup<T>({
 						key: index,
 						isActive: child.props.value === currentValue,
 						onClick: onChange,
-					})
+					}),
 				)}
 			</div>
 		</div>

@@ -1,13 +1,16 @@
 import React from "react";
-import "@/Stylings/ThemeButton.css";
+import "@/styles/ThemeButton.css";
 
 export default function ThemeButton({
-  children,
-  ...buttonProps
+	children,
+	...buttonProps
 }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button {...buttonProps} className={`ThemeButton ${buttonProps.className}`}>
-      {children}
-    </button>
-  );
+	return (
+		<button
+			{...buttonProps}
+			className={`ThemeButton ${buttonProps.className}`}
+		>
+			{children}
+		</button>
+	);
 }

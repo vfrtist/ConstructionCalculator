@@ -3,7 +3,7 @@ import CutBoardLine from "./CutListLine";
 import ThemeButton from "@/ui/Generic/ThemeButton";
 import { CardContext } from "@/ui/Generic/Card";
 import { newCutInput } from "@/lib/objects";
-import "@/Stylings/CutList.css";
+import "@/styles/CutList.css";
 
 export default function CutListBody() {
 	const { cutInputs, setCutInputs } = useContext(CardContext);

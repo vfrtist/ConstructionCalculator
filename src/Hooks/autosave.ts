@@ -3,7 +3,7 @@ import { useRef, useEffect } from "react";
 export function useAutoSave<T>(
 	value: T,
 	save: (value: T) => Promise<void>,
-	delay = 1000,
+	delay = 2000,
 ) {
 	const firstRender = useRef(true);
 
