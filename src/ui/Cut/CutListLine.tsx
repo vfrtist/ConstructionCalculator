@@ -20,7 +20,7 @@ export default function CutBoardLine({ values }: CutBoardLineProps) {
 	}
 
 	return (
-		<div className="CutListLine container horizontal">
+		<div className="CutLine container horizontal">
 			<input
 				type="number"
 				name="length"

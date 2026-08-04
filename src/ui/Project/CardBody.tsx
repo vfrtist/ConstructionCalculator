@@ -1,13 +1,17 @@
 import { useContext } from "react";
-import { CardContext } from "../Project/Card";
-import CutListBody from "@/ui/CutList/CutListBody";
-import BoardListBody from "@/ui/BoardList/BoardListBody";
+import { CardContext, CardState } from "./Card";
+import CutBody from "@/ui/Cut/CutBody";
+import BoardBody from "@/ui/Board/BoardBody";
+import PlanBody from "@/ui/Plan/PlanBody";
+
+const BodyList: Record<CardState, React.ReactNode> = {
+	board: <BoardBody />,
+	cut: <CutBody />,
+	plan: <PlanBody />,
+};
 
 export default function CardBody() {
 	const { cardState } = useContext(CardContext);
 
-	if (cardState === "cut") {
-		return <CutListBody></CutListBody>;
-	}
-	return <BoardListBody></BoardListBody>;
+	return BodyList[cardState];
 }

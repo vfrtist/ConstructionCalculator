@@ -1,10 +1,10 @@
 import { useContext, useMemo } from "react";
 import { CardContext } from "@/ui/Project/Card";
+import { getCompactCutBoards, getCutBoards } from "@/lib/optimizer";
 import Board from "./Board";
-import { getCutBoards, getCompactCutBoards } from "@/lib/optimizer";
-import "@/styles/BoardList.css";
+import "@/styles/PlanBody.css";
 
-export default function BoardListBody() {
+export default function PlanBody() {
 	const { boardLength, cutInputs } = useContext(CardContext);
 	const boardList = useMemo(
 		() => getCutBoards(boardLength, cutInputs),
@@ -19,7 +19,7 @@ export default function BoardListBody() {
 	);
 
 	return (
-		<div className="BoardListBody">
+		<div className="PlanBody">
 			<ul className="container vertical">
 				{[...compactList].map(([qty, value]) => (
 					<Board
@@ -31,8 +31,8 @@ export default function BoardListBody() {
 				))}
 
 				{/* {boardList.map((board, index) => (
-          <Board key={index.toString()} length={board.length} board={board} />
-        ))} */}
+              <Board key={index.toString()} length={board.length} board={board} />
+            ))} */}
 			</ul>
 		</div>
 	);

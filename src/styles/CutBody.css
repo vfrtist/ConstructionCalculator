@@ -1,9 +1,9 @@
-.CutListBody {
+.CutBody {
 	--grid: 2fr 1fr 2fr 8fr 1fr;
 	width: 100%;
 	padding: 20px 0px;
 
-	.CutListHeader {
+	.CutHeader {
 		display: grid;
 		grid-template-columns: var(--grid);
 		width: 100%;
@@ -11,9 +11,8 @@
 		text-align: left;
 	}
 
-	.CutListLines {
-
-		.CutListLine {
+	.CutLines {
+		.CutLine {
 			display: grid;
 			grid-template-columns: var(--grid);
 			width: 100%;

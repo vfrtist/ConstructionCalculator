@@ -3,9 +3,9 @@ import CutBoardLine from "./CutListLine";
 import ThemeButton from "@/ui/Generic/ThemeButton";
 import { CardContext } from "@/ui/Project/Card";
 import { newCutInput } from "@/lib/objects";
-import "@/styles/CutList.css";
+import "@/styles/CutBody.css";
 
-export default function CutListBody() {
+export default function CutBody() {
 	const { cutInputs, setCutInputs } = useContext(CardContext);
 
 	function addLine() {
@@ -13,14 +13,14 @@ export default function CutListBody() {
 	}
 
 	return (
-		<div className="CutListBody">
-			<div className="CutListHeader container horizontal">
+		<div className="CutBody">
+			<div className="CutHeader container horizontal">
 				<div>Length</div>
 				<div></div>
 				<div>Qty</div>
 				<div>Name</div>
 			</div>
-			<form action="" className="CutListLines container vertical">
+			<form action="" className="CutLines container vertical">
 				{cutInputs.map((values) => (
 					<CutBoardLine key={`${values.id}`} values={values} />
 				))}

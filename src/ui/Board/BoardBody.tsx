@@ -1,12 +1,13 @@
 import { useContext } from "react";
-import { CardContext } from "../Project/Card";
+import { CardContext } from "@/ui/Project/Card";
+import "@/styles/BoardBody.css";
 
-export default function CardHeader({}) {
+export default function BoardBody() {
 	const { boardLength, setBoardLength, setName, name } =
 		useContext(CardContext);
 
 	return (
-		<form action="" className="CutBoardHeader">
+		<form action="" className="BoardBody container vertical">
 			<input
 				className="NameInput"
 				type="text"

@@ -7,7 +7,7 @@ import { Project, ProjectBoards } from "@/lib/structures";
 import { newProjectBoards } from "@/lib/objects";
 import { updateProject } from "@/services/projectServices";
 import { useAutoSave } from "@/hooks/autosave";
-import Header from "@/ui/Generic/Header";
+// import Header from "@/ui/Generic/Header";
 
 interface ProjectEditorProps {
 	initialProject: Project;
@@ -36,7 +36,7 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 
 	return (
 		<main>
-			<Header title={project.name} />
+			{/* <Header title={project.name} /> */}
 			{Object.entries(project.data).map(([id, card]) => (
 				<Card
 					key={id}

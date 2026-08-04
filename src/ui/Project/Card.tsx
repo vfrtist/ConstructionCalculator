@@ -1,10 +1,9 @@
 import { createContext, SetStateAction, useState, Dispatch } from "react";
-import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
 import CardFooter from "./CardFooter";
 import { BoardData, CutInput, ProjectBoards } from "@/lib/structures";
 
-export type CardState = "board" | "cut";
+export type CardState = "board" | "cut" | "plan";
 
 export interface CardData extends BoardData {
 	cardState: CardState;
@@ -76,7 +75,6 @@ export default function Card({ id, data, setProjectData }: CardProps) {
 						})),
 				}}
 			>
-				<CardHeader />
 				<CardBody />
 				<CardFooter />
 			</CardContext.Provider>

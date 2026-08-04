@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CardContext } from "../Project/Card";
+import { CardContext } from "./Card";
 import ToggleButtonGroup from "@/ui/Generic/ToggleButtonGroup";
 import ToggleButton from "@/ui/Generic/ToggleButton";
 
@@ -8,8 +8,9 @@ export default function CardFooter() {
 
 	return (
 		<ToggleButtonGroup activeValue={cardState} onChange={setCardState}>
-			<ToggleButton value="cut" caption="Cut List" />
-			<ToggleButton value="board" caption="Board List" />
+			<ToggleButton value="board" caption="Board" />
+			<ToggleButton value="cut" caption="Cut" />
+			<ToggleButton value="plan" caption="Plan" />
 		</ToggleButtonGroup>
 	);
 }
