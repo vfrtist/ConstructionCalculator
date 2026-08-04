@@ -3,13 +3,13 @@ import "@/styles/Manager.css";
 import { fetchUserRecentProjects } from "@/services/projectServices";
 import { fetchCurrentUser } from "@/services/serverServices";
 import { fetchAllTemplates } from "@/services/templateServices";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default async function Manager() {
 	const user = await fetchCurrentUser();
 
 	if (!user) {
-		notFound();
+		redirect("/login");
 	}
 	const [templates, recents] = await Promise.all([
 		fetchAllTemplates(),
@@ -17,9 +17,9 @@ export default async function Manager() {
 	]);
 
 	return (
-		<>
+		<main>
 			<FileGroup title={"Recent"} files={recents} type={"project"} />
 			<FileGroup title={"New"} files={templates} type={"template"} />
-		</>
+		</main>
 	);
 }

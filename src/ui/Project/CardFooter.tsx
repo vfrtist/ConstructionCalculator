@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CardContext } from "../Project/Card";
-import ToggleButtonGroup from "./ToggleButtonGroup";
-import ToggleButton from "./ToggleButton";
+import ToggleButtonGroup from "@/ui/Generic/ToggleButtonGroup";
+import ToggleButton from "@/ui/Generic/ToggleButton";
 
 export default function CardFooter() {
 	const { cardState, setCardState } = useContext(CardContext);

@@ -35,7 +35,7 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 	}
 
 	return (
-		<>
+		<main>
 			<Header title={project.name} />
 			{Object.entries(project.data).map(([id, card]) => (
 				<Card
@@ -48,6 +48,6 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 			<ThemeButton type="button" className="add" onClick={addBoard}>
 				+
 			</ThemeButton>
-		</>
+		</main>
 	);
 }
