@@ -1,71 +1,72 @@
 * {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-  color: var(--font-color-dark);
-  font-family: sans-serif;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	color: var(--font-color-dark);
+	font-family: sans-serif;
 }
 
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 main {
-  width: 100dvw;
-  min-height: 100dvh;
-  height: auto;
-  background: var(--neutral);
-  text-align: center;
-  padding: 0px 12dvw;
+	width: 100dvw;
+	min-height: 100dvh;
+	height: auto;
+	background: var(--neutral);
+	text-align: center;
+	padding: 0px 12dvw;
 }
 
 button {
-  background: none;
-  border: none;
-  padding: 0px;
-  margin: 0px;
+	background: none;
+	border: none;
+	padding: 0px;
+	margin: 0px;
 }
 
 input {
-  background: none;
+	background: none;
 }
 
 /* Basics section (often re-used classes) */
 .card {
-  background: var(--foreground);
-  padding: 20px;
-  border-radius: 4px;
-  color: var(--font-color-dark);
-  box-shadow: 2px 2px 12px var(--shadow);
-  margin-bottom: 8dvh;
+	background: var(--foreground);
+	padding: 20px;
+	color: var(--font-color-dark);
+	height: 100%;
+	width: 100%;
 }
 
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 .horizontal {
-  flex-direction: row;
+	flex-direction: row;
 }
 
 .vertical {
-  flex-direction: column;
+	flex-direction: column;
 }
 
 .Icon {
-  fill: var(--font-color-light);
-  width: 100%;
-  height: 100%;
-  transition: stroke 0.2s, fill 0.2s;
+	fill: var(--font-color-light);
+	width: 100%;
+	height: 100%;
+	transition:
+		stroke 0.2s,
+		fill 0.2s;
 }
 
 .hidden {
-  visibility: hidden !important;
+	visibility: hidden !important;
 }

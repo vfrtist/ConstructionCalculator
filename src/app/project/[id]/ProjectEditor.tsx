@@ -7,6 +7,7 @@ import { Project, ProjectBoards } from "@/lib/structures";
 import { newProjectBoards } from "@/lib/objects";
 import { updateProject } from "@/services/projectServices";
 import { useAutoSave } from "@/hooks/autosave";
+import Carousel from "@/ui/Generic/Carousel";
 // import Header from "@/ui/Generic/Header";
 
 interface ProjectEditorProps {
@@ -37,17 +38,19 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 	return (
 		<main>
 			{/* <Header title={project.name} /> */}
-			{Object.entries(project.data).map(([id, card]) => (
-				<Card
-					key={id}
-					id={id}
-					data={card}
-					setProjectData={setProjectData}
-				/>
-			))}
-			<ThemeButton type="button" className="add" onClick={addBoard}>
+			<Carousel>
+				{Object.entries(project.data).map(([id, card]) => (
+					<Card
+						key={id}
+						id={id}
+						data={card}
+						setProjectData={setProjectData}
+					/>
+				))}
+			</Carousel>
+			{/* <ThemeButton type="button" className="add" onClick={addBoard}>
 				+
-			</ThemeButton>
+			</ThemeButton> */}
 		</main>
 	);
 }

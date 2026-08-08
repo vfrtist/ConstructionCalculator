@@ -1,0 +1,59 @@
+.Carousel {
+	width: 100dvw;
+	height: 100dvh;
+	/* overflow: hidden; */
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+
+	.Bullets {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		gap: 8px;
+		justify-content: flex-start;
+		width: 100%;
+
+		.Bullet {
+			width: 16px;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			background-color: var(--cool-light);
+
+			&.active {
+				background-color: var(--cool-dark);
+			}
+		}
+	}
+
+	.CarouselContainer {
+		width: 100%;
+		height: 90%;
+		/* overflow: hidden; */
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+
+		.CarouselControls {
+			z-index: 1;
+			position: absolute;
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			height: 4dvh;
+
+			.Icon {
+				fill: var(--cool-dark);
+			}
+		}
+
+		.CarouselItem {
+			z-index: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
