@@ -21,13 +21,13 @@
 			width: 14px;
 			aspect-ratio: 1;
 			border-radius: 50%;
-			background: var(--neutral-light);
+			background: var(--neutral-lighter);
 			transition:
 				background 0.15s,
 				scale 0.15s;
 
 			&.active {
-				background: var(--theme-medium);
+				background: var(--theme-light);
 				scale: 1.2;
 			}
 		}
@@ -62,10 +62,11 @@
 				background: var(--foreground);
 				box-shadow: 4px 4px 8px var(--shadow-light);
 				border-radius: 50%;
-				fill: var(--neutral-dark);
+				fill: var(--theme-light);
 			}
 
 			.disabled .Icon {
+				background: var(--neutral-lighter);
 				fill: var(--neutral-light);
 			}
 		}
