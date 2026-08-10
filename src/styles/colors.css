@@ -7,21 +7,18 @@
 	/* Theme Colors */
 	--theme-dark: #063b46;
 	--theme-medium: #0e8189;
-	--theme-light: #2fded6;
-	--theme-accent-dark: #165086;
-	--theme-accent-medium: #2b80c5;
-	--theme-accent-light: #2db0fc;
+	--theme-light: #24b3c9;
 
 	/* Neutrals */
-	--neutral-lighter: #e8ecf5;
-	--neutral-light: #b3b9c4;
-	--neutral-medium: #666a71;
-	--neutral-dark: #494b52;
-	--neutral-darker: #2a2c2f;
+	--neutral-lighter: #f5eee8;
+	--neutral-light: #c1b9b2;
+	--neutral-medium: #706b66;
+	--neutral-dark: #514d49;
+	--neutral-darker: #2d2b29;
 
 	/* Functional */
 	--shadow-light: #3a3f4553;
 	--shadow-dark: #3a3f45d3;
-	--background: #e3e3ea;
+	--background: #ebd8c1;
 	--foreground: #fdfcff;
 }

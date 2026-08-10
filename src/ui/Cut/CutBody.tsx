@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import CutBoardLine from "./CutListLine";
+import CutLine from "./CutLine";
 import ThemeButton from "@/ui/Generic/ThemeButton";
 import { CardContext } from "@/ui/Project/Card";
 import { newCutInput } from "@/lib/objects";
@@ -14,19 +14,19 @@ export default function CutBody() {
 
 	return (
 		<div className="CutBody">
-			<div className="CutHeader container horizontal">
+			<header className="CardHeader container horizontal">
 				<div>L</div>
 				<div>Q</div>
-				<div>N</div>
-			</div>
-			<form action="" className="CutLines container vertical">
+				<div>Name</div>
+			</header>
+			<ul className="CutLines container vertical">
 				{cutInputs.map((values) => (
-					<CutBoardLine key={`${values.id}`} values={values} />
+					<CutLine key={`${values.id}`} values={values} />
 				))}
-				<ThemeButton type="button" className="add" onClick={addLine}>
-					+
-				</ThemeButton>
-			</form>
+			</ul>
+			<ThemeButton type="button" className="add" onClick={addLine}>
+				+
+			</ThemeButton>
 		</div>
 	);
 }

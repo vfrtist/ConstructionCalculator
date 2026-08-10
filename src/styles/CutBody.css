@@ -3,18 +3,13 @@
 	width: 100%;
 	padding: 20px 0px;
 
-	.CutHeader {
-		display: grid;
+	.CardHeader {
 		grid-template-columns: var(--grid);
-		width: 100%;
-		justify-content: space-between;
-		text-align: left;
 		gap: 8px;
-		font-size: 18px;
 	}
 
 	.CutLines {
-		.CutLine {
+		.CardLine {
 			display: grid;
 			grid-template-columns: var(--grid);
 			width: 100%;
@@ -33,7 +28,7 @@
 
 	input {
 		border: none;
-		border-bottom: 1px solid #b6b6b6;
+		border-bottom: 1px solid var(--neutral-light);
 		color: var(--font-color-dark);
 		padding: 4px;
 	}

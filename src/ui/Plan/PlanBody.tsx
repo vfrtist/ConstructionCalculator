@@ -1,7 +1,7 @@
 import { useContext, useMemo } from "react";
 import { CardContext } from "@/ui/Project/Card";
 import { getCompactCutBoards, getCutBoards } from "@/lib/optimizer";
-import Board from "./Board";
+import PlanLine from "./PlanLine";
 import "@/styles/PlanBody.css";
 
 export default function PlanBody() {
@@ -20,9 +20,13 @@ export default function PlanBody() {
 
 	return (
 		<div className="PlanBody">
-			<ul className="container vertical">
+			<header className="CardHeader container horizontal">
+				<div>Q</div>
+				<div>Board</div>
+			</header>
+			<ul className="PlanLines container vertical">
 				{[...compactList].map(([qty, value]) => (
-					<Board
+					<PlanLine
 						key={value.id}
 						length={value.length}
 						board={value}

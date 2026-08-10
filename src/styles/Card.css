@@ -8,12 +8,21 @@
 	box-shadow: 4px 4px 8px var(--shadow-light);
 	position: relative;
 
+	.CardHeader {
+		display: grid;
+		width: 100%;
+		font-size: 18px;
+		display: grid;
+	}
+
+	.CardLine {
+		font-size: 14px;
+	}
+
 	.ToggleButtonGroup {
 		bottom: -72px;
 		position: absolute;
 		z-index: 2;
-		/* background: var(--foreground); */
 		padding: 4px;
-		/* box-shadow: 4px 4px 8px var(--shadow-light); */
 	}
 }

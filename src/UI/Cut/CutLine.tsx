@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { CardContext } from "@/ui/Project/Card";
 import { CutInput } from "@/lib/structures";
 
-interface CutBoardLineProps {
+interface CutLineProps {
 	values: CutInput;
 }
 
-export default function CutBoardLine({ values }: CutBoardLineProps) {
+export default function CutLine({ values }: CutLineProps) {
 	const { setCutInputs } = useContext(CardContext);
 
 	function lineUpdater(newCut: CutInput) {
@@ -20,7 +20,7 @@ export default function CutBoardLine({ values }: CutBoardLineProps) {
 	}
 
 	return (
-		<div className="CutLine container horizontal">
+		<li className="CardLine container horizontal">
 			<input
 				type="number"
 				name="length"
@@ -55,6 +55,6 @@ export default function CutBoardLine({ values }: CutBoardLineProps) {
 			<button type="button" className="delete" onClick={removeLine}>
 				x
 			</button>
-		</div>
+		</li>
 	);
 }
