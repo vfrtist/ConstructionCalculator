@@ -31,7 +31,6 @@ export default function CutBoardLine({ values }: CutBoardLineProps) {
 					lineUpdater({ ...values, length: Number(e.target.value) });
 				}}
 			/>
-			<div>x</div>
 			<input
 				type="number"
 				name="qty"

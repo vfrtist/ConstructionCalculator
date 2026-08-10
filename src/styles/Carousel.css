@@ -1,11 +1,12 @@
 .Carousel {
+	--side-space: 12dvw;
 	width: 100dvw;
 	height: 100dvh;
-	/* overflow: hidden; */
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
+	flex-direction: column-reverse;
+	justify-content: center;
 	align-items: center;
+	gap: 12px;
 
 	.Bullets {
 		display: flex;
@@ -13,40 +14,59 @@
 		flex-wrap: nowrap;
 		gap: 8px;
 		justify-content: flex-start;
-		width: 100%;
+		margin-left: var(--side-space);
+		align-self: flex-start;
 
 		.Bullet {
-			width: 16px;
+			width: 14px;
 			aspect-ratio: 1;
 			border-radius: 50%;
-			background-color: var(--cool-light);
+			background: var(--neutral-light);
+			transition:
+				background 0.15s,
+				scale 0.15s;
 
 			&.active {
-				background-color: var(--cool-dark);
+				background: var(--theme-medium);
+				scale: 1.2;
 			}
 		}
 	}
 
 	.CarouselContainer {
 		width: 100%;
-		height: 90%;
-		/* overflow: hidden; */
+		height: clamp(500px, 80dvh, 80%);
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: center;
+		gap: 24px;
+		overflow-x: scroll;
+		overflow-y: auto;
+		scroll-behavior: smooth;
+		scroll-snap-type: x mandatory;
+		padding: 0px var(--side-space);
 
 		.CarouselControls {
 			z-index: 1;
 			position: absolute;
+			left: 0;
 			display: flex;
 			justify-content: space-between;
 			width: 100%;
+			padding: 0px 12px;
 			height: 4dvh;
 
 			.Icon {
-				fill: var(--cool-dark);
+				background: var(--foreground);
+				box-shadow: 4px 4px 8px var(--shadow-light);
+				border-radius: 50%;
+				fill: var(--neutral-dark);
+			}
+
+			.disabled .Icon {
+				fill: var(--neutral-light);
 			}
 		}
 
@@ -54,6 +74,15 @@
 			z-index: 0;
 			width: 100%;
 			height: 100%;
+			overflow: visible;
+			padding: 0px 0px 12dvh;
+			flex: 0 0 auto;
+			scroll-snap-align: center;
+			transition: opacity 0.15s;
+
+			&:not(.active) {
+				opacity: 50%;
+			}
 		}
 	}
 }

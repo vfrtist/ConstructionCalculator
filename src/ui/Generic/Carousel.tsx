@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import CarouselControls from "./CarouselControls";
 import "@/styles/Carousel.css";
 
@@ -8,21 +8,49 @@ export interface CarouselProps {
 
 export default function Carousel({ children }: CarouselProps) {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const containerRef = useRef<HTMLDivElement | null>(null);
 
 	function HandleIndexChange(newIndex: number) {
+		let index = newIndex;
 		if (newIndex <= 0) {
-			setCurrentIndex(0);
-			return;
+			index = 0;
 		}
 		if (newIndex >= children.length) {
-			setCurrentIndex(children.length - 1);
-			return;
+			index = children.length - 1;
 		}
+		setCurrentIndex(index);
+		const card = document.getElementById(`carousel-item-${index}`);
+		card?.scrollIntoView();
 	}
 
+	useEffect(() => {
+		const container = containerRef.current;
+
+		if (!container) return;
+
+		const items = container.querySelectorAll(".CarouselItem");
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const index = [...items].indexOf(entry.target);
+						setCurrentIndex(index);
+					}
+				});
+			},
+			{ root: container, threshold: 0.6 },
+		);
+
+		items.forEach((item) => {
+			observer.observe(item);
+		});
+
+		return () => observer.disconnect();
+	}, [children.length]);
 	return (
 		<div className="Carousel">
-			<div className="CarouselContainer">
+			<div className="CarouselContainer" ref={containerRef}>
 				<CarouselControls
 					handleIndexChange={HandleIndexChange}
 					currentIndex={currentIndex}
@@ -53,8 +81,11 @@ export default function Carousel({ children }: CarouselProps) {
 				aria-label="Carousel Navigation"
 			>
 				{children.map((_, index) => (
-					<a
-						href={`#carousel-item-${index}`}
+					<button
+						onClick={() => {
+							HandleIndexChange(index);
+						}}
+						type="button"
 						role="tab"
 						key={index}
 						className={`Bullet ${index === currentIndex ? "active" : ""}`}

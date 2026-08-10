@@ -1,0 +1,19 @@
+.Card {
+	padding: 20px;
+	color: var(--font-color-dark);
+	height: 100%;
+	width: 100%;
+	border-radius: 12px;
+	background: var(--foreground);
+	box-shadow: 4px 4px 8px var(--shadow-light);
+	position: relative;
+
+	.ToggleButtonGroup {
+		bottom: -72px;
+		position: absolute;
+		z-index: 2;
+		/* background: var(--foreground); */
+		padding: 4px;
+		/* box-shadow: 4px 4px 8px var(--shadow-light); */
+	}
+}

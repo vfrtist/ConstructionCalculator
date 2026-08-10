@@ -15,10 +15,9 @@ export default function CutBody() {
 	return (
 		<div className="CutBody">
 			<div className="CutHeader container horizontal">
-				<div>Length</div>
-				<div></div>
-				<div>Qty</div>
-				<div>Name</div>
+				<div>L</div>
+				<div>Q</div>
+				<div>N</div>
 			</div>
 			<form action="" className="CutLines container vertical">
 				{cutInputs.map((values) => (

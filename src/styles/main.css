@@ -18,9 +18,8 @@ main {
 	width: 100dvw;
 	min-height: 100dvh;
 	height: auto;
-	background: var(--neutral);
+	background: var(--background);
 	text-align: center;
-	padding: 0px 12dvw;
 }
 
 button {
@@ -35,14 +34,6 @@ input {
 }
 
 /* Basics section (often re-used classes) */
-.card {
-	background: var(--foreground);
-	padding: 20px;
-	color: var(--font-color-dark);
-	height: 100%;
-	width: 100%;
-}
-
 .container {
 	display: flex;
 	flex-wrap: wrap;

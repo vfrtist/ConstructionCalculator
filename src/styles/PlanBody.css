@@ -1,41 +1,15 @@
 .PlanBody {
+	--grid: 28px 1fr;
 	text-align: left;
 	width: 100%;
 	padding: 20px 0px;
 
-	.BoardHeader {
+	.PlanHeader {
 		width: 100%;
 		height: 52px;
 		justify-content: flex-start;
 		gap: 16px;
-		border-bottom: 1px solid var(--shadow);
-
-		.qty {
-			height: 100%;
-			aspect-ratio: 1;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border-right: 1px solid var(--shadow);
-			font-size: 24px;
-		}
-
-		.caption {
-			height: 100%;
-			text-align: left;
-			align-items: flex-start;
-			justify-content: space-evenly;
-
-			.title {
-				font-size: 20px;
-			}
-
-			.subtitle {
-				color: var(--font-color-medium);
-				font-weight: 400;
-				font-size: 14px;
-			}
-		}
+		font-size: 18px;
 	}
 
 	ul {
@@ -46,6 +20,8 @@
 	}
 
 	.Board {
+		/* display: grid; */
+		/* grid-template-columns: var(--grid); */
 		width: 100%;
 		gap: 4px;
 		box-sizing: border-box;

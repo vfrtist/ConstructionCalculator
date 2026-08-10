@@ -5,22 +5,23 @@
 	--font-color-dark: #171818;
 
 	/* Theme Colors */
-	--theme-main-dark: #006d77;
-	--theme-main-medium: #83c5be;
-	--theme-main-light: #edf6f9;
-	--theme-accent-light: #ffddd2;
-	--theme-accent-dark: #e29578;
+	--theme-dark: #063b46;
+	--theme-medium: #0e8189;
+	--theme-light: #2fded6;
+	--theme-accent-dark: #165086;
+	--theme-accent-medium: #2b80c5;
+	--theme-accent-light: #2db0fc;
 
 	/* Neutrals */
-	--cool-light: #adb1b5;
-	--cool-medium: #676a6d;
-	--cool-dark: #3e4042;
-	--warm-light: #dcc8c3;
-	--warm-medium: #a0938f;
-	--warm-dark: #867975;
+	--neutral-lighter: #e8ecf5;
+	--neutral-light: #b3b9c4;
+	--neutral-medium: #666a71;
+	--neutral-dark: #494b52;
+	--neutral-darker: #2a2c2f;
 
 	/* Functional */
 	--shadow-light: #3a3f4553;
 	--shadow-dark: #3a3f45d3;
-	--foreground: #fffbf3;
+	--background: #e3e3ea;
+	--foreground: #fdfcff;
 }

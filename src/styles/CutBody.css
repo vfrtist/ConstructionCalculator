@@ -1,5 +1,5 @@
 .CutBody {
-	--grid: 2fr 1fr 2fr 8fr 1fr;
+	--grid: 2fr 2fr 8fr 1fr;
 	width: 100%;
 	padding: 20px 0px;
 
@@ -9,6 +9,8 @@
 		width: 100%;
 		justify-content: space-between;
 		text-align: left;
+		gap: 8px;
+		font-size: 18px;
 	}
 
 	.CutLines {
@@ -17,6 +19,7 @@
 			grid-template-columns: var(--grid);
 			width: 100%;
 			justify-content: space-between;
+			gap: 8px;
 
 			input:not(.name) {
 				width: 5ch;

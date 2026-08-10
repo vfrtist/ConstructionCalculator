@@ -2,6 +2,7 @@ import { createContext, SetStateAction, useState, Dispatch } from "react";
 import CardBody from "./CardBody";
 import CardFooter from "./CardFooter";
 import { BoardData, CutInput, ProjectBoards } from "@/lib/structures";
+import "@/styles/Card.css";
 
 export type CardState = "board" | "cut" | "plan";
 
@@ -41,7 +42,7 @@ export default function Card({ id, data, setProjectData }: CardProps) {
 	}
 
 	return (
-		<div className="card">
+		<div className="Card container vertical">
 			<CardContext.Provider
 				value={{
 					name: data.name,
