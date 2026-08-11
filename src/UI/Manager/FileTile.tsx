@@ -16,7 +16,7 @@ export default function FileTile({ project, type }: FileTileProps) {
 						: `template/${project.id}`
 				}
 			>
-				<div>{project.name}</div>
+				{project.name}
 			</Link>
 		</li>
 	);

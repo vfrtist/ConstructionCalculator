@@ -3,10 +3,11 @@
 	color: var(--font-color-dark);
 	height: 100%;
 	width: 100%;
-	border-radius: 12px;
+	border-radius: var(--theme-radius);
 	background: var(--foreground);
 	box-shadow: 4px 4px 8px var(--shadow-light);
 	position: relative;
+	justify-content: flex-start;
 
 	.CardHeader {
 		display: grid;
@@ -22,9 +23,20 @@
 	}
 
 	.ToggleButtonGroup {
+		--padding: 8px;
 		bottom: -72px;
 		position: absolute;
 		z-index: 2;
-		padding: 4px;
+		/* padding: 8px; */
+		border: var(--padding) solid var(--neutral-lighter);
+		height: 52px;
+
+		.Cursor {
+			border-radius: calc(var(--theme-radius) - var(--padding));
+		}
+
+		.ToggleButton {
+			height: 100%;
+		}
 	}
 }

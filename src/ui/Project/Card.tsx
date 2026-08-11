@@ -32,7 +32,7 @@ export const CardContext = createContext<CardData>({
 });
 
 export default function Card({ id, data, setProjectData }: CardProps) {
-	const [cardState, setCardState] = useState<CardState>("cut");
+	const [cardState, setCardState] = useState<CardState>("board");
 
 	function updaterFunction(updater: (prev: BoardData) => BoardData) {
 		setProjectData((prev) => ({
