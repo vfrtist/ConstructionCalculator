@@ -1,35 +1,30 @@
 .ToggleButtonGroup {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 2dvh;
+	width: 100%;
 
 	.ButtonGroup {
 		display: flex;
-
-		.ToggleButton:first-of-type {
-			border-radius: 12px 0px 0px 12px;
-		}
-
-		.ToggleButton:last-of-type {
-			border-radius: 0px 12px 12px 0px;
-		}
+		width: 100%;
+		border-radius: 16px;
+		overflow: hidden;
 
 		.ToggleButton {
+			flex: 1;
 			font-size: 14px;
-			background: var(--neutral-light);
+			background: var(--neutral-lighter);
 			transition:
 				background 0.2s,
 				color 0.2s;
-			padding: 4px 12px;
+			padding: 12px;
 			border-radius: 0px;
-			box-shadow: 2px 2px 2px var(--shadow-light);
 
 			&:hover {
 				background: var(--theme-light);
 			}
 
 			&.active {
-				background: var(--theme-medium);
+				/* background: var(--theme-medium); */
 				color: var(--font-color-light);
 			}
 		}

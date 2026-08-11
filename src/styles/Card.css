@@ -13,6 +13,8 @@
 		width: 100%;
 		font-size: 18px;
 		display: grid;
+		text-align: left;
+		margin-bottom: 1dvh;
 	}
 
 	.CardLine {

@@ -16,6 +16,7 @@
 		gap: 16px;
 
 		.CardLine {
+			width: 100%;
 			display: grid;
 			grid-template-columns: var(--grid);
 

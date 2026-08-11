@@ -9,6 +9,7 @@
 	}
 
 	.CutLines {
+		width: 100%;
 		.CardLine {
 			display: grid;
 			grid-template-columns: var(--grid);
@@ -35,5 +36,10 @@
 
 	.add {
 		font-size: 20px;
+		background: var(--theme-light);
+		border-radius: 50%;
+		aspect-ratio: 1;
+		width: 24px;
+		color: var(--foreground);
 	}
 }

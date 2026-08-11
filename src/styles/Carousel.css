@@ -63,11 +63,16 @@
 				box-shadow: 4px 4px 8px var(--shadow-light);
 				border-radius: 50%;
 				fill: var(--theme-light);
+				transition:
+					fill 0.15s,
+					box-shadow 0.15s,
+					background 0.15s;
 			}
 
 			.disabled .Icon {
 				background: var(--neutral-lighter);
 				fill: var(--neutral-light);
+				box-shadow: none;
 			}
 		}
 
