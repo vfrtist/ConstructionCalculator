@@ -77,11 +77,13 @@
 		}
 
 		.CarouselItem {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
 			z-index: 0;
 			width: 100%;
 			height: 100%;
 			overflow: visible;
-			padding: 0px 0px 12dvh;
 			flex: 0 0 auto;
 			scroll-snap-align: center;
 			transition: opacity 0.15s;

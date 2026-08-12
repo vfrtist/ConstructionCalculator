@@ -21,22 +21,15 @@
 	.CardLine {
 		font-size: 14px;
 	}
+}
 
-	.ToggleButtonGroup {
-		--padding: 8px;
-		bottom: -72px;
-		position: absolute;
-		z-index: 2;
-		/* padding: 8px; */
-		border: var(--padding) solid var(--neutral-lighter);
-		height: 52px;
+.ToggleButtonGroup {
+	--padding: 8px;
+	z-index: 2;
+	border: var(--padding) solid var(--neutral-lighter);
+	height: 56px;
 
-		.Cursor {
-			border-radius: calc(var(--theme-radius) - var(--padding));
-		}
-
-		.ToggleButton {
-			height: 100%;
-		}
+	.Cursor {
+		border-radius: calc(var(--theme-radius) - var(--padding));
 	}
 }

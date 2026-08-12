@@ -42,43 +42,41 @@ export default function Card({ id, data, setProjectData }: CardProps) {
 	}
 
 	return (
-		<div className="Card container vertical">
-			<CardContext.Provider
-				value={{
-					name: data.name,
-					boardLength: data.boardLength,
-					cardState: cardState,
-					cutInputs: data.cutInputs,
-					setBoardLength: (length) =>
-						updaterFunction((prev) => ({
-							...prev,
-							boardLength:
-								typeof length === "function"
-									? length(prev.boardLength)
-									: length,
-						})),
-					setCardState: (state) => setCardState(state),
-					setCutInputs: (inputs) =>
-						updaterFunction((prev) => ({
-							...prev,
-							cutInputs:
-								typeof inputs === "function"
-									? inputs(prev.cutInputs)
-									: inputs,
-						})),
-					setName: (name) =>
-						updaterFunction((prev) => ({
-							...prev,
-							name:
-								typeof name === "function"
-									? name(prev.name)
-									: name,
-						})),
-				}}
-			>
+		<CardContext.Provider
+			value={{
+				name: data.name,
+				boardLength: data.boardLength,
+				cardState: cardState,
+				cutInputs: data.cutInputs,
+				setBoardLength: (length) =>
+					updaterFunction((prev) => ({
+						...prev,
+						boardLength:
+							typeof length === "function"
+								? length(prev.boardLength)
+								: length,
+					})),
+				setCardState: (state) => setCardState(state),
+				setCutInputs: (inputs) =>
+					updaterFunction((prev) => ({
+						...prev,
+						cutInputs:
+							typeof inputs === "function"
+								? inputs(prev.cutInputs)
+								: inputs,
+					})),
+				setName: (name) =>
+					updaterFunction((prev) => ({
+						...prev,
+						name:
+							typeof name === "function" ? name(prev.name) : name,
+					})),
+			}}
+		>
+			<div className="Card container vertical">
 				<CardBody />
-				<CardFooter />
-			</CardContext.Provider>
-		</div>
+			</div>
+			<CardFooter />
+		</CardContext.Provider>
 	);
 }

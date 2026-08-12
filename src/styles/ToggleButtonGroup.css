@@ -1,6 +1,4 @@
 .ToggleButtonGroup {
-	display: flex;
-	flex-wrap: wrap;
 	width: 100%;
 	border-radius: var(--theme-radius);
 	overflow: hidden;
@@ -10,15 +8,20 @@
 	.Cursor {
 		background: var(--foreground);
 		height: 100%;
-		position: absolute;
 		z-index: 0;
-		transition: left 0.15s;
+		transition: left 0.25s cubic-bezier(0.5, -0.17, 0.75, 0.81);
+		position: absolute;
 	}
 
 	.ToggleButton {
 		flex: 1;
 		font-size: 14px;
-		transition: color 0.2s;
 		z-index: 1;
+		height: 100%;
+		transition: font-weight 0 0 0.25s;
+
+		&.active {
+			font-weight: 600;
+		}
 	}
 }
