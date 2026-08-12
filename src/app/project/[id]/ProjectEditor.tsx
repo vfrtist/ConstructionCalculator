@@ -1,14 +1,14 @@
 "use client";
 
 import Card from "@/ui/Project/Card";
-import ThemeButton from "@/ui/Generic/ThemeButton";
 import { useState, SetStateAction } from "react";
 import { Project, ProjectBoards } from "@/lib/structures";
 import { newProjectBoards } from "@/lib/objects";
 import { updateProject } from "@/services/projectServices";
 import { useAutoSave } from "@/hooks/autosave";
 import Carousel from "@/ui/Generic/Carousel";
-// import Header from "@/ui/Generic/Header";
+import Header from "@/ui/Generic/Header";
+import Icon from "@/ui/Generic/Icon";
 
 interface ProjectEditorProps {
 	initialProject: Project;
@@ -37,7 +37,7 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 
 	return (
 		<main>
-			{/* <Header title={project.name} /> */}
+			<Header goBack="/manager" />
 			<Carousel>
 				{Object.entries(project.data).map(([id, card]) => (
 					<Card
@@ -48,9 +48,9 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 					/>
 				))}
 			</Carousel>
-			{/* <ThemeButton type="button" className="add" onClick={addBoard}>
-				+
-			</ThemeButton> */}
+			{/* <button type="button" className="add" onClick={addBoard}>
+				<Icon iconKey="plus" />
+			</button> */}
 		</main>
 	);
 }

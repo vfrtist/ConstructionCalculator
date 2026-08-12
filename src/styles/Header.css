@@ -1,4 +1,4 @@
-header {
+.mainHeader {
 	background: var(--theme-main-dark);
 	color: var(--font-color-light);
 	position: fixed;
@@ -10,7 +10,8 @@ header {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	padding: 2dvw;
+	padding: 20px 12px;
+	background: var(--neutral-lighter);
 
 	* {
 		color: var(--font-color-light);
@@ -18,5 +19,15 @@ header {
 
 	h1 {
 		font-size: 20px;
+	}
+
+	a {
+		height: 100%;
+		width: auto;
+		.Icon {
+			fill: var(--neutral-medium);
+			height: 100%;
+			width: auto;
+		}
 	}
 }

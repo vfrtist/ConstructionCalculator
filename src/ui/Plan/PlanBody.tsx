@@ -21,8 +21,8 @@ export default function PlanBody() {
 	return (
 		<div className="PlanBody">
 			<header className="CardHeader container horizontal">
-				<div>Q</div>
-				<div>Board</div>
+				<span>Q</span>
+				<span>Board</span>
 			</header>
 			<ul className="PlanLines container vertical">
 				{[...compactList].map(([qty, value]) => (

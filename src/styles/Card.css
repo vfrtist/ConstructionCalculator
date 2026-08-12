@@ -8,18 +8,19 @@
 	box-shadow: 4px 4px 8px var(--shadow-light);
 	position: relative;
 	justify-content: flex-start;
+	overflow-y: auto;
 
 	.CardHeader {
 		display: grid;
 		width: 100%;
-		font-size: 18px;
 		display: grid;
 		text-align: left;
 		margin-bottom: 1dvh;
-	}
 
-	.CardLine {
-		font-size: 14px;
+		span {
+			font-size: 1rem;
+			font-weight: 200;
+		}
 	}
 }
 

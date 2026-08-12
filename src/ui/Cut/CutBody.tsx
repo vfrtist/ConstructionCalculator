@@ -4,6 +4,7 @@ import ThemeButton from "@/ui/Generic/ThemeButton";
 import { CardContext } from "@/ui/Project/Card";
 import { newCutInput } from "@/lib/objects";
 import "@/styles/CutBody.css";
+import Icon from "../Generic/Icon";
 
 export default function CutBody() {
 	const { cutInputs, setCutInputs } = useContext(CardContext);
@@ -15,9 +16,9 @@ export default function CutBody() {
 	return (
 		<div className="CutBody container vertical">
 			<header className="CardHeader container horizontal">
-				<div>L</div>
-				<div>Q</div>
-				<div>Name</div>
+				<span>L</span>
+				<span>Q</span>
+				<span>Name</span>
 			</header>
 			<ul className="CutLines container vertical">
 				{cutInputs.map((values) => (
@@ -25,7 +26,7 @@ export default function CutBody() {
 				))}
 			</ul>
 			<ThemeButton type="button" className="add" onClick={addLine}>
-				+
+				<Icon iconKey="plus" />
 			</ThemeButton>
 		</div>
 	);

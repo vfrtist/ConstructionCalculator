@@ -7,7 +7,7 @@
 	margin: 0px;
 	padding: 0px;
 	color: var(--font-color-dark);
-	font-family: sans-serif;
+	font-size: 14px;
 }
 
 ul {
@@ -34,10 +34,15 @@ button {
 	border: none;
 	padding: 0px;
 	margin: 0px;
+	font-family: "Commissioner";
 }
 
 input {
 	background: none;
+	border: none;
+	outline: none;
+	border-bottom: 1px solid var(--neutral-light);
+	font-family: "Commissioner";
 }
 
 /* Basics section (often re-used classes) */

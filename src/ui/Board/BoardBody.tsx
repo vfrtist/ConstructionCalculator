@@ -8,27 +8,35 @@ export default function BoardBody() {
 
 	return (
 		<form action="" className="BoardBody container vertical">
-			<input
-				className="NameInput"
-				type="text"
-				name="name"
-				placeholder="name"
-				value={name}
-				onChange={(e) => {
-					setName(e.target.value);
-				}}
-			/>
+			<div className="formRow container vertical">
+				<label htmlFor="name">Name</label>
+				<input
+					className="NameInput"
+					type="text"
+					name="name"
+					id="name"
+					placeholder="name"
+					value={name}
+					onChange={(e) => {
+						setName(e.target.value);
+					}}
+				/>
+			</div>
 
-			<input
-				type="number"
-				name="length"
-				placeholder="96"
-				// min={0}
-				value={boardLength}
-				onChange={(e) => {
-					setBoardLength(Number(e.target.value));
-				}}
-			/>
+			<div className="formRow container vertical">
+				<label htmlFor="length">Length</label>
+				<input
+					id="length"
+					type="number"
+					name="length"
+					placeholder="96"
+					// min={0}
+					value={boardLength}
+					onChange={(e) => {
+						setBoardLength(Number(e.target.value));
+					}}
+				/>
+			</div>
 		</form>
 	);
 }

@@ -13,7 +13,7 @@
 		width: 100%;
 		margin: 0px;
 		box-sizing: border-box;
-		gap: 16px;
+		gap: 8px;
 
 		.CardLine {
 			width: 100%;
@@ -23,6 +23,7 @@
 			.qty {
 				font-weight: 600;
 				user-select: none;
+				align-self: flex-end;
 			}
 
 			.Board {

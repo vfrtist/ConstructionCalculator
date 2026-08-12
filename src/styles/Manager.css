@@ -1,8 +1,13 @@
+.Manager {
+	padding-top: 80px;
+}
+
 .FileGroup {
 	gap: 1rem;
 	padding: 1rem;
 	align-items: flex-start;
 	justify-content: flex-start;
+	position: relative;
 
 	.FileGroupTitle {
 		font-size: 1.5rem;
