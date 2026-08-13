@@ -20,8 +20,10 @@ export default async function Manager() {
 	return (
 		<main className="Manager">
 			<Header />
-			<FileGroup title={"Recent"} files={recents} type={"project"} />
-			<FileGroup title={"New"} files={templates} type={"template"} />
+			<div>
+				<FileGroup title={"Recent"} files={recents} type={"project"} />
+				<FileGroup title={"New"} files={templates} type={"template"} />
+			</div>
 		</main>
 	);
 }
