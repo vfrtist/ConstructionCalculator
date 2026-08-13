@@ -37,7 +37,7 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 
 	return (
 		<main>
-			<Header goBack="/manager" />
+			<Header />
 			<Carousel>
 				{Object.entries(project.data).map(([id, card]) => (
 					<Card

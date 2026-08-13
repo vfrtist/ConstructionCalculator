@@ -1,48 +1,52 @@
 Done
--Create database schema
--Populate database
--Design project manager screen.
+    -Create database schema
+    -Populate database
+    -Design project manager screen.
     -Recents
     -Templates
-    -... Something else?
-        -Can you delete a project from here? Do we care about that?
--Design templates and how to use them.
-        -Save as prompt on edit
+    -Design templates and how to use them.
     -Does this mean projects need read/write modes?
     -Relative to the database "templates" will need a universal ID to make their call not unique to the user. Any new templates would be pushed to all users.
--Implement log on procedure and storing of user information....
+    -Implement log on procedure and storing of user information....
     -Again I can't tell if this is context or some other we based local storage cookies something.
--Re-route loading a project from memory into state, as rendering an API from state.
+    -Re-route loading a project from memory into state, as rendering an API from state.
     -Select all projects for a specific user
     -Select data from a specific project
     -Create new project from a template
--Create debounce and direct saving methods for data execution.
+    -Create debounce and direct saving methods for data execution.
     -Overwrite data for a specific project
-
-
-General Tasks
--Create header
-
-
-Manager
+    -Create header
     -What makes that feel "mobile"
     -If you open a template how does one convert that into a real project:
-        -Save as prompt on open
+    -Design color scheme
+    -Add splash screen for loading w/ logo and hero color
+    -Convert main page w/header into grid row display
 
-
-Logon
--Design screen.
-
-
-Visuals
--Add splash screen for loading w/ logo and hero color
--Design color scheme
--Add subtle saving ui (think video game book writing animation) probably in the header. Possibly floating.
--Find more references
--Make icons
+General Tasks
+    -Sign out/Auto sign out
 
 Project
--*low priority* Rename and re-folder "Card" pieces into ProjectCard pieces. They are not generic.
+    -Implement undo/redo
+    -Delete/Copy Board
+    -Add subtle saving ui (think video game book writing animation).
+    -(stretch) Add project skeleton
+    -(stretch) Share project with another user
+    -(stretch) Cut sorting
+    -(stretch) Plan sorting
+    -(stretch) Plan done/undone view sectioning to facilitate task management
+
+Manager
+    -Get new file name on selecting a template
+    -Edit file name
+    -Delete file
+    (stretch) Add manager skeleton
+
+Logon
+    -Style screen for pretty
+
+Visuals
+    -Media query for different layouts
+    -Add icons (maybe)
 
 
 n.TFZU6YcfUgTkg

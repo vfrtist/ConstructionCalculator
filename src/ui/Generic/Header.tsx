@@ -1,23 +1,15 @@
-import { signOut } from "@/services/browserServices";
-import Link from "next/link";
-
 import "@/styles/Header.css";
-import Icon from "./Icon";
 
 interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-	title?: string;
-	// rightFunction?: Function;
+	leftElements?: React.ReactNode[];
+	rightElements?: React.ReactNode[];
 	goBack?: string;
 }
-export default function Header({ goBack, ...headerProps }: HeaderProps) {
+export default function Header({ leftElements, rightElements, ...headerProps }: HeaderProps) {
 	return (
 		<header className="mainHeader" {...headerProps}>
-			{goBack && (
-				<Link href={goBack}>
-					<Icon iconKey="chevron" />
-				</Link>
-			)}
-			{/* <button onClick={signOut}>Sign Out</button> */}
+			{leftElements && <div className="headerLeft"> {leftElements}</div>}
+			{rightElements && <div className="headerRight"> {rightElements}</div>}
 		</header>
 	);
 }
