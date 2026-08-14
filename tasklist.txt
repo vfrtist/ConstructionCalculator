@@ -26,9 +26,10 @@ General Tasks
     -Sign out/Auto sign out
 
 Project
-    -Implement undo/redo
     -Delete/Copy Board
     -Add subtle saving ui (think video game book writing animation).
+    -Implement undo/redo
+    -Implement add board button at end of list?
     -(stretch) Add project skeleton
     -(stretch) Share project with another user
     -(stretch) Cut sorting

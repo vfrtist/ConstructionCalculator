@@ -62,7 +62,6 @@ export async function createProject(userID: string, project: Project) {
 
 export async function updateProject(project: Project) {
 	const { id, name, description, data } = projectToDB(project);
-	console.log("updating project");
 	await sql`
 	UPDATE projects
 	SET 
