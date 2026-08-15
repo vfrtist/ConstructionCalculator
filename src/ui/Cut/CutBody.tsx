@@ -26,7 +26,7 @@ export default function CutBody() {
 				))}
 			</ul>
 			<ThemeButton type="button" className="add" onClick={addLine}>
-				<Icon iconKey="plus" />
+				<Icon iconKey="add" />
 			</ThemeButton>
 		</div>
 	);

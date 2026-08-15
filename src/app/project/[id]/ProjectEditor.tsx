@@ -9,6 +9,7 @@ import { useAutoSave } from "@/hooks/autosave";
 import Carousel from "@/ui/Generic/Carousel";
 import Header from "@/ui/Generic/Header";
 import Icon from "@/ui/Generic/Icon";
+import Link from "next/link";
 
 interface ProjectEditorProps {
 	initialProject: Project;
@@ -37,7 +38,13 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 
 	return (
 		<main>
-			<Header />
+			<Header
+				leftElements={
+					<Link key="manager" href={"/manager"}>
+						<Icon iconKey="undo" />
+					</Link>
+				}
+			/>
 			<Carousel>
 				{Object.entries(project.data).map(([id, card]) => (
 					<Card

@@ -26,7 +26,7 @@ export default function CarouselControls({
 			<CarouselButton
 				key="CarouselRight"
 				buttonType={
-					state === "last" || state === "single" ? "plus" : "right"
+					state === "last" || state === "single" ? "add" : "right"
 				}
 				onClick={() => handleIndexChange(currentIndex + 1)}
 			/>

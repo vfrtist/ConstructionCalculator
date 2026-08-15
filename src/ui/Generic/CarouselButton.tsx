@@ -1,6 +1,6 @@
 import Icon from "./Icon";
 
-export type CarouselButtonTypes = "left" | "right" | "plus";
+export type CarouselButtonTypes = "left" | "right" | "add";
 
 export interface CarouselButtonProps {
 	buttonType: CarouselButtonTypes;
