@@ -10,7 +10,7 @@ export default function CutBody() {
 	const { cutInputs, setCutInputs } = useContext(CardContext);
 
 	function addLine() {
-		setCutInputs((prev) => [...prev, newCutInput()]);
+		setCutInputs([...cutInputs, newCutInput()]);
 	}
 
 	return (

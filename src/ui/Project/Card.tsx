@@ -1,23 +1,22 @@
-import { createContext, SetStateAction, useState, Dispatch } from "react";
+import { createContext, useState, useContext } from "react";
 import CardBody from "./CardBody";
 import CardFooter from "./CardFooter";
-import { BoardData, CutInput, ProjectBoards } from "@/lib/structures";
+import { BoardData, CutInput } from "@/lib/structures";
 import "@/styles/Card.css";
+import { ProjectContext } from "@/app/project/[id]/ProjectEditor";
 
 export type CardState = "board" | "cut" | "plan";
 
 export interface CardData extends BoardData {
 	cardState: CardState;
-	setBoardLength: Dispatch<SetStateAction<number>>;
-	setCardState: Dispatch<SetStateAction<CardState>>;
-	setCutInputs: Dispatch<SetStateAction<CutInput[]>>;
-	setName: Dispatch<SetStateAction<string>>;
+	setBoardLength: (length: number) => void;
+	setCardState: (state: CardState) => void;
+	setCutInputs: (inputs: CutInput[]) => void;
+	setName: (name: string) => void;
 }
 
 interface CardProps {
 	id: string;
-	data: BoardData;
-	setProjectData: Dispatch<SetStateAction<ProjectBoards>>;
 }
 
 export const CardContext = createContext<CardData>({
@@ -31,46 +30,29 @@ export const CardContext = createContext<CardData>({
 	setName: () => {},
 });
 
-export default function Card({ id, data, setProjectData }: CardProps) {
+export default function Card({ id }: CardProps) {
 	const [cardState, setCardState] = useState<CardState>("board");
-
-	function updaterFunction(updater: (prev: BoardData) => BoardData) {
-		setProjectData((prev) => ({
-			...prev,
-			[id]: updater(prev[id]),
-		}));
-	}
-
+	const { setProjectData, data } = useContext(ProjectContext);
+	const { name, boardLength, cutInputs } = data[id];
+	console.log("----");
+	console.log(data[id]);
 	return (
 		<CardContext.Provider
 			value={{
-				name: data.name,
-				boardLength: data.boardLength,
+				name: name,
+				boardLength: boardLength,
 				cardState: cardState,
-				cutInputs: data.cutInputs,
-				setBoardLength: (length) =>
-					updaterFunction((prev) => ({
-						...prev,
-						boardLength:
-							typeof length === "function"
-								? length(prev.boardLength)
-								: length,
-					})),
+				cutInputs: cutInputs,
 				setCardState: (state) => setCardState(state),
-				setCutInputs: (inputs) =>
-					updaterFunction((prev) => ({
-						...prev,
-						cutInputs:
-							typeof inputs === "function"
-								? inputs(prev.cutInputs)
-								: inputs,
-					})),
-				setName: (name) =>
-					updaterFunction((prev) => ({
-						...prev,
-						name:
-							typeof name === "function" ? name(prev.name) : name,
-					})),
+				setBoardLength: (length) => {
+					setProjectData(id, { ...data.data, boardLength: length });
+				},
+				setCutInputs: (inputs) => {
+					setProjectData(id, { ...data.data, cutInputs: inputs });
+				},
+				setName: (name) => {
+					setProjectData(id, { ...data.data, name: name });
+				},
 			}}
 		>
 			<div className="Card container vertical">

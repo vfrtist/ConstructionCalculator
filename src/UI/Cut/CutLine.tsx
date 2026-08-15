@@ -7,16 +7,16 @@ interface CutLineProps {
 }
 
 export default function CutLine({ values }: CutLineProps) {
-	const { setCutInputs } = useContext(CardContext);
+	const { setCutInputs, cutInputs } = useContext(CardContext);
 
 	function lineUpdater(newCut: CutInput) {
-		setCutInputs((prev) =>
-			prev.map((cut) => (cut.id === newCut.id ? newCut : cut)),
+		setCutInputs(
+			cutInputs.map((cut) => (cut.id === newCut.id ? newCut : cut)),
 		);
 	}
 
 	function removeLine() {
-		setCutInputs((prev) => prev.filter((cut) => cut.id !== values.id));
+		setCutInputs(cutInputs.filter((cut) => cut.id !== values.id));
 	}
 
 	return (

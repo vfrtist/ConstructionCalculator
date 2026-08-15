@@ -1,8 +1,8 @@
 "use client";
 
 import Card from "@/ui/Project/Card";
-import { useState, SetStateAction } from "react";
-import { Project, ProjectBoards } from "@/lib/structures";
+import { useState, createContext } from "react";
+import { BoardData, Project, ProjectBoards } from "@/lib/structures";
 import { newProjectBoards } from "@/lib/objects";
 import { updateProject } from "@/services/projectServices";
 import { useAutoSave } from "@/hooks/autosave";
@@ -15,26 +15,21 @@ interface ProjectEditorProps {
 	initialProject: Project;
 }
 
+export interface ProjectData {
+	data: ProjectBoards;
+	setProjectData: (id: string, data: BoardData) => void;
+	addBoard: () => void;
+}
+
+export const ProjectContext = createContext<ProjectData>({
+	data: {},
+	setProjectData: () => {},
+	addBoard: () => {},
+});
+
 export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 	const [project, setProject] = useState<Project>(initialProject);
 	useAutoSave(project, updateProject);
-
-	function addBoard() {
-		setProject((prev) => {
-			return {
-				...prev,
-				data: { ...prev.data, ...newProjectBoards() },
-			};
-		});
-	}
-
-	function setProjectData(updater: SetStateAction<ProjectBoards>) {
-		console.log("updating project");
-		setProject((prev) => ({
-			...prev,
-			data: typeof updater === "function" ? updater(prev.data) : updater,
-		}));
-	}
 
 	return (
 		<main>
@@ -45,19 +40,29 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 					</Link>
 				}
 			/>
-			<Carousel>
-				{Object.entries(project.data).map(([id, card]) => (
-					<Card
-						key={id}
-						id={id}
-						data={card}
-						setProjectData={setProjectData}
-					/>
-				))}
-			</Carousel>
-			{/* <button type="button" className="add" onClick={addBoard}>
-				<Icon iconKey="plus" />
-			</button> */}
+			<ProjectContext.Provider
+				value={{
+					data: project.data,
+					setProjectData: (id: string, data: BoardData) => {
+						setProject((prev) => ({
+							...prev,
+							data: { ...prev.data, [id]: data },
+						}));
+					},
+					addBoard: () => {
+						setProject((prev) => ({
+							...prev,
+							data: { ...prev.data, ...newProjectBoards() },
+						}));
+					},
+				}}
+			>
+				<Carousel>
+					{Object.entries(project.data).map(([id]) => (
+						<Card key={id} id={id} />
+					))}
+				</Carousel>
+			</ProjectContext.Provider>
 		</main>
 	);
 }
