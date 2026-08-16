@@ -1,9 +1,9 @@
 import { useRef, useEffect } from "react";
 
-export function useAutoSave<T>(
+export function useDebounce<T>(
 	value: T,
-	save: (value: T) => Promise<void>,
-	delay = 2000,
+	debounceFunction: (value: T) => Promise<void>,
+	delay: number = 2000,
 ) {
 	const firstRender = useRef(true);
 
@@ -14,9 +14,9 @@ export function useAutoSave<T>(
 		}
 
 		const timeout = setTimeout(() => {
-			save(value);
+			debounceFunction(value);
 		}, delay);
 
 		return () => clearTimeout(timeout);
-	}, [value, save, delay]);
+	}, [value, debounceFunction, delay]);
 }

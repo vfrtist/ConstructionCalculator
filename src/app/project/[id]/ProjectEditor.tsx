@@ -5,7 +5,7 @@ import { useState, createContext } from "react";
 import { BoardData, Project, ProjectBoards } from "@/lib/structures";
 import { newProjectBoards } from "@/lib/objects";
 import { updateProject } from "@/services/projectServices";
-import { useAutoSave } from "@/hooks/autosave";
+import { useDebounce } from "@/hooks/debounce";
 import Carousel from "@/ui/Generic/Carousel";
 import Header from "@/ui/Generic/Header";
 import Icon from "@/ui/Generic/Icon";
@@ -29,7 +29,7 @@ export const ProjectContext = createContext<ProjectData>({
 
 export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 	const [project, setProject] = useState<Project>(initialProject);
-	useAutoSave(project, updateProject);
+	useDebounce(project, updateProject, 2000);
 
 	return (
 		<main>

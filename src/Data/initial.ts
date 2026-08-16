@@ -1,4 +1,4 @@
-import { newProject, duplicateProject } from "@/lib/objects";
+import { newProject } from "@/lib/objects";
 import { sql } from "@/services/db";
 import { createTemplate } from "@/services/templateServices";
 import { DemoTemplate } from "./TestData";
@@ -54,15 +54,16 @@ export async function seed() {
         CHECK (role IN ('owner', 'editor', 'viewer')),
         userID UUID NOT NULL,
         projectID UUID NOT NULL,
-        FOREIGN KEY (userID) references users (id),
+        FOREIGN KEY (userID) references users (id)
+        ON DELETE CASCADE
+        ,
         FOREIGN KEY (projectID) references projects (id)
+        ON DELETE CASCADE
     );`;
 
-	const blankTemplate = duplicateProject(
-		newProject(
-			"Blank Template",
-			"Start from scratch with a blank template",
-		),
+	const blankTemplate = newProject(
+		"Blank Template",
+		"Start from scratch with a blank template",
 	);
 
 	await createTemplate(blankTemplate);

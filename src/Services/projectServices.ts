@@ -5,7 +5,6 @@ import { sql } from "./db";
 import { createProjectUser } from "./userServices";
 import { dbToProject, newProject, projectToDB } from "@/lib/objects";
 
-// Database functions
 export async function fetchUserRecentProjects(userID: string) {
 	try {
 		const projects = await sql<ProjectSummary[]>`
@@ -72,6 +71,24 @@ export async function updateProject(project: Project) {
 		name = ${name}, 
 		description = ${description}, 
 		data = ${data}
+	WHERE id = ${id}
+	`;
+}
+
+export async function updateProjectSummary(summary: ProjectSummary) {
+	const { name, description, id } = summary;
+
+	await sql`
+	UPDATE projects
+	SET
+		name = ${name},
+		description = ${description}
+	WHERE id = ${id}
+	`;
+}
+export async function deleteProject(id: string) {
+	await sql`
+	DELETE FROM projects
 	WHERE id = ${id}
 	`;
 }

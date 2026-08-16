@@ -38,13 +38,14 @@ main {
 		}
 
 		.FileTile {
-			width: clamp(60px, 20vw, 160px);
+			width: clamp(60px, 20vw, 104px);
 			aspect-ratio: 1/1;
 			background: var(--foreground);
 			border-radius: var(--theme-radius);
 			display: grid;
 			place-items: center;
 			position: relative;
+			padding: 4px;
 
 			&.selected {
 				outline: 4px solid var(--theme-light);
@@ -93,19 +94,39 @@ main {
 			opacity: 0;
 			transition: opacity 0s;
 		}
-
+		input {
+			font-size: 1.5rem;
+			font-weight: 300;
+			margin-bottom: 12px;
+		}
+		label {
+			text-align: left;
+			font-weight: 200;
+			font-size: 0.9rem;
+		}
 		button {
 			border-radius: var(--theme-radius);
 			padding: 12px;
 			font-weight: 600;
+			color: var(--font-color-light);
 		}
 
 		#deleteProject {
 			background: var(--warning);
+			transition: background 0.25s;
+
+			&:hover {
+				background: var(--warning-dark);
+			}
 		}
 
 		#copyProject {
 			background: var(--theme-light);
+			transition: background 0.25s;
+
+			&:hover {
+				background: var(--theme-medium);
+			}
 		}
 
 		&.open {

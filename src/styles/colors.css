@@ -6,8 +6,7 @@
 
 	/* Theme Colors */
 	--theme-dark: #063b46;
-	--theme-medium: #0e8189;
-	--theme-light: #24b3c9;
+	--theme-medium: #24a99c;
 	--theme-light: #24ccbb;
 	--olive: #4b5b48;
 
@@ -24,4 +23,5 @@
 	--background: #ebd8c1;
 	--foreground: #fdfcff;
 	--warning: #ee5858;
+	--warning-dark: #d54b4b;
 }

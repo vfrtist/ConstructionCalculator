@@ -7,6 +7,8 @@ import ManagerSidebar from "@/ui/Manager/ManagerSidebar";
 import Header from "@/ui/Generic/Header";
 import "@/styles/Manager.css";
 import { newProjectSummary } from "@/lib/objects";
+import { useDebounce } from "@/hooks/debounce";
+import { updateProjectSummary } from "@/services/projectServices";
 
 export interface MangerEditorProps {
 	recents: ProjectSummary[];
@@ -17,7 +19,7 @@ interface ManagerData {
 	isOpen: boolean;
 	activeProject: ProjectSummary | null;
 	toggleSidebar: (state: boolean) => void;
-	updateProject: (summary: ProjectSummary | null) => void;
+	updateProject: (summary: ProjectSummary) => void;
 }
 
 export const ManagerContext = createContext<ManagerData>({
@@ -32,9 +34,10 @@ export default function ManagerEditor({
 	templates,
 }: MangerEditorProps) {
 	const [sideOpen, setSideOpen] = useState(false);
-	const [activeProject, setActiveProject] = useState<ProjectSummary | null>(
-		null,
-	);
+	const [activeProject, setActiveProject] =
+		useState<ProjectSummary>(newProjectSummary());
+
+	useDebounce(activeProject, updateProjectSummary, 2000);
 
 	return (
 		<ManagerContext.Provider
