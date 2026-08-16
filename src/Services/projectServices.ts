@@ -77,15 +77,17 @@ export async function updateProject(project: Project) {
 
 export async function updateProjectSummary(summary: ProjectSummary) {
 	const { name, description, id } = summary;
+	console.log(summary);
 
-	await sql`
-	UPDATE projects
-	SET
-		name = ${name},
-		description = ${description}
-	WHERE id = ${id}
-	`;
+	// await sql`
+	// UPDATE projects
+	// SET
+	// 	name = ${name},
+	// 	description = ${description}
+	// WHERE id = ${id}
+	// `;
 }
+
 export async function deleteProject(id: string) {
 	await sql`
 	DELETE FROM projects

@@ -22,7 +22,7 @@ export default async function TemplatePage({ params }: TemplatePageProps) {
 		redirect("/login/");
 	}
 
-	const projectID = await createProject(user.id, template);
+	const projectID = await createProject(user.id, template, template.name);
 
 	if (!projectID) {
 		notFound();

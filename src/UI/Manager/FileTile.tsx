@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ProjectSummary, ProjectType } from "@/lib/structures";
 import Icon from "@/ui/Generic/Icon";
 import { ManagerContext } from "@/app/manager/ManagerEditor";
+import { newProjectSummary } from "@/lib/objects";
 
 export interface FileTileProps {
 	project: ProjectSummary;
@@ -31,7 +32,7 @@ export default function FileTile({ project, type }: FileTileProps) {
 								updateProject(project);
 							} else {
 								toggleSidebar(false);
-								updateProject(null);
+								updateProject(newProjectSummary());
 							}
 						}}
 					>

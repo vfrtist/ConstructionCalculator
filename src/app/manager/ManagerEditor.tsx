@@ -39,6 +39,9 @@ export default function ManagerEditor({
 
 	useDebounce(activeProject, updateProjectSummary, 2000);
 
+	console.log("recents", recents);
+	console.log("templates", templates);
+
 	return (
 		<ManagerContext.Provider
 			value={{

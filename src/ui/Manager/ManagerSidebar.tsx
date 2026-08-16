@@ -1,7 +1,13 @@
 import { ManagerContext } from "@/app/manager/ManagerEditor";
 import { ProjectSummary } from "@/lib/structures";
-import { deleteProject } from "@/services/projectServices";
+import {
+	createProject,
+	deleteProject,
+	fetchProject,
+} from "@/services/projectServices";
 import { useContext } from "react";
+import { fetchCurrentUser } from "@/services/serverServices";
+import { redirect } from "next/navigation";
 
 interface ManagerSidebarProps {
 	summary: ProjectSummary;
@@ -32,8 +38,38 @@ export default function ManagerSidebar({ summary }: ManagerSidebarProps) {
 					updateProject({ ...summary, description: e.target.value });
 				}}
 			/>
-			<div>{summary && summary.updatedAt}</div>
-			<button type="button" id="copyProject">
+			<div>
+				Last updated:
+				{summary &&
+					new Date(summary.updatedAt).toLocaleString([], {
+						dateStyle: "medium",
+						timeStyle: "short",
+					})}
+			</div>
+			<button
+				type="button"
+				id="copyProject"
+				onClick={async () => {
+					const user = await fetchCurrentUser();
+					if (!user) {
+						console.log("no user");
+						return;
+					}
+					const copyProject = await fetchProject(summary.id);
+
+					if (!copyProject) {
+						console.log("no project");
+						return;
+					}
+					const projectID = await createProject(
+						user.id,
+						copyProject,
+						copyProject.name,
+					);
+
+					redirect(`/project/${projectID}`);
+				}}
+			>
 				Copy Project
 			</button>
 			<button
