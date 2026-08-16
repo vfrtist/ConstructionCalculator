@@ -9,6 +9,7 @@
 	grid-template-areas: "left middle right";
 	padding: 16px 12px;
 	background: var(--neutral-lighter);
+	grid-column: 1 / -1;
 
 	.headerbox {
 		height: 100%;

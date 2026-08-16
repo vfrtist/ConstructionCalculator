@@ -51,7 +51,7 @@ export default function ManagerEditor({
 		>
 			<main className="Manager">
 				<Header />
-				<div>
+				<div className="left">
 					<FileGroup
 						title={"Recent"}
 						files={recents}
@@ -63,9 +63,7 @@ export default function ManagerEditor({
 						type={"template"}
 					/>
 				</div>
-				{sideOpen && activeProject && (
-					<ManagerSidebar summary={activeProject} />
-				)}
+				<ManagerSidebar summary={activeProject} />
 			</main>
 		</ManagerContext.Provider>
 	);

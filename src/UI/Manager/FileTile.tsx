@@ -14,7 +14,9 @@ export default function FileTile({ project, type }: FileTileProps) {
 		useContext(ManagerContext);
 
 	return (
-		<li className="FileTile">
+		<li
+			className={`FileTile${activeProject && project.id === activeProject.id ? " selected" : ""}`}
+		>
 			{type === "project" ? (
 				<>
 					<button
