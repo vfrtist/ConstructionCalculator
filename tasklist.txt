@@ -37,9 +37,10 @@ Project
     -(stretch) Plan done/undone view sectioning to facilitate task management
 
 Manager
-    -Get new file name on selecting a template
+    -Get new file name on duplication
     -Edit file name
     -Delete file
+    -Correct "new project service logic"
     -Duplicate file (same logic as template... might as well add it)
     (stretch) Add manager skeleton
 

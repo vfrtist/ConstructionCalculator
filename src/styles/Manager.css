@@ -22,12 +22,45 @@
 		aspect-ratio: 1/1;
 		background: var(--foreground);
 		border-radius: var(--theme-radius);
+		display: grid;
+		place-items: center;
+		position: relative;
+		outline-offset: 2px;
+
+		&.selected {
+			outline: 2px solid var(--theme-light);
+		}
 
 		a {
 			display: grid;
-			place-content: center;
+			place-items: center;
 			height: 100%;
 			width: 100%;
 		}
+
+		.editButton {
+			position: absolute;
+			right: 4;
+			top: 4;
+			width: clamp(30px, 35%, 40px);
+			aspect-ratio: 1/1;
+			padding: 4px;
+			cursor: arrow;
+
+			.edit {
+				stroke: var(--neutral-medium);
+				fill: none;
+			}
+		}
 	}
+}
+
+#ManagerSidebar {
+	width: 50%;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	background: var(--foreground);
+	display: flex;
+	flex-direction: column;
 }

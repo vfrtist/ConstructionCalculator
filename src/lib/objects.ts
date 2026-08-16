@@ -4,6 +4,7 @@ import {
 	Project,
 	ProjectBoards,
 	ProjectDB,
+	ProjectSummary,
 } from "./structures";
 
 export function newCutInput(): CutInput {
@@ -18,22 +19,25 @@ export function newProjectBoards(): ProjectBoards {
 	return { [crypto.randomUUID()]: newBoardData() };
 }
 
+export function newProjectSummary(): ProjectSummary {
+	return {
+		id: crypto.randomUUID(),
+		name: "",
+		updatedAt: new Date().toISOString(),
+		description: "",
+	};
+}
+
 export function newProject(
 	name: string,
 	description: string = "",
 	data?: ProjectBoards,
 ): Project {
 	return {
-		id: crypto.randomUUID(),
-		name: name,
+		...newProjectSummary(),
 		description: description,
-		updatedAt: new Date().toISOString(),
 		data: data ? structuredClone(data) : newProjectBoards(),
 	};
-}
-
-export function duplicateProject(project: Project): Project {
-	return { ...project, data: structuredClone(project.data) };
 }
 
 export function dbToProject(db: ProjectDB): Project {

@@ -10,8 +10,7 @@ export default function Icon({ iconKey, ...iconProps }: IconProps) {
 		<svg
 			{...iconProps}
 			key={id}
-			id={id}
-			className={`Icon ${iconProps.className || ""}`}
+			className={`Icon ${id} ${iconProps.className || ""}`}
 			version="1.1"
 			viewBox={viewbox}
 		>
