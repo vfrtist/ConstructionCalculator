@@ -2,13 +2,10 @@
 
 import { useState, createContext } from "react";
 import { ProjectSummary } from "@/lib/structures";
-import FileGroup from "@/ui/Manager/FileGroup";
-import ManagerSidebar from "@/ui/Manager/ManagerSidebar";
+import FileGroup from "@/ui/manager/FileGroup";
 import Header from "@/ui/Generic/Header";
 import "@/styles/Manager.css";
-import { newProjectSummary } from "@/lib/objects";
-import { useDebounce } from "@/hooks/debounce";
-import { updateProjectSummary } from "@/services/projectServices";
+import ManagerSidebar, { SideBarType } from "@/ui/manager/ManagerSidebar";
 
 export interface MangerEditorProps {
 	recents: ProjectSummary[];
@@ -16,51 +13,54 @@ export interface MangerEditorProps {
 }
 
 interface ManagerData {
-	isOpen: boolean;
-	activeProject: ProjectSummary;
-	toggleSidebar: (state: boolean) => void;
-	updateProject: (summary: ProjectSummary) => void;
+	recents: ProjectSummary[];
+	selectedFile: ProjectSummary | null;
+	sidebar: SideBarType;
+	updateSidebar: (state: SideBarType) => void;
+	updateSummary: (summary: ProjectSummary) => void;
+	updateSelected: () => void;
 }
 
 export const ManagerContext = createContext<ManagerData>({
-	isOpen: false,
-	toggleSidebar: () => {},
-	activeProject: newProjectSummary(),
-	updateProject: () => {},
+	recents: [],
+	selectedFile: null,
+	sidebar: "hidden",
+	updateSidebar: () => { },
+	updateSummary: () => { },
 });
 
 export default function ManagerEditor({
 	recents,
 	templates,
 }: MangerEditorProps) {
-	const [sideOpen, setSideOpen] = useState(false);
-	const [activeProject, setActiveProject] =
-		useState<ProjectSummary>(newProjectSummary());
-
-	useDebounce(activeProject, updateProjectSummary, 2000);
-
-	console.log("recents", recents);
-	console.log("templates", templates);
+	const [recentFiles, setRecentFiles] = useState(recents);
+	const [selectedFile, setSelected] = useState(null);
+	const [sidebarState, setSidebarState] = useState<SideBarType>("hidden");
 
 	return (
 		<ManagerContext.Provider
 			value={{
-				isOpen: sideOpen,
-				activeProject: activeProject,
-				toggleSidebar: (state) => {
-					setSideOpen(state);
+				recents: recentfiles,
+				selectedFile: selectedFile,
+				sidebar: sidebarState,
+				updateSidebar: (state) => {
+					setSidebarState(state);
 				},
-				updateProject: (summary) => {
-					setActiveProject(summary);
-				},
-			}}
+				updateSummary: (summary) => {
+					setFiles((prev) => (
+						prev.map((s) => (
+							s.id === summary.id ? summary : s
+						))))
+				}
+			}
+			}
 		>
 			<main className="Manager">
 				<Header />
 				<div className="left">
 					<FileGroup
 						title={"Recent"}
-						files={recents}
+						files={recentFiles}
 						type={"project"}
 					/>
 					<FileGroup
@@ -69,8 +69,8 @@ export default function ManagerEditor({
 						type={"template"}
 					/>
 				</div>
-				<ManagerSidebar summary={activeProject} />
+				<ManagerSidebar />
 			</main>
-		</ManagerContext.Provider>
+		</ ManagerContext.Provider >
 	);
 }

@@ -21,15 +21,20 @@ Done
     -Design color scheme
     -Add splash screen for loading w/ logo and hero color
     -Convert main page w/header into grid row display
+    -Implement add board button at end of list
+    -Delete file
+    -Edit project summary
+    -Correct "new project service logic"
+    -Duplicate file (same logic as template... might as well add it)
 
 General Tasks
     -Sign out/Auto sign out
 
 Project
+    -On added board, scroll to added board.
     -Delete/Copy Board
     -Add subtle saving ui (think video game book writing animation).
     -Implement undo/redo
-    -Implement add board button at end of list
     -(stretch) Add project skeleton
     -(stretch) Share project with another user
     -(stretch) Cut sorting
@@ -37,11 +42,7 @@ Project
     -(stretch) Plan done/undone view sectioning to facilitate task management
 
 Manager
-    -Get new file name on duplication
-    -Edit file name
-    -Delete file
-    -Correct "new project service logic"
-    -Duplicate file (same logic as template... might as well add it)
+    -Get new file name on creation
     (stretch) Add manager skeleton
 
 Logon
@@ -49,7 +50,7 @@ Logon
 
 Visuals
     -Media query for different layouts
-    -Add icons (maybe)
+    -(stretch) Add icons
 
 
 n.TFZU6YcfUgTkg

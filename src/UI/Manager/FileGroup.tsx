@@ -7,7 +7,6 @@ export interface FileGroupProps {
 	title: string;
 	files: ProjectSummary[];
 	type: ProjectType;
-	edit?: () => void;
 }
 
 export default function FileGroup({ title, files, type }: FileGroupProps) {
