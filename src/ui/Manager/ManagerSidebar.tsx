@@ -17,7 +17,10 @@ export default function ManagerSidebar({ summary }: ManagerSidebarProps) {
 	const { isOpen, updateProject } = useContext(ManagerContext);
 
 	return (
-		<aside id="ManagerSidebar" className={`right ${isOpen && "open"}`}>
+		<aside
+			id="ManagerSidebar"
+			className={`Sidebar right ${isOpen && "open"}`}
+		>
 			<label htmlFor="name">Name</label>
 			<input
 				type="text"

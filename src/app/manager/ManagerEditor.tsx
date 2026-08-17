@@ -17,7 +17,7 @@ export interface MangerEditorProps {
 
 interface ManagerData {
 	isOpen: boolean;
-	activeProject: ProjectSummary | null;
+	activeProject: ProjectSummary;
 	toggleSidebar: (state: boolean) => void;
 	updateProject: (summary: ProjectSummary) => void;
 }

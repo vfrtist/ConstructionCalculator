@@ -75,7 +75,7 @@ main {
 		}
 	}
 
-	#ManagerSidebar {
+	.Sidebar {
 		width: 100%;
 		height: 100%;
 		background: var(--foreground);
@@ -94,16 +94,19 @@ main {
 			opacity: 0;
 			transition: opacity 0s;
 		}
+
 		input {
 			font-size: 1.5rem;
 			font-weight: 300;
 			margin-bottom: 12px;
 		}
+
 		label {
 			text-align: left;
 			font-weight: 200;
 			font-size: 0.9rem;
 		}
+
 		button {
 			border-radius: var(--theme-radius);
 			padding: 12px;
@@ -111,6 +114,21 @@ main {
 			color: var(--font-color-light);
 		}
 
+		&.open {
+			padding: 20px;
+
+			* {
+				opacity: 1;
+				transition: opacity 0.25s ease var(--open-timing);
+			}
+
+			button {
+				padding: 12px;
+			}
+		}
+	}
+
+	#ManagerSidebar {
 		#deleteProject {
 			background: var(--warning);
 			transition: background 0.25s;
@@ -126,19 +144,6 @@ main {
 
 			&:hover {
 				background: var(--theme-medium);
-			}
-		}
-
-		&.open {
-			padding: 20px;
-
-			* {
-				opacity: 1;
-				transition: opacity 0.25s ease var(--open-timing);
-			}
-
-			button {
-				padding: 12px;
 			}
 		}
 	}

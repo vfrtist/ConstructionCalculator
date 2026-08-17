@@ -4,6 +4,7 @@ import { Project, ProjectSummary, ProjectDB } from "@/lib/structures";
 import { sql } from "./db";
 import { createProjectUser } from "./userServices";
 import { dbToProject, newProject, projectToDB } from "@/lib/objects";
+import { fetchCurrentUser } from "./serverServices";
 
 export async function fetchUserRecentProjects(userID: string) {
 	try {
@@ -40,13 +41,15 @@ export async function fetchProject(projectID: string): Promise<Project> {
 	}
 }
 
-export async function createProject(
-	userID: string,
-	project: Project,
-	newName: string,
-) {
-	const clone = newProject(newName, project.description, project.data);
-	const { id, name, description, data } = projectToDB(clone);
+export async function createProject(sourceProject: Project) {
+	const user = await fetchCurrentUser();
+	if (!user) {
+		throw new Error("Not authenticated");
+	}
+
+	const { id, name, description, data } = projectToDB(
+		newProject(sourceProject),
+	);
 
 	try {
 		await sql`
@@ -60,7 +63,7 @@ export async function createProject(
 		throw new Error("failed to create project");
 	}
 
-	if (await createProjectUser(userID, id, "owner")) return id;
+	if (await createProjectUser(user.id, id, "owner")) return id;
 }
 
 export async function updateProject(project: Project) {
