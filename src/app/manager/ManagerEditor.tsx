@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, createContext, Dispatch, SetStateAction } from "react";
-import { ProjectSummary } from "@/lib/structures";
+import { ProjectSummary, ProjectType } from "@/lib/structures";
 import Header from "@/ui/Generic/Header";
 import "@/styles/Manager.css";
 import ManagerSidebar, { SideBarType } from "@/ui/Manager/ManagerSidebar";
@@ -16,18 +16,21 @@ interface MangerEditorProps {
 export interface ManagerSelector {
 	sidebar: SideBarType;
 	summary: ProjectSummary;
+	summaryType: ProjectType;
 }
 
 interface ManagerData {
 	selector: ManagerSelector;
+	unselect: ManagerSelector;
 	updateSelector: Dispatch<SetStateAction<ManagerSelector>>;
-	updateSummary: Dispatch<SetStateAction<ProjectSummary[]>>;
+	updateSummary: (summary: ProjectSummary) => void;
 }
 
 export const ManagerContext = createContext<ManagerData>({
-	selector: { sidebar: "hidden", summary: newProjectSummary() },
-	updateSelector: () => {},
-	updateSummary: () => {},
+	selector: { sidebar: "hidden", summary: newProjectSummary(), summaryType: "project" },
+	unselect: { sidebar: "hidden", summary: newProjectSummary(), summaryType: "project" },
+	updateSelector: () => { },
+	updateSummary: () => { },
 });
 
 export default function ManagerEditor({
@@ -38,14 +41,22 @@ export default function ManagerEditor({
 	const [selection, setSelection] = useState<ManagerSelector>({
 		sidebar: "hidden",
 		summary: newProjectSummary(),
+		summaryType: "project"
 	});
 
 	return (
 		<ManagerContext.Provider
 			value={{
 				selector: selection,
+				unselect: { sidebar: "hidden", summary: newProjectSummary(), summaryType: "project" },
 				updateSelector: setSelection,
-				updateSummary: setRecentFiles,
+				updateSummary: (summary: ProjectSummary) => {
+					setRecentFiles((prev) => ({
+						prev.map((sum) => {
+							sum.id === summary.id ? summary : sum
+						})
+					}))
+				},
 			}}
 		>
 			<main className="Manager">

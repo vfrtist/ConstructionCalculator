@@ -1,17 +1,21 @@
-import { Project } from "@/lib/structures";
-import { useState } from "react";
-import { createProject } from "@/services/projectServices";
+import { useContext } from "react";
+import { createProject, fetchProject } from "@/services/projectServices";
+import { ManagerContext } from "@/app/manager/ManagerEditor";
+import { fetchTemplate } from "@/services/templateServices";
+import { redirect } from "next/navigation";
 
-interface NewFileProps {
-	initialProject: Project;
-}
-
-export default function NewFileSidebar({ initialProject }: NewFileProps) {
-	const [project, setProject] = useState(initialProject);
+export default function NewFileSidebar() {
+	const { selector } = useContext(ManagerContext);
+	const [newSummary, setNewSummary] = useState(selector.summary);
 
 	async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
-		await createProject(project);
+		const copyProject = selector.summaryType === "project" ? fetchProject(newSummary.id) : fetchTemplate(newSummary.id)
+
+		const id = await createProject({ ...copyProject, ...newSummary });
+		if (id) {
+			redirect(`project/${id}`);
+		}
 	}
 
 	return (
@@ -23,7 +27,7 @@ export default function NewFileSidebar({ initialProject }: NewFileProps) {
 				id="name"
 				value={`${project.name}`}
 				onChange={(e) => {
-					setProject((prev) => ({ ...prev, name: e.target.value }));
+					setNewSummary((prev) => ({ ...prev, name: e.target.value }));
 				}}
 			/>
 			<label htmlFor="description">Description</label>
@@ -33,7 +37,7 @@ export default function NewFileSidebar({ initialProject }: NewFileProps) {
 				id="description"
 				value={`${project.description}`}
 				onChange={(e) => {
-					setProject((prev) => ({
+					setNewSummary((prev) => ({
 						...prev,
 						description: e.target.value,
 					}));

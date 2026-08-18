@@ -2,18 +2,18 @@ import { ManagerContext } from "@/app/manager/ManagerEditor";
 import { ProjectSummary } from "@/lib/structures";
 import { useContext } from "react";
 
-export default function TemplateTile(project: ProjectSummary) {
-	const { updateSidebar, updateSelected } = useContext(ManagerContext);
+export default function TemplateTile(summary: ProjectSummary) {
+	const { updateSelector } = useContext(ManagerContext);
+
 	return (
 		<button
 			type="button"
 			className="TemplateTile"
 			onClick={() => {
-				updateSelected(project);
-				updateSidebar("new");
+				updateSelector({ sidebar: "new", summary: summary, summaryType: "template" });
 			}}
 		>
-			{project.name}
+			{summary.name}
 		</button>
 	);
 }

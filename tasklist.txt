@@ -42,9 +42,7 @@ Project
     -(stretch) Plan done/undone view sectioning to facilitate task management
 
 Manager
-    -TemplateTile needs to be fixed
-    -Sidebars need to be fixed
-    -Get new file name on creation
+    -Test if updating the array updates the selector value (I think it should since they point to the same object?)
     (stretch) Add manager skeleton
 
 Logon
