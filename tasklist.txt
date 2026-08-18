@@ -2,13 +2,8 @@ Done
     -Create database schema
     -Populate database
     -Design project manager screen.
-    -Recents
-    -Templates
     -Design templates and how to use them.
-    -Does this mean projects need read/write modes?
-    -Relative to the database "templates" will need a universal ID to make their call not unique to the user. Any new templates would be pushed to all users.
-    -Implement log on procedure and storing of user information....
-    -Again I can't tell if this is context or some other we based local storage cookies something.
+    -Implement log on procedure and storing of user information.
     -Re-route loading a project from memory into state, as rendering an API from state.
     -Select all projects for a specific user
     -Select data from a specific project
@@ -16,25 +11,24 @@ Done
     -Create debounce and direct saving methods for data execution.
     -Overwrite data for a specific project
     -Create header
-    -What makes that feel "mobile"
-    -If you open a template how does one convert that into a real project:
     -Design color scheme
     -Add splash screen for loading w/ logo and hero color
     -Convert main page w/header into grid row display
-    -Implement add board button at end of list
+    -Implement add board button at end of carousel
     -Delete file
     -Edit project summary
     -Correct "new project service logic"
     -Duplicate file (same logic as template... might as well add it)
+    -On added board, scroll to added board.
+    -Delete Board
 
 General Tasks
-    -Sign out/Auto sign out
+    -(stretch) Sign out/Auto sign out
 
 Project
-    -On added board, scroll to added board.
-    -Delete/Copy Board
-    -Add subtle saving ui (think video game book writing animation).
-    -Implement undo/redo
+    -(stretch) Copy Board
+    -(stretch) Add subtle saving ui (think video game book writing animation).
+    -(stretch) Implement undo/redo
     -(stretch) Add project skeleton
     -(stretch) Share project with another user
     -(stretch) Cut sorting
@@ -42,7 +36,7 @@ Project
     -(stretch) Plan done/undone view sectioning to facilitate task management
 
 Manager
-    -Test if updating the array updates the selector value (I think it should since they point to the same object?)
+    -Test selecting, changing selection, creation, and edit.
     (stretch) Add manager skeleton
 
 Logon
@@ -50,7 +44,10 @@ Logon
 
 Visuals
     -Media query for different layouts
-    -(stretch) Add icons
+    -Generalize labels/input fonts/weights for consistency
+    -Test using quicksand and cabin instead of comissioner font
+    -Test via mobile and ipad sizing
+    -(stretch) Add more icons
 
 
 n.TFZU6YcfUgTkg

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 	description: "Cut length optimizer for boards.",
 };
 
-const comissioner = Commissioner({
+const font = Commissioner({
 	subsets: ["latin"],
 });
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html lang="en" className={comissioner.className}>
+		<html lang="en" className={font.className}>
 			<body>
 				<Suspense fallback={<Splash />}>{children}</Suspense>
 			</body>

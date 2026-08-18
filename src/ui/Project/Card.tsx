@@ -4,6 +4,7 @@ import CardFooter from "./CardFooter";
 import { BoardData, CutInput } from "@/lib/structures";
 import "@/styles/Card.css";
 import { ProjectContext } from "@/app/project/[id]/ProjectEditor";
+import Icon from "@/app/ui/Generic/Icon";
 
 export type CardState = "board" | "cut" | "plan";
 
@@ -24,10 +25,10 @@ export const CardContext = createContext<CardData>({
 	boardLength: 96,
 	cardState: "board",
 	cutInputs: [],
-	setBoardLength: () => {},
-	setCardState: () => {},
-	setCutInputs: () => {},
-	setName: () => {},
+	setBoardLength: () => { },
+	setCardState: () => { },
+	setCutInputs: () => { },
+	setName: () => { },
 });
 
 export default function Card({ id }: CardProps) {
@@ -56,6 +57,9 @@ export default function Card({ id }: CardProps) {
 			}}
 		>
 			<div className="Card container vertical">
+				<button type="button">
+					<Icon iconKey="delete" />
+				</button>
 				<CardBody />
 			</div>
 			<CardFooter />

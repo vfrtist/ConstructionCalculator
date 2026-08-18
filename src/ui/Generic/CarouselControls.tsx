@@ -32,9 +32,8 @@ export default function CarouselControls({
 					state === "last" || state === "single" ? "add" : "right"
 				}
 				onClick={() =>
-					state === "single" || state === "last"
-						? addBoard()
-						: handleIndexChange(currentIndex + 1)
+					state === "single" || state === "last" && addBoard()
+			handleIndexChange(currentIndex + 1)
 				}
 			/>
 		</div>

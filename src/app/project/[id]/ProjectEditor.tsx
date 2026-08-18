@@ -19,12 +19,14 @@ export interface ProjectData {
 	data: ProjectBoards;
 	setProjectData: (id: string, data: BoardData) => void;
 	addBoard: () => void;
+	deleteBoard: (id: string) => void;
 }
 
 export const ProjectContext = createContext<ProjectData>({
 	data: {},
-	setProjectData: () => {},
-	addBoard: () => {},
+	setProjectData: () => { },
+	addBoard: () => { },
+	deleteBoard: () => { },
 });
 
 export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
@@ -55,6 +57,12 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 							data: { ...prev.data, ...newProjectBoards() },
 						}));
 					},
+					deleteBoard: (id: string) => {
+						setProject((prev) => ({
+							...prev,
+							data: (prev.filter((board) => board.id !== id))
+						}));
+					}
 				}}
 			>
 				<Carousel>
@@ -63,6 +71,6 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 					))}
 				</Carousel>
 			</ProjectContext.Provider>
-		</main>
+		</main >
 	);
 }
