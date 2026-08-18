@@ -8,7 +8,8 @@
 	--theme-dark: #063b46;
 	--theme-medium: #24a99c;
 	--theme-light: #24ccbb;
-	--olive: #4b5b48;
+	--theme-light: #2bd8a4;
+	--theme-light: #2bb3d9;
 
 	/* Neutrals */
 	--neutral-lighter: #f5eee8;
@@ -21,7 +22,8 @@
 	--shadow-light: #3a3f4553;
 	--shadow-dark: #3a3f45d3;
 	--background: #ebd8c1;
-	--foreground: #fdfcff;
+	--background: #e1d1be;
+	--foreground: #fffcfd;
 	--warning: #ee5858;
 	--warning-dark: #d54b4b;
 }
