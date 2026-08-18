@@ -21,12 +21,12 @@ Done
     -Duplicate file (same logic as template... might as well add it)
     -On added board, scroll to added board.
     -Delete Board
+    -Add total plan boards
 
 General Tasks
-    -(stretch) Sign out/Auto sign out
+    -Sign out/Auto sign out
 
 Project
-    -Add total plan boards
     -(stretch) Copy Board
     -(stretch) Add subtle saving ui (think video game book writing animation).
     -(stretch) Implement undo/redo
