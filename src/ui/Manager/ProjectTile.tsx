@@ -5,9 +5,8 @@ import { newProjectSummary } from "@/lib/objects";
 import Icon from "@/ui/Generic/Icon";
 import Link from "next/link";
 
-export default function ProjectTile(project: ProjectSummary) {
-	const { toggleSidebar, activeProject, updateProject } =
-		useContext(ManagerContext);
+export default function ProjectTile(summary: ProjectSummary) {
+	const { updateSelector, selector } = useContext(ManagerContext);
 
 	return (
 		<>
@@ -15,18 +14,19 @@ export default function ProjectTile(project: ProjectSummary) {
 				type="button"
 				className="editButton"
 				onClick={() => {
-					if (!activeProject || project.id !== activeProject.id) {
-						toggleSidebar(true);
-						updateProject(project);
+					if (selector.summary.id !== summary.id) {
+						updateSelector({ sidebar: "edit", summary: summary });
 					} else {
-						toggleSidebar(false);
-						updateProject(newProjectSummary());
+						updateSelector({
+							sidebar: "hidden",
+							summary: newProjectSummary(),
+						});
 					}
 				}}
 			>
 				<Icon iconKey="edit" />
 			</button>
-			<Link href={`project/`}>{project.name}</Link>
+			<Link href={`project/`}>{summary.name}</Link>
 		</>
 	);
 }

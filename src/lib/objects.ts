@@ -28,12 +28,12 @@ export function newProjectSummary(): ProjectSummary {
 	};
 }
 
-export function newProject(copyProject: Project): Project {
+export function newProject(copyProject?: Project): Project {
 	return {
 		...newProjectSummary(),
-		description: copyProject.description ?? "",
-		name: copyProject.name,
-		data: copyProject.data
+		description: copyProject?.description ?? "",
+		name: copyProject?.name ?? "",
+		data: copyProject?.data
 			? structuredClone(copyProject.data)
 			: newProjectBoards(),
 	};

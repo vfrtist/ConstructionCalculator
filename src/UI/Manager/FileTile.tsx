@@ -1,25 +1,25 @@
 import { useContext } from "react";
 import { ProjectSummary, ProjectType } from "@/lib/structures";
 import { ManagerContext } from "@/app/manager/ManagerEditor";
-import ProjectTile from "./ProjectTile";
-import TemplateTile from "./TemplateTile";
+import ProjectTile from "@/ui/Manager/ProjectTile";
+import TemplateTile from "@/ui/Manager/TemplateTile";
 
 export interface FileTileProps {
-	project: ProjectSummary;
+	summary: ProjectSummary;
 	type: ProjectType;
 }
 
-export default function FileTile({ project, type }: FileTileProps) {
-	const { activeProject } = useContext(ManagerContext);
+export default function FileTile({ summary, type }: FileTileProps) {
+	const { selector } = useContext(ManagerContext);
 
 	return (
 		<li
-			className={`FileTile${project.id === activeProject.id ? " selected" : ""}`}
+			className={`FileTile${selector.summary.id === summary.id ? " selected" : ""}`}
 		>
 			{type === "project" ? (
-				<ProjectTile {...project} />
+				<ProjectTile {...summary} />
 			) : (
-				<TemplateTile {...project} />
+				<TemplateTile {...summary} />
 			)}
 		</li>
 	);

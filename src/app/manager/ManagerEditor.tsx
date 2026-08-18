@@ -1,32 +1,33 @@
 "use client";
 
-import { useState, createContext } from "react";
+import { useState, createContext, Dispatch, SetStateAction } from "react";
 import { ProjectSummary } from "@/lib/structures";
-import FileGroup from "@/ui/manager/FileGroup";
 import Header from "@/ui/Generic/Header";
 import "@/styles/Manager.css";
-import ManagerSidebar, { SideBarType } from "@/ui/manager/ManagerSidebar";
+import ManagerSidebar, { SideBarType } from "@/ui/Manager/ManagerSidebar";
+import FileGroup from "@/ui/Manager/FileGroup";
+import { newProjectSummary } from "@/lib/objects";
 
-export interface MangerEditorProps {
+interface MangerEditorProps {
 	recents: ProjectSummary[];
 	templates: ProjectSummary[];
 }
 
-interface ManagerData {
-	recents: ProjectSummary[];
-	selectedFile: ProjectSummary | null;
+export interface ManagerSelector {
 	sidebar: SideBarType;
-	updateSidebar: (state: SideBarType) => void;
-	updateSummary: (summary: ProjectSummary) => void;
-	updateSelected: () => void;
+	summary: ProjectSummary;
+}
+
+interface ManagerData {
+	selector: ManagerSelector;
+	updateSelector: Dispatch<SetStateAction<ManagerSelector>>;
+	updateSummary: Dispatch<SetStateAction<ProjectSummary[]>>;
 }
 
 export const ManagerContext = createContext<ManagerData>({
-	recents: [],
-	selectedFile: null,
-	sidebar: "hidden",
-	updateSidebar: () => { },
-	updateSummary: () => { },
+	selector: { sidebar: "hidden", summary: newProjectSummary() },
+	updateSelector: () => {},
+	updateSummary: () => {},
 });
 
 export default function ManagerEditor({
@@ -34,26 +35,18 @@ export default function ManagerEditor({
 	templates,
 }: MangerEditorProps) {
 	const [recentFiles, setRecentFiles] = useState(recents);
-	const [selectedFile, setSelected] = useState(null);
-	const [sidebarState, setSidebarState] = useState<SideBarType>("hidden");
+	const [selection, setSelection] = useState<ManagerSelector>({
+		sidebar: "hidden",
+		summary: newProjectSummary(),
+	});
 
 	return (
 		<ManagerContext.Provider
 			value={{
-				recents: recentfiles,
-				selectedFile: selectedFile,
-				sidebar: sidebarState,
-				updateSidebar: (state) => {
-					setSidebarState(state);
-				},
-				updateSummary: (summary) => {
-					setFiles((prev) => (
-						prev.map((s) => (
-							s.id === summary.id ? summary : s
-						))))
-				}
-			}
-			}
+				selector: selection,
+				updateSelector: setSelection,
+				updateSummary: setRecentFiles,
+			}}
 		>
 			<main className="Manager">
 				<Header />
@@ -71,6 +64,6 @@ export default function ManagerEditor({
 				</div>
 				<ManagerSidebar />
 			</main>
-		</ ManagerContext.Provider >
+		</ManagerContext.Provider>
 	);
 }

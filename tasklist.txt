@@ -42,6 +42,8 @@ Project
     -(stretch) Plan done/undone view sectioning to facilitate task management
 
 Manager
+    -TemplateTile needs to be fixed
+    -Sidebars need to be fixed
     -Get new file name on creation
     (stretch) Add manager skeleton
 

@@ -14,8 +14,8 @@ export default function FileGroup({ title, files, type }: FileGroupProps) {
 		<section className="FileGroup container vertical">
 			<h2 className="FileGroupTitle">{title}</h2>
 			<ul className="FileList container horizontal">
-				{files.map((project) => (
-					<FileTile key={project.id} project={project} type={type} />
+				{files.map((summary) => (
+					<FileTile key={summary.id} summary={summary} type={type} />
 				))}
 			</ul>
 		</section>

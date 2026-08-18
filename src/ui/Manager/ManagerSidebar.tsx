@@ -2,18 +2,24 @@ import { useContext } from "react";
 import NewFileSidebar from "./NewFileSidebar";
 import EditSidebar from "./EditSidebar";
 import { ManagerContext } from "@/app/manager/ManagerEditor";
+import { newProject } from "@/lib/objects";
 
-export type SideBarType = "new" | "edit" | "hidden"
-
-const SidebarMap: Record<SideBarType, React.ReactNode> = {
-    new: <NewFileSidebar />,
-    edit: <EditSidebar />
-};
+export type SideBarType = "new" | "edit" | "hidden";
 
 export default function ManagerSidebar() {
-    const { isOpen, updateProject, activeProject, sidebar } = useContext(ManagerContext);
+	const { sidebar } = useContext(ManagerContext);
 
-    return <aside className={`Sidebar right${sidebar !== "hidden" && " open"}`}>
-        {SidebarMap[sidebar]}
-    </aside>
+	const SidebarMap: Record<SideBarType, React.ReactNode> = {
+		new: <NewFileSidebar initialProject={newProject()} />,
+		edit: <EditSidebar />,
+		hidden: <></>,
+	};
+
+	return (
+		<aside
+			className={`Sidebar right${sidebar !== "hidden" ? " open" : ""}`}
+		>
+			{SidebarMap[sidebar]}
+		</aside>
+	);
 }

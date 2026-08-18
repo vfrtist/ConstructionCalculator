@@ -51,11 +51,12 @@ main {
 				outline: 4px solid var(--theme-light);
 			}
 
-			a {
+			> * {
 				display: grid;
 				place-items: center;
 				height: 100%;
 				width: 100%;
+				cursor: pointer;
 			}
 
 			.editButton {

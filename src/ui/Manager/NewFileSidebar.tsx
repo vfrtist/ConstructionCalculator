@@ -1,13 +1,17 @@
 import { Project } from "@/lib/structures";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { createProject } from "@/services/projectServices";
 
-export default function NewFileSidebar() {
-	const [newProject, setNewProject] = useState<Project>();
+interface NewFileProps {
+	initialProject: Project;
+}
+
+export default function NewFileSidebar({ initialProject }: NewFileProps) {
+	const [project, setProject] = useState(initialProject);
 
 	async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
-		await createProject(newProject);
+		await createProject(project);
 	}
 
 	return (
@@ -17,12 +21,9 @@ export default function NewFileSidebar() {
 				type="text"
 				name="name"
 				id="name"
-				value={`${newProject.name}`}
+				value={`${project.name}`}
 				onChange={(e) => {
-					setNewProject((prev) => ({
-						...prev,
-						name: e.target.value,
-					}));
+					setProject((prev) => ({ ...prev, name: e.target.value }));
 				}}
 			/>
 			<label htmlFor="description">Description</label>
@@ -30,9 +31,9 @@ export default function NewFileSidebar() {
 				type="text"
 				name="description"
 				id="description"
-				value={`${newProject.description}`}
+				value={`${project.description}`}
 				onChange={(e) => {
-					setNewProject((prev) => ({
+					setProject((prev) => ({
 						...prev,
 						description: e.target.value,
 					}));
