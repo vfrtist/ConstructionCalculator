@@ -11,6 +11,7 @@ export default function PlanBody() {
 		[boardLength, cutInputs],
 	);
 
+	const qty = boardList.length;
 	// Possible to implement a display style option for compact vs expanded view which would toggle this on/off.
 	// For now compact is the only view and the other option would be to map over the boardList instead of compact List
 	const compactList = useMemo(
@@ -38,6 +39,7 @@ export default function PlanBody() {
               <Board key={index.toString()} length={board.length} board={board} />
             ))} */}
 			</ul>
+			<footer className="PlanQty">Total: {qty}</footer>
 		</div>
 	);
 }
