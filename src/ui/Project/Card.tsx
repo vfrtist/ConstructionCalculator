@@ -3,8 +3,8 @@ import CardBody from "./CardBody";
 import CardFooter from "./CardFooter";
 import { BoardData, CutInput } from "@/lib/structures";
 import "@/styles/Card.css";
-import { ProjectContext } from "@/app/project/[id]/ProjectEditor";
-import Icon from "@/app/ui/Generic/Icon";
+import { ProjectContext } from "@/ui/Project/ProjectEditor";
+import Icon from "@/ui/Generic/Icon";
 
 export type CardState = "board" | "cut" | "plan";
 
@@ -25,18 +25,17 @@ export const CardContext = createContext<CardData>({
 	boardLength: 96,
 	cardState: "board",
 	cutInputs: [],
-	setBoardLength: () => { },
-	setCardState: () => { },
-	setCutInputs: () => { },
-	setName: () => { },
+	setBoardLength: () => {},
+	setCardState: () => {},
+	setCutInputs: () => {},
+	setName: () => {},
 });
 
 export default function Card({ id }: CardProps) {
 	const [cardState, setCardState] = useState<CardState>("board");
-	const { setProjectData, data } = useContext(ProjectContext);
+	const { setProjectData, data, deleteBoard } = useContext(ProjectContext);
 	const { name, boardLength, cutInputs } = data[id];
-	console.log("----");
-	console.log(data[id]);
+
 	return (
 		<CardContext.Provider
 			value={{
@@ -57,7 +56,13 @@ export default function Card({ id }: CardProps) {
 			}}
 		>
 			<div className="Card container vertical">
-				<button type="button">
+				<button
+					type="button"
+					className="deleteButton"
+					onClick={() => {
+						deleteBoard(id);
+					}}
+				>
 					<Icon iconKey="delete" />
 				</button>
 				<CardBody />

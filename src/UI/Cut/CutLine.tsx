@@ -20,7 +20,7 @@ export default function CutLine({ values }: CutLineProps) {
 	}
 
 	return (
-		<li className="CardLine container horizontal">
+		<li className="CardLine">
 			<input
 				type="number"
 				name="length"

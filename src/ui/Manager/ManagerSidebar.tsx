@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import NewFileSidebar from "./NewFileSidebar";
 import EditSidebar from "./EditSidebar";
-import { ManagerContext } from "@/app/manager/ManagerEditor";
-import Icon from "@/app/ui/Generic/Icon";
+import { ManagerContext } from "@/ui/Manager/ManagerEditor";
+import Icon from "@/ui/Generic/Icon";
 
 export type SideBarType = "new" | "edit" | "hidden";
 
@@ -11,13 +11,15 @@ export default function ManagerSidebar() {
 	const bar = selector.sidebar;
 
 	return (
-		<aside
-			className={`Sidebar right${bar !== "hidden" ? " open" : ""}`}
-		>
-			<button type="button" id="cancel" onClick={() => {
-				updateSelector(unselect);
-			}}>
-				<Icon iconKey="undo" />
+		<aside className={`Sidebar right${bar !== "hidden" ? " open" : ""}`}>
+			<button
+				type="button"
+				id="cancel"
+				onClick={() => {
+					updateSelector(unselect);
+				}}
+			>
+				<Icon iconKey="redo" />
 			</button>
 			{bar === "new" && <NewFileSidebar />}
 			{bar === "edit" && <EditSidebar />}

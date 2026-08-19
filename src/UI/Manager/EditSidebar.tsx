@@ -1,4 +1,4 @@
-import { ManagerContext } from "@/app/manager/ManagerEditor";
+import { ManagerContext } from "@/ui/Manager/ManagerEditor";
 import {
 	deleteProject,
 	updateProjectSummary,
@@ -6,9 +6,9 @@ import {
 import { useContext } from "react";
 import { useDebounce } from "@/hooks/debounce";
 
-
 export default function EditSidebar() {
-	const { selector, updateSelector } = useContext(ManagerContext);
+	const { selector, updateSelector, updateSummary } =
+		useContext(ManagerContext);
 	const { name, description, updatedAt } = selector.summary;
 	useDebounce(selector.summary, updateProjectSummary, 2000);
 
@@ -21,9 +21,12 @@ export default function EditSidebar() {
 				id="name"
 				value={`${name}`}
 				onChange={(e) => {
-					updateSummary({ ...selector.summary, name: e.target.value });
+					updateSummary({
+						...selector.summary,
+						name: e.target.value,
+					});
 				}}
-			/>a
+			/>
 			<label htmlFor="description">Description</label>
 			<input
 				type="text"
@@ -31,39 +34,28 @@ export default function EditSidebar() {
 				id="description"
 				value={`${description}`}
 				onChange={(e) => {
-					updateSummary({ ...selector.summary, description: e.target.value });
+					updateSummary({
+						...selector.summary,
+						description: e.target.value,
+					});
 				}}
 			/>
 			<div>
 				Last updated:
-				{new Date(updatedAt).toLocaleString([], {
+				{/* {new Date(updatedAt).toLocaleString([], {
 					dateStyle: "medium",
 					timeStyle: "short",
-				})}
+				})} */}
 			</div>
 			<button
 				type="button"
 				id="copyProject"
 				onClick={() => {
-					updateSelector((prev) => ({ ...prev, sidebar: "new", summaryType: "project" }))
-					// const user = await fetchCurrentUser();
-					// if (!user) {
-					// 	console.log("no user");
-					// 	return;
-					// }
-					// const copyProject = await fetchProject(activeProject.id);
-
-					// if (!copyProject) {
-					// 	console.log("no project");
-					// 	return;
-					// }
-					// const projectID = await createProject(
-					// 	user.id,
-					// 	copyProject,
-					// 	copyProject.name,
-					// );
-
-					// redirect(`/project/${projectID}`);
+					updateSelector((prev) => ({
+						...prev,
+						sidebar: "new",
+						summaryType: "project",
+					}));
 				}}
 			>
 				Copy Project
@@ -72,7 +64,7 @@ export default function EditSidebar() {
 				type="button"
 				id="deleteProject"
 				onClick={() => {
-					deleteProject(activeProject.id);
+					deleteProject(selector.summary.id);
 				}}
 			>
 				Delete Project

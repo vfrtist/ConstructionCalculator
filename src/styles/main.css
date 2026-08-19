@@ -45,6 +45,10 @@ input {
 	font-family: "Commissioner";
 }
 
+label {
+	text-align: left;
+	width: 100%;
+}
 /* Basics section (often re-used classes) */
 .container {
 	display: flex;

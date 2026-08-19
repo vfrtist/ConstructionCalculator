@@ -4,7 +4,6 @@ import "@/styles/Carousel.css";
 
 export interface CarouselProps {
 	children: React.ReactNode[];
-	// addButton?: Function;
 }
 
 export default function Carousel({ children }: CarouselProps) {

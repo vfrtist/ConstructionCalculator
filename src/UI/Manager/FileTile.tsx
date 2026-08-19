@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ProjectSummary, ProjectType } from "@/lib/structures";
-import { ManagerContext } from "@/app/manager/ManagerEditor";
+import { ManagerContext } from "@/ui/Manager/ManagerEditor";
 import ProjectTile from "@/ui/Manager/ProjectTile";
 import TemplateTile from "@/ui/Manager/TemplateTile";
 

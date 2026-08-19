@@ -64,9 +64,9 @@ main {
 				right: 4;
 				top: 4;
 				width: clamp(30px, 35%, 40px);
-				aspect-ratio: 1/1;
+				height: clamp(30px, 35%, 40px);
+				/* aspect-ratio: 1/1; */
 				padding: 4px;
-				cursor: arrow;
 
 				.edit {
 					stroke: var(--neutral-medium);
@@ -87,6 +87,7 @@ main {
 		align-items: center;
 		gap: 12px;
 		transition: padding var(--open-timing);
+		position: relative;
 
 		* {
 			width: 100%;
@@ -113,6 +114,7 @@ main {
 			padding: 12px;
 			font-weight: 600;
 			color: var(--font-color-light);
+			background: var(--theme-light);
 		}
 
 		&.open {
@@ -127,25 +129,42 @@ main {
 				padding: 12px;
 			}
 		}
-	}
 
-	#ManagerSidebar {
-		#deleteProject {
-			background: var(--warning);
-			transition: background 0.25s;
+		#cancel {
+			position: absolute;
+			inset: 0px;
+			width: 40px;
+			aspect-ratio: 1;
+			padding: 4px;
+			background: none;
 
-			&:hover {
-				background: var(--warning-dark);
+			.Icon {
+				fill: none;
+				stroke: var(--theme-light);
+				stroke-width: 3px;
 			}
 		}
 
-		#copyProject {
-			background: var(--theme-light);
-			transition: background 0.25s;
+		form {
+			gap: 8px;
+		}
+	}
 
-			&:hover {
-				background: var(--theme-medium);
-			}
+	#deleteProject {
+		background: var(--warning);
+		transition: background 0.25s;
+
+		&:hover {
+			background: var(--warning-dark);
+		}
+	}
+
+	#copyProject {
+		background: var(--theme-light);
+		transition: background 0.25s;
+
+		&:hover {
+			background: var(--theme-medium);
 		}
 	}
 }

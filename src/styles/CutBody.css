@@ -17,8 +17,8 @@
 			justify-content: space-between;
 			gap: 8px;
 
-			input:not(.name) {
-				width: 5ch;
+			input {
+				min-width: 0;
 			}
 
 			&:last-of-type {

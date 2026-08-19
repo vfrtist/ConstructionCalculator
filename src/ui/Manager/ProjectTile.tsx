@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ManagerContext } from "@/app/manager/ManagerEditor";
+import { ManagerContext } from "@/ui/Manager/ManagerEditor";
 import { ProjectSummary } from "@/lib/structures";
 import Icon from "@/ui/Generic/Icon";
 import Link from "next/link";
@@ -14,7 +14,11 @@ export default function ProjectTile(summary: ProjectSummary) {
 				className="editButton"
 				onClick={() => {
 					if (selector.summary.id !== summary.id) {
-						updateSelector({ sidebar: "edit", summary: summary, summaryType: "project" });
+						updateSelector({
+							sidebar: "edit",
+							summary: summary,
+							summaryType: "project",
+						});
 					} else {
 						updateSelector(unselect);
 					}

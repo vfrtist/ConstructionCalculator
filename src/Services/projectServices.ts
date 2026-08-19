@@ -12,6 +12,7 @@ export async function fetchUserRecentProjects(userID: string) {
 		SELECT
 			p.id,
 			p.name,
+			p.description,
 			p.updated_at
 		FROM projects p
 		JOIN project_users pu ON pu.projectID = p.id
@@ -50,7 +51,6 @@ export async function createProject(sourceProject: Project) {
 	const { id, name, description, data } = projectToDB(
 		newProject(sourceProject),
 	);
-
 	try {
 		await sql`
 		INSERT INTO projects
@@ -82,13 +82,13 @@ export async function updateProjectSummary(summary: ProjectSummary) {
 	const { name, description, id } = summary;
 	console.log(summary);
 
-	// await sql`
-	// UPDATE projects
-	// SET
-	// 	name = ${name},
-	// 	description = ${description}
-	// WHERE id = ${id}
-	// `;
+	await sql`
+	UPDATE projects
+	SET
+		name = ${name},
+		description = ${description}
+	WHERE id = ${id}
+	`;
 }
 
 export async function deleteProject(id: string) {

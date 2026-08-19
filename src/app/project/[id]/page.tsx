@@ -1,5 +1,5 @@
 import { fetchProject } from "@/services/projectServices";
-import ProjectEditor from "./ProjectEditor";
+import ProjectEditor from "../../../ui/Project/ProjectEditor";
 import { notFound } from "next/navigation";
 import "@/styles/Project.css";
 

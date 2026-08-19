@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { createProject, fetchProject } from "@/services/projectServices";
-import { ManagerContext } from "@/app/manager/ManagerEditor";
+import { ManagerContext } from "@/ui/Manager/ManagerEditor";
 import { fetchTemplate } from "@/services/templateServices";
 import { redirect } from "next/navigation";
 
@@ -10,7 +10,10 @@ export default function NewFileSidebar() {
 
 	async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const copyProject = selector.summaryType === "project" ? fetchProject(newSummary.id) : fetchTemplate(newSummary.id)
+		const copyProject =
+			selector.summaryType === "project"
+				? await fetchProject(newSummary.id)
+				: await fetchTemplate(newSummary.id);
 
 		const id = await createProject({ ...copyProject, ...newSummary });
 		if (id) {
@@ -19,15 +22,18 @@ export default function NewFileSidebar() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className="container vertical">
 			<label htmlFor="name">Name</label>
 			<input
 				type="text"
 				name="name"
 				id="name"
-				value={`${project.name}`}
+				value={`${newSummary.name}`}
 				onChange={(e) => {
-					setNewSummary((prev) => ({ ...prev, name: e.target.value }));
+					setNewSummary((prev) => ({
+						...prev,
+						name: e.target.value,
+					}));
 				}}
 			/>
 			<label htmlFor="description">Description</label>
@@ -35,7 +41,7 @@ export default function NewFileSidebar() {
 				type="text"
 				name="description"
 				id="description"
-				value={`${project.description}`}
+				value={`${newSummary.description}`}
 				onChange={(e) => {
 					setNewSummary((prev) => ({
 						...prev,

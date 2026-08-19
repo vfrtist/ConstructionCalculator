@@ -1,4 +1,4 @@
-import { ManagerContext } from "@/app/manager/ManagerEditor";
+import { ManagerContext } from "@/ui/Manager/ManagerEditor";
 import { ProjectSummary } from "@/lib/structures";
 import { useContext } from "react";
 
@@ -10,7 +10,11 @@ export default function TemplateTile(summary: ProjectSummary) {
 			type="button"
 			className="TemplateTile"
 			onClick={() => {
-				updateSelector({ sidebar: "new", summary: summary, summaryType: "template" });
+				updateSelector({
+					sidebar: "new",
+					summary: summary,
+					summaryType: "template",
+				});
 			}}
 		>
 			{summary.name}

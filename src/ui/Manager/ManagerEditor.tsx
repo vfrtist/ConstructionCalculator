@@ -27,10 +27,18 @@ interface ManagerData {
 }
 
 export const ManagerContext = createContext<ManagerData>({
-	selector: { sidebar: "hidden", summary: newProjectSummary(), summaryType: "project" },
-	unselect: { sidebar: "hidden", summary: newProjectSummary(), summaryType: "project" },
-	updateSelector: () => { },
-	updateSummary: () => { },
+	selector: {
+		sidebar: "hidden",
+		summary: newProjectSummary(),
+		summaryType: "project",
+	},
+	unselect: {
+		sidebar: "hidden",
+		summary: newProjectSummary(),
+		summaryType: "project",
+	},
+	updateSelector: () => {},
+	updateSummary: () => {},
 });
 
 export default function ManagerEditor({
@@ -41,21 +49,26 @@ export default function ManagerEditor({
 	const [selection, setSelection] = useState<ManagerSelector>({
 		sidebar: "hidden",
 		summary: newProjectSummary(),
-		summaryType: "project"
+		summaryType: "project",
 	});
 
 	return (
 		<ManagerContext.Provider
 			value={{
 				selector: selection,
-				unselect: { sidebar: "hidden", summary: newProjectSummary(), summaryType: "project" },
+				unselect: {
+					sidebar: "hidden",
+					summary: newProjectSummary(),
+					summaryType: "project",
+				},
 				updateSelector: setSelection,
 				updateSummary: (summary: ProjectSummary) => {
-					setRecentFiles((prev) => ({
-						prev.map((sum) => {
-							sum.id === summary.id ? summary : sum
-						})
-					}))
+					setSelection((prev) => ({ ...prev, summary: summary }));
+					setRecentFiles((prev) =>
+						prev.map((sum) =>
+							sum.id === summary.id ? summary : sum,
+						),
+					);
 				},
 			}}
 		>
