@@ -3,6 +3,9 @@
 	text-align: left;
 	width: 100%;
 	padding: 20px 0px;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 
 	.CardHeader {
 		grid-template-columns: var(--grid);
@@ -61,5 +64,14 @@
 				}
 			}
 		}
+	}
+
+	.PlanQty {
+		width: 100%;
+		text-align: right;
+		font-size: 1.15rem;
+		font-weight: 200;
+		border-top: 2px solid var(--theme-light);
+		margin-top: auto;
 	}
 }

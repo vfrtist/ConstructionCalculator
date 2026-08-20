@@ -33,7 +33,11 @@ export const CardContext = createContext<CardData>({
 
 export default function Card({ id }: CardProps) {
 	const [cardState, setCardState] = useState<CardState>("board");
-	const { setProjectData, data, deleteBoard } = useContext(ProjectContext);
+	const {
+		setBoards: setProjectData,
+		boards: data,
+		deleteBoard,
+	} = useContext(ProjectContext);
 	const { name, boardLength, cutInputs } = data[id];
 
 	return (
@@ -45,13 +49,13 @@ export default function Card({ id }: CardProps) {
 				cutInputs: cutInputs,
 				setCardState: (state) => setCardState(state),
 				setBoardLength: (length) => {
-					setProjectData(id, { ...data.data, boardLength: length });
+					setProjectData(id, { ...data[id], boardLength: length });
 				},
 				setCutInputs: (inputs) => {
-					setProjectData(id, { ...data.data, cutInputs: inputs });
+					setProjectData(id, { ...data[id], cutInputs: inputs });
 				},
 				setName: (name) => {
-					setProjectData(id, { ...data.data, name: name });
+					setProjectData(id, { ...data[id], name: name });
 				},
 			}}
 		>

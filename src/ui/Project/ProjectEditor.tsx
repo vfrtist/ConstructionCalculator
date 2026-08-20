@@ -16,22 +16,28 @@ interface ProjectEditorProps {
 }
 
 export interface ProjectData {
-	data: ProjectBoards;
-	setProjectData: (id: string, data: BoardData) => void;
+	boards: ProjectBoards;
+	setBoards: (id: string, data: BoardData) => void;
 	addBoard: () => void;
 	deleteBoard: (id: string) => void;
 }
 
 export const ProjectContext = createContext<ProjectData>({
-	data: {},
-	setProjectData: () => {},
+	boards: {},
+	setBoards: () => {},
 	addBoard: () => {},
 	deleteBoard: () => {},
 });
 
 export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
-	const [project, setProject] = useState<Project>(initialProject);
-	useDebounce(project, updateProject, 2000);
+	const [boards, setBoards] = useState<ProjectBoards>(initialProject.data);
+	useDebounce(
+		boards,
+		async (data) => {
+			await updateProject({ ...initialProject, data: data });
+		},
+		2000,
+	);
 
 	return (
 		<main>
@@ -44,32 +50,29 @@ export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 			/>
 			<ProjectContext.Provider
 				value={{
-					data: project.data,
-					setProjectData: (id: string, data: BoardData) => {
-						setProject((prev) => ({
-							...prev,
-							data: { ...prev.data, [id]: data },
-						}));
+					boards: boards,
+					setBoards: (id: string, data: BoardData) => {
+						setBoards((prev) => ({ ...prev, [id]: data }));
 					},
 					addBoard: () => {
-						setProject((prev) => ({
+						setBoards((prev) => ({
 							...prev,
-							data: { ...prev.data, ...newProjectBoards() },
+							...newProjectBoards(),
 						}));
 					},
 					deleteBoard: (id: string) => {
-						setProject((prev) => {
+						setBoards((prev) => {
 							const {
 								[id]: {},
 								...rest
-							} = prev.data;
-							return { ...prev, data: rest };
+							} = prev;
+							return rest;
 						});
 					},
 				}}
 			>
 				<Carousel>
-					{Object.entries(project.data).map(([id]) => (
+					{Object.entries(boards).map(([id]) => (
 						<Card key={id} id={id} />
 					))}
 				</Carousel>
