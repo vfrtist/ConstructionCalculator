@@ -14,7 +14,7 @@ export default function CutBody() {
 	}
 
 	return (
-		<div className="CutBody container vertical">
+		<div className="CutBody CardBody container vertical">
 			<header className="CardHeader container horizontal">
 				<span>L</span>
 				<span>Q</span>

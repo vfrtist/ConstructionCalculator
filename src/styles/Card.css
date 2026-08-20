@@ -5,7 +5,7 @@
 	width: 100%;
 	border-radius: var(--theme-radius);
 	background: var(--foreground);
-	box-shadow: 4px 4px 8px var(--shadow-light);
+	box-shadow: 4px 4px 12px var(--shadow-light);
 	position: relative;
 	justify-content: flex-start;
 	overflow-y: auto;
@@ -39,7 +39,8 @@
 .ToggleButtonGroup {
 	--padding: 8px;
 	z-index: 2;
-	border: var(--padding) solid var(--neutral-lighter);
+	background: var(--theme-light);
+	border: var(--padding) solid var(--theme-light);
 	height: 56px;
 
 	.Cursor {

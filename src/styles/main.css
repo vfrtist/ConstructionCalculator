@@ -35,6 +35,8 @@ button {
 	padding: 0px;
 	margin: 0px;
 	font-family: "Commissioner";
+	font-family: "Cabin";
+	font-family: "Quicksand";
 }
 
 input {
@@ -43,11 +45,14 @@ input {
 	outline: none;
 	border-bottom: 1px solid var(--neutral-light);
 	font-family: "Commissioner";
+	font-family: "Cabin";
+	font-family: "Quicksand";
 }
 
 label {
 	text-align: left;
 	width: 100%;
+	font-weight: 400;
 }
 /* Basics section (often re-used classes) */
 .container {

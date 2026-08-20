@@ -1,5 +1,4 @@
 .mainHeader {
-	background: var(--theme-main-dark);
 	color: var(--font-color-light);
 	top: 0;
 	left: 0;
@@ -8,7 +7,7 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-areas: "left middle right";
 	padding: 16px 12px;
-	background: var(--neutral-lighter);
+	background: var(--theme-dark);
 	grid-column: 1 / -1;
 
 	.headerbox {
@@ -35,7 +34,7 @@
 	}
 
 	.Icon {
-		fill: var(--neutral-medium);
+		fill: var(--foreground);
 		height: 100%;
 		width: auto;
 	}

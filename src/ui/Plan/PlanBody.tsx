@@ -20,7 +20,7 @@ export default function PlanBody() {
 	);
 
 	return (
-		<div className="PlanBody">
+		<div className="PlanBody CardBody">
 			<header className="CardHeader container horizontal">
 				<span>Q</span>
 				<span>Board</span>

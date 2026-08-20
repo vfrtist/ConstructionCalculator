@@ -1,7 +1,7 @@
 .CutBody {
 	--grid: 2fr 2fr 8fr 1fr;
 	width: 100%;
-	padding: 20px 0px;
+	padding: 0px;
 
 	.CardHeader {
 		grid-template-columns: var(--grid);
@@ -36,10 +36,15 @@
 
 	.add {
 		font-size: 20px;
-		background: var(--theme-light);
+		background: var(--accent-medium);
 		border-radius: 50%;
 		aspect-ratio: 1;
 		width: 24px;
 		color: var(--foreground);
+		transition: background 0.2s;
+
+		&:hover {
+			background: var(--accent-light);
+		}
 	}
 }

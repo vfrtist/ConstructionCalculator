@@ -19,13 +19,13 @@
 			width: 14px;
 			aspect-ratio: 1;
 			border-radius: 50%;
-			background: var(--neutral-lighter);
+			background: var(--theme-light);
 			transition:
 				background 0.15s,
 				scale 0.15s;
 
 			&.active {
-				background: var(--theme-light);
+				background: var(--accent-medium);
 				scale: 1.2;
 			}
 		}
@@ -52,7 +52,7 @@
 			display: flex;
 			justify-content: space-between;
 			width: 100%;
-			padding: 0px 12px;
+			padding: 0px clamp(12px, 4dvw, 72px);
 			height: 3dvh;
 
 			.CarouselButton {
@@ -62,19 +62,23 @@
 				border-radius: 50%;
 
 				.Icon {
-					fill: var(--theme-light);
+					fill: var(--accent-medium);
 					transition:
 						fill 0.15s,
 						box-shadow 0.15s,
 						background 0.15s;
 				}
 
+				.add {
+					stroke: var(--accent-medium);
+					stroke-width: 1.5px;
+				}
 				&.disabled {
-					background: var(--neutral-lighter);
-					box-shadow: 0px 0px 0px var(--neutral-lighter);
+					background: var(--theme-light);
+					box-shadow: 0px 0px 0px var(--background);
 
 					.Icon {
-						fill: var(--neutral-light);
+						fill: var(--theme-medium);
 					}
 				}
 			}

@@ -5,11 +5,16 @@
 	--font-color-dark: #171818;
 
 	/* Theme Colors */
-	--theme-dark: #063b46;
-	--theme-medium: #24a99c;
-	--theme-light: #24ccbb;
-	--theme-light: #2bd8a4;
-	--theme-light: #2bb3d9;
+	--theme-dark: #79543f;
+	--theme-medium: #caa68d;
+	--theme-light: #dcc7b8;
+
+	--accent-light: #9aebf6;
+	--accent-medium: #82d4de;
+	--accent-dark: #64bac5;
+	--accent-darkest: #303534;
+
+	/* --theme-light: #2bb3d9; */
 
 	/* Neutrals */
 	--neutral-lighter: #f5eee8;
@@ -19,19 +24,10 @@
 	--neutral-darker: #2d2b29;
 
 	/* Functional */
-	--shadow-light: #3a3f4553;
-	--shadow-dark: #3a3f45d3;
-	--background: #ebd8c1;
-	--background: #e1d1be;
-	--foreground: #fffcfd;
+	--shadow-light: #453f3a53;
+	--shadow-dark: #453f3ab8;
+	--background: #ede8e2;
+	--foreground: #fffdfc;
 	--warning: #ee5858;
 	--warning-dark: #d54b4b;
-
-	/* New Chocolate Palette */
-	--col-1: #79543f;
-	--col-2: #caa68d;
-	--col-3: #dcc7b8;
-	--col-4: #ede8e2;
-	--col-5: #82d4de;
-	--col-6: #303534;
 }

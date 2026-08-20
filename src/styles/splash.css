@@ -1,5 +1,5 @@
 .splashContainer {
-	background: var(--theme-light);
+	background: var(--theme-dark);
 	display: grid;
 	place-items: center;
 	width: 100dvw;
@@ -8,8 +8,6 @@
 	position: absolute;
 	left: 0;
 	top: 0;
-	/* animation: ScrollUp 1.2s cubic-bezier(0.43, -0.28, 0.94, 0.46) 3.2s 1 normal
-		forwards; */
 }
 
 .Icon {
