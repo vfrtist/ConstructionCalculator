@@ -26,4 +26,12 @@
 	--foreground: #fffcfd;
 	--warning: #ee5858;
 	--warning-dark: #d54b4b;
+
+	/* New Chocolate Palette */
+	--col-1: #79543f;
+	--col-2: #caa68d;
+	--col-3: #dcc7b8;
+	--col-4: #ede8e2;
+	--col-5: #82d4de;
+	--col-6: #303534;
 }

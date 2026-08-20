@@ -68,7 +68,7 @@
 
 	.PlanQty {
 		width: 100%;
-		text-align: right;
+		text-align: left;
 		font-size: 1.15rem;
 		font-weight: 200;
 		border-top: 2px solid var(--theme-light);
