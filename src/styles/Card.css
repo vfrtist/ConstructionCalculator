@@ -1,0 +1,49 @@
+.Card {
+	padding: 20px;
+	color: var(--font-color-dark);
+	height: 100%;
+	width: 100%;
+	border-radius: var(--theme-radius);
+	background: var(--foreground);
+	box-shadow: 4px 4px 12px var(--shadow-light);
+	position: relative;
+	justify-content: flex-start;
+	overflow-y: auto;
+
+	.CardHeader {
+		display: grid;
+		width: 100%;
+		display: grid;
+		text-align: left;
+		margin-bottom: 1dvh;
+
+		span {
+			font-size: 1rem;
+			font-weight: 200;
+		}
+	}
+
+	.deleteButton {
+		position: absolute;
+		right: 16px;
+		top: 16px;
+		width: 20px;
+		aspect-ratio: 1;
+
+		.Icon {
+			fill: var(--warning);
+		}
+	}
+}
+
+.ToggleButtonGroup {
+	--padding: 8px;
+	z-index: 2;
+	background: var(--theme-light);
+	border: var(--padding) solid var(--theme-light);
+	height: 56px;
+
+	.Cursor {
+		border-radius: calc(var(--theme-radius) - var(--padding));
+	}
+}

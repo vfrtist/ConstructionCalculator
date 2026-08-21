@@ -1,0 +1,51 @@
+.mainHeader {
+	color: var(--font-color-light);
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas: "left middle right";
+	padding: 16px 12px;
+	background: var(--theme-dark);
+	grid-column: 1 / -1;
+
+	.headerbox {
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: row;
+	}
+
+	.left {
+		grid-area: left;
+		justify-content: flex-start;
+	}
+
+	.middle {
+		grid-area: middle;
+		justify-content: center;
+	}
+
+	.right {
+		grid-area: right;
+		justify-content: flex-end;
+	}
+
+	.Icon {
+		fill: var(--foreground);
+		height: 100%;
+		width: auto;
+	}
+
+	a {
+		height: 100%;
+		width: auto;
+	}
+}
+
+main:has(.mainHeader) {
+	display: grid;
+	grid-template-rows: 60px 1fr;
+}

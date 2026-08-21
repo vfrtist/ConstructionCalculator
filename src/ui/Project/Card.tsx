@@ -1,0 +1,77 @@
+import { createContext, useState, useContext } from "react";
+import CardBody from "./CardBody";
+import CardFooter from "./CardFooter";
+import { BoardData, CutInput } from "@/lib/structures";
+import "@/styles/Card.css";
+import { ProjectContext } from "@/ui/Project/ProjectEditor";
+import Icon from "@/ui/Generic/Icon";
+
+export type CardState = "board" | "cut" | "plan";
+
+export interface CardData extends BoardData {
+	cardState: CardState;
+	setBoardLength: (length: number) => void;
+	setCardState: (state: CardState) => void;
+	setCutInputs: (inputs: CutInput[]) => void;
+	setName: (name: string) => void;
+}
+
+interface CardProps {
+	id: string;
+}
+
+export const CardContext = createContext<CardData>({
+	name: "",
+	boardLength: 96,
+	cardState: "board",
+	cutInputs: [],
+	setBoardLength: () => {},
+	setCardState: () => {},
+	setCutInputs: () => {},
+	setName: () => {},
+});
+
+export default function Card({ id }: CardProps) {
+	const [cardState, setCardState] = useState<CardState>("board");
+	const {
+		setBoards: setProjectData,
+		boards: data,
+		deleteBoard,
+	} = useContext(ProjectContext);
+	const { name, boardLength, cutInputs } = data[id];
+
+	return (
+		<CardContext.Provider
+			value={{
+				name: name,
+				boardLength: boardLength,
+				cardState: cardState,
+				cutInputs: cutInputs,
+				setCardState: (state) => setCardState(state),
+				setBoardLength: (length) => {
+					setProjectData(id, { ...data[id], boardLength: length });
+				},
+				setCutInputs: (inputs) => {
+					setProjectData(id, { ...data[id], cutInputs: inputs });
+				},
+				setName: (name) => {
+					setProjectData(id, { ...data[id], name: name });
+				},
+			}}
+		>
+			<div className="Card container vertical">
+				<button
+					type="button"
+					className="deleteButton"
+					onClick={() => {
+						deleteBoard(id);
+					}}
+				>
+					<Icon iconKey="delete" />
+				</button>
+				<CardBody />
+			</div>
+			<CardFooter />
+		</CardContext.Provider>
+	);
+}

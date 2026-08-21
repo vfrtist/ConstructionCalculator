@@ -1,0 +1,104 @@
+.Carousel {
+	--side-space: 12dvw;
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 12px;
+
+	.Bullets {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		gap: 8px;
+		justify-content: flex-start;
+		margin-left: var(--side-space);
+		align-self: flex-start;
+
+		.Bullet {
+			width: 14px;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			background: var(--theme-light);
+			transition:
+				background 0.15s,
+				scale 0.15s;
+
+			&.active {
+				background: var(--accent-medium);
+				scale: 1.2;
+			}
+		}
+	}
+
+	.CarouselContainer {
+		width: 100%;
+		height: clamp(500px, 80dvh, 90%);
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 24px;
+		overflow-x: scroll;
+		overflow-y: auto;
+		scroll-behavior: smooth;
+		scroll-snap-type: x mandatory;
+
+		.CarouselControls {
+			z-index: 1;
+			position: absolute;
+			left: 0;
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			padding: 0px clamp(12px, 4dvw, 72px);
+			height: 3dvh;
+
+			.CarouselButton {
+				padding: 4px;
+				background: var(--foreground);
+				box-shadow: 4px 4px 8px var(--shadow-light);
+				border-radius: 50%;
+
+				.Icon {
+					fill: var(--accent-medium);
+					transition:
+						fill 0.15s,
+						box-shadow 0.15s,
+						background 0.15s;
+				}
+
+				.add {
+					stroke: var(--accent-medium);
+					stroke-width: 1.5px;
+				}
+				&.disabled {
+					background: var(--theme-light);
+					box-shadow: 0px 0px 0px var(--background);
+
+					.Icon {
+						fill: var(--theme-medium);
+					}
+				}
+			}
+		}
+
+		.CarouselItem {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+			z-index: 0;
+			width: 100%;
+			height: 100%;
+			overflow: visible;
+			flex: 0 0 auto;
+			scroll-snap-align: center;
+			transition: opacity 0.15s;
+
+			&:not(.active) {
+				opacity: 50%;
+			}
+		}
+	}
+}
