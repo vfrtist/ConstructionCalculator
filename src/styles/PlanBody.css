@@ -43,7 +43,7 @@
 						box-sizing: border-box;
 						padding: 4px;
 						border-radius: 4px;
-						background: var(--theme-medium);
+						background: var(--theme-light);
 						user-select: none;
 						color: var(--font-color-dark);
 						transition: transform 0.2s;

@@ -24,6 +24,7 @@ interface ManagerData {
 	unselect: ManagerSelector;
 	updateSelector: Dispatch<SetStateAction<ManagerSelector>>;
 	updateSummary: (summary: ProjectSummary) => void;
+	deleteFile: (id: string) => void;
 }
 
 export const ManagerContext = createContext<ManagerData>({
@@ -39,6 +40,7 @@ export const ManagerContext = createContext<ManagerData>({
 	},
 	updateSelector: () => {},
 	updateSummary: () => {},
+	deleteFile: () => {},
 });
 
 export default function ManagerEditor({
@@ -51,6 +53,10 @@ export default function ManagerEditor({
 		summary: newProjectSummary(),
 		summaryType: "project",
 	});
+
+	function deleteFile(id: string) {
+		setRecentFiles((prev) => prev.filter((sum) => sum.id !== id));
+	}
 
 	return (
 		<ManagerContext.Provider
@@ -70,6 +76,7 @@ export default function ManagerEditor({
 						),
 					);
 				},
+				deleteFile: deleteFile,
 			}}
 		>
 			<main className="Manager">

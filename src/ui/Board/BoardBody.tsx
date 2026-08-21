@@ -15,7 +15,7 @@ export default function BoardBody() {
 					type="text"
 					name="name"
 					id="name"
-					placeholder="name"
+					placeholder="Board Name"
 					value={name}
 					onChange={(e) => {
 						setName(e.target.value);

@@ -7,9 +7,9 @@ import { useContext } from "react";
 import { useDebounce } from "@/hooks/debounce";
 
 export default function EditSidebar() {
-	const { selector, updateSelector, updateSummary } =
+	const { selector, updateSelector, updateSummary, deleteFile, unselect } =
 		useContext(ManagerContext);
-	const { name, description, updatedAt } = selector.summary;
+	const { name, description } = selector.summary;
 	useDebounce(selector.summary, updateProjectSummary, 2000);
 
 	return (
@@ -40,13 +40,6 @@ export default function EditSidebar() {
 					});
 				}}
 			/>
-			<div>
-				Last updated:
-				{/* {new Date(updatedAt).toLocaleString([], {
-					dateStyle: "medium",
-					timeStyle: "short",
-				})} */}
-			</div>
 			<button
 				type="button"
 				id="copyProject"
@@ -63,8 +56,11 @@ export default function EditSidebar() {
 			<button
 				type="button"
 				id="deleteProject"
-				onClick={() => {
-					deleteProject(selector.summary.id);
+				onClick={async () => {
+					if (await deleteProject(selector.summary.id)) {
+						deleteFile(selector.summary.id);
+						updateSelector(unselect);
+					}
 				}}
 			>
 				Delete Project

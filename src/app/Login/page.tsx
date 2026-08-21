@@ -6,6 +6,7 @@ import { useState } from "react";
 import "@/styles/login.css";
 import ThemeButton from "@/ui/Generic/ThemeButton";
 import { redirect } from "next/navigation";
+import Icon from "@/ui/Generic/Icon";
 
 export default function Login() {
 	const [userExists, setExists] = useState<null | boolean>(null);
@@ -40,32 +41,43 @@ export default function Login() {
 
 	return (
 		<main>
-			<h1>Login</h1>
+			<div className="loginWrapper container vertical">
+				<div className="upper">
+					<Icon iconKey="logoFull" />
+				</div>
+				<Icon iconKey="wave" />
 
-			<form
-				id="LoginForm"
-				className="container vertical"
-				action="submit"
-				onSubmit={handleSubmit}
-			>
-				<input
-					type="email"
-					name="email"
-					id="email"
-					placeholder="email"
-				/>
-				{userExists != null && (
-					<input
-						type="password"
-						name="password"
-						id="password"
-						placeholder="password"
-					/>
-				)}
-				<ThemeButton type="submit">
-					{captions[`${userExists}`]}
-				</ThemeButton>
-			</form>
+				<form
+					id="LoginForm"
+					className="container vertical"
+					action="submit"
+					onSubmit={handleSubmit}
+				>
+					<div className="formRow">
+						<label htmlFor="email">Email</label>
+						<input
+							type="email"
+							name="email"
+							id="email"
+							placeholder="Please enter email"
+						/>
+					</div>
+					{userExists != null && (
+						<div className="formRow">
+							<label htmlFor="password">Password</label>
+							<input
+								type="password"
+								name="password"
+								id="password"
+								placeholder="password"
+							/>
+						</div>
+					)}
+					<ThemeButton type="submit">
+						{captions[`${userExists}`]}
+					</ThemeButton>
+				</form>
+			</div>
 		</main>
 	);
 }

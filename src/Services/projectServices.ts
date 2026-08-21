@@ -92,8 +92,11 @@ export async function updateProjectSummary(summary: ProjectSummary) {
 }
 
 export async function deleteProject(id: string) {
-	await sql`
+	const result = await sql`
 	DELETE FROM projects
 	WHERE id = ${id}
+		RETURNING id;
 	`;
+
+	return result.length > 0;
 }

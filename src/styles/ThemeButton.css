@@ -1,6 +1,6 @@
 .ThemeButton {
 	background: var(--accent-medium);
-	border-radius: 8px;
+	border-radius: var(--theme-radius);
 	transition: background 0.1s;
 	display: flex;
 	justify-content: center;

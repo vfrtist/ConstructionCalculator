@@ -21,7 +21,7 @@ export default function ManagerSidebar() {
 			>
 				<Icon iconKey="redo" />
 			</button>
-			{bar === "new" && <NewFileSidebar />}
+			{bar === "new" && <NewFileSidebar key={selector.summary.id} />}
 			{bar === "edit" && <EditSidebar />}
 		</aside>
 	);
