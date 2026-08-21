@@ -43,5 +43,8 @@
 		width: 100%;
 		height: 40px;
 		margin-top: 20px;
+		font-weight: 600;
+		color: var(--font-color-light);
+
 	}
 }
