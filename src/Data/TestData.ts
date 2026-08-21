@@ -1,4 +1,4 @@
-import { newProject, duplicateProject } from "@/lib/objects";
+import { newProject } from "@/lib/objects";
 import { ProjectBoards } from "@/lib/structures";
 
 const Data1: ProjectBoards = {
@@ -188,6 +188,10 @@ const Data2: ProjectBoards = {
 	},
 };
 
-export const DemoTemplate = duplicateProject(
-	newProject("Demo", "", { ...Data1, ...Data2 }),
-);
+export const DemoTemplate = newProject({
+	id: "",
+	name: "Demo",
+	data: { ...Data1, ...Data2 },
+	description: "",
+	updatedAt: "",
+});
