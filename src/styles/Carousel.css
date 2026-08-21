@@ -60,6 +60,8 @@
 				background: var(--foreground);
 				box-shadow: 4px 4px 8px var(--shadow-light);
 				border-radius: 50%;
+				width: auto;
+				aspect-ratio: 1;
 
 				.Icon {
 					fill: var(--accent-medium);
