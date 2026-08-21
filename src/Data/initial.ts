@@ -61,10 +61,13 @@ export async function seed() {
         ON DELETE CASCADE
     );`;
 
-	const blankTemplate = newProject(
-		"Blank Template",
-		"Start from scratch with a blank template",
-	);
+	const blankTemplate = newProject({
+		id: "",
+		name: "Blank Template",
+		description: "Start from scratch",
+		updatedAt: "",
+		data: {},
+	});
 
 	await createTemplate(blankTemplate);
 	await createTemplate(DemoTemplate);
