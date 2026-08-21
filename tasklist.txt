@@ -22,11 +22,20 @@ Done
     -On added board, scroll to added board.
     -Delete Board
     -Add total plan boards
+    -Media query for different layouts
+    -Generalize labels/input fonts/weights for consistency
+    -Test using quicksand and cabin instead of comissioner font
+    -Test via mobile and ipad sizing
+    -Test selecting, changing selection, creation, and edit.
+    -Style logon
 
 General Tasks
     -Sign out/Auto sign out
+    -Add guest logon option with demo data and no edit rights
 
 Project
+    -Add a background/up gradient to the totals footer
+    -Add a margin to the last board child and scroll auto vertically.
     -(stretch) Copy Board
     -(stretch) Add subtle saving ui (think video game book writing animation).
     -(stretch) Implement undo/redo
@@ -37,17 +46,11 @@ Project
     -(stretch) Plan done/undone view sectioning to facilitate task management
 
 Manager
-    -Test selecting, changing selection, creation, and edit.
     (stretch) Add manager skeleton
 
 Logon
-    -Style screen for pretty
 
 Visuals
-    -Media query for different layouts
-    -Generalize labels/input fonts/weights for consistency
-    -Test using quicksand and cabin instead of comissioner font
-    -Test via mobile and ipad sizing
     -(stretch) Add more icons
 
 
