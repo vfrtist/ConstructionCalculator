@@ -22,7 +22,7 @@ export default function NewFileSidebar() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="container vertical">
+		<form onSubmit={handleSubmit} className="container vertical content">
 			<label htmlFor="name">Name</label>
 			<input
 				type="text"

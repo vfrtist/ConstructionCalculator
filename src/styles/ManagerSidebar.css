@@ -1,0 +1,86 @@
+.Sidebar {
+	width: 100%;
+	height: 100%;
+	background: var(--foreground);
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+	transition: padding var(--open-timing);
+	position: relative;
+
+	button {
+		border-radius: var(--theme-radius);
+		padding: 12px;
+		color: var(--font-color-light);
+		background: var(--accent-medium);
+		transition: background 0.25s;
+		font-weight: 700;
+
+		&:hover {
+			background: var(--accent-dark);
+		}
+	}
+
+	input {
+		font-size: 1.5rem;
+		font-weight: 300;
+		margin-bottom: 12px;
+	}
+
+	label {
+		text-align: left;
+		font-size: 0.9rem;
+	}
+
+	#cancel {
+		position: absolute;
+		inset: 0px;
+		width: 40px;
+		aspect-ratio: 1;
+		padding: 4px;
+		background: none;
+
+		.Icon {
+			fill: none;
+			stroke: var(--accent-medium);
+			stroke-width: 3px;
+		}
+	}
+
+	.content {
+		gap: 8px;
+	}
+
+	.delayWrapper {
+		width: 100%;
+		min-width: 0;
+		padding: 0;
+		opacity: 0;
+		transition: opacity 0s;
+
+		* {
+			width: 100%;
+		}
+	}
+
+	&.open {
+		padding: 20px;
+		box-shadow: 0px 0px 12px var(--shadow-light);
+
+		.delayWrapper {
+			opacity: 1;
+			transition: opacity 0.3s ease var(--open-timing);
+		}
+	}
+}
+
+#deleteProject {
+	background: var(--warning);
+
+	&:hover {
+		background: var(--warning-dark);
+	}
+}

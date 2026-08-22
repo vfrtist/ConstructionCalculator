@@ -3,6 +3,7 @@ import NewFileSidebar from "./NewFileSidebar";
 import EditSidebar from "./EditSidebar";
 import { ManagerContext } from "@/ui/Manager/ManagerEditor";
 import Icon from "@/ui/Generic/Icon";
+import "@/styles/ManagerSidebar.css";
 
 export type SideBarType = "new" | "edit" | "hidden";
 
@@ -12,17 +13,19 @@ export default function ManagerSidebar() {
 
 	return (
 		<aside className={`Sidebar right${bar !== "hidden" ? " open" : ""}`}>
-			<button
-				type="button"
-				id="cancel"
-				onClick={() => {
-					updateSelector(unselect);
-				}}
-			>
-				<Icon iconKey="redo" />
-			</button>
-			{bar === "new" && <NewFileSidebar key={selector.summary.id} />}
-			{bar === "edit" && <EditSidebar />}
+			<div className="delayWrapper">
+				<button
+					type="button"
+					id="cancel"
+					onClick={() => {
+						updateSelector(unselect);
+					}}
+				>
+					<Icon iconKey="redo" />
+				</button>
+				{bar === "new" && <NewFileSidebar key={selector.summary.id} />}
+				{bar === "edit" && <EditSidebar />}
+			</div>
 		</aside>
 	);
 }

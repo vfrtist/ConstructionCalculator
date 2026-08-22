@@ -1,8 +1,12 @@
 .CutBody {
 	--grid: 2fr 2fr 8fr 1fr;
+	grid-template-rows: 24px 1fr;
 	width: 100%;
 	padding: 0px;
 
+	.wrapper {
+		align-self: flex-start;
+	}
 	.CardHeader {
 		grid-template-columns: var(--grid);
 		gap: 8px;

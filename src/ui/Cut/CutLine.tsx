@@ -45,7 +45,6 @@ export default function CutLine({ values }: CutLineProps) {
 			<input
 				type="text"
 				name="name"
-				placeholder="Name"
 				value={values.name}
 				className="name"
 				onChange={(e) => {

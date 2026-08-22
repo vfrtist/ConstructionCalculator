@@ -13,7 +13,7 @@ export default function EditSidebar() {
 	useDebounce(selector.summary, updateProjectSummary, 2000);
 
 	return (
-		<>
+		<div className="container vertical content">
 			<label htmlFor="name">Name</label>
 			<input
 				type="text"
@@ -65,6 +65,6 @@ export default function EditSidebar() {
 			>
 				Delete Project
 			</button>
-		</>
+		</div>
 	);
 }

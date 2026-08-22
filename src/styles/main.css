@@ -7,7 +7,7 @@
 	margin: 0px;
 	padding: 0px;
 	color: var(--font-color-dark);
-	font-size: 14px;
+	font-size: 16px;
 }
 
 ul {
@@ -34,8 +34,6 @@ button {
 	border: none;
 	padding: 0px;
 	margin: 0px;
-	font-family: "Commissioner";
-	font-family: "Cabin";
 	font-family: "Quicksand";
 }
 
@@ -44,8 +42,6 @@ input {
 	border: none;
 	outline: none;
 	border-bottom: 1px solid var(--neutral-light);
-	font-family: "Commissioner";
-	font-family: "Cabin";
 	font-family: "Quicksand";
 }
 
@@ -53,6 +49,7 @@ label {
 	text-align: left;
 	width: 100%;
 	font-weight: 400;
+	display: block;
 }
 /* Basics section (often re-used classes) */
 .container {

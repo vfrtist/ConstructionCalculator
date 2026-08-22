@@ -20,14 +20,16 @@ export default function CutBody() {
 				<span>Q</span>
 				<span>Name</span>
 			</header>
-			<ul className="CutLines container vertical">
-				{cutInputs.map((values) => (
-					<CutLine key={`${values.id}`} values={values} />
-				))}
-			</ul>
-			<ThemeButton type="button" className="add" onClick={addLine}>
-				<Icon iconKey="add" />
-			</ThemeButton>
+			<div className="wrapper container vertical">
+				<ul className="CutLines container vertical">
+					{cutInputs.map((values) => (
+						<CutLine key={`${values.id}`} values={values} />
+					))}
+				</ul>
+				<ThemeButton type="button" className="add" onClick={addLine}>
+					<Icon iconKey="add" />
+				</ThemeButton>
+			</div>
 		</div>
 	);
 }

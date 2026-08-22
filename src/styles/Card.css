@@ -15,12 +15,17 @@
 		width: 100%;
 		display: grid;
 		text-align: left;
-		margin-bottom: 1dvh;
 
 		span {
 			font-size: 1rem;
 			font-weight: 200;
 		}
+	}
+
+	.CardBody {
+		display: grid;
+		height: 100%;
+		gap: 8px;
 	}
 
 	.deleteButton {
