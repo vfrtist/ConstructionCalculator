@@ -1,6 +1,6 @@
 "use client";
 import { fetchUserExists } from "@/services/userServices";
-import { signUp } from "@/services/serverServices";
+import { signUp, guestSignIn } from "@/services/serverServices";
 import { signIn } from "@/services/browserServices";
 import { useState } from "react";
 import "@/styles/login.css";
@@ -41,7 +41,7 @@ export default function Login() {
 
 	return (
 		<main>
-			<div className="loginWrapper container vertical">
+			<div className="loginWrapper">
 				<div className="upper">
 					<Icon iconKey="logoFull" />
 				</div>
@@ -73,9 +73,21 @@ export default function Login() {
 							/>
 						</div>
 					)}
-					<ThemeButton type="submit">
-						{captions[`${userExists}`]}
-					</ThemeButton>
+					<div className="buttonWrapper container vertical">
+						<ThemeButton type="submit">
+							{captions[`${userExists}`]}
+						</ThemeButton>
+
+						<button
+							id="guestLogin"
+							type="button"
+							onClick={async () => {
+								if (await guestSignIn()) redirect("/manager");
+							}}
+						>
+							Continue as Guest
+						</button>
+					</div>
 				</form>
 			</div>
 		</main>

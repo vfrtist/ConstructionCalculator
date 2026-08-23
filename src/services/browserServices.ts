@@ -10,7 +10,7 @@ export function browserClient() {
 }
 
 export async function signIn(email: string, password: string) {
-	const { data, error } = await browserClient().auth.signInWithPassword({
+	const { error } = await browserClient().auth.signInWithPassword({
 		email,
 		password,
 	});

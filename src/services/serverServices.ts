@@ -16,7 +16,7 @@ export async function serverClient() {
 				getAll() {
 					return cookieStore.getAll();
 				},
-				setAll(cookiesToSet, _headers) {
+				setAll(cookiesToSet, headers) {
 					try {
 						cookiesToSet.forEach(({ name, value, options }) =>
 							cookieStore.set(name, value, options),
@@ -55,6 +55,28 @@ export async function signUp(email: string, password: string) {
 
 	if (data.user) {
 		await createNewUser(data.user.id, email);
+	}
+	return true;
+}
+
+export async function guestSignIn() {
+	const email = process.env.GUEST_EMAIL;
+	const password = process.env.GUEST_PASSWORD;
+
+	if (!email || !password) {
+		throw new Error("Guest credentials not found");
+	}
+
+	const client = await serverClient();
+
+	const { error } = await client.auth.signInWithPassword({
+		email,
+		password,
+	});
+
+	if (error) {
+		console.error(error.message);
+		return false;
 	}
 	return true;
 }
