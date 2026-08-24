@@ -1,3 +1,14 @@
+// Generics
+export class ListNode {
+	next: ListNode | null = null;
+	value: number;
+	constructor(value: number) {
+		this.value = value;
+	}
+}
+
+
+// Boards
 export interface CutDimension {
 	length: number;
 	name: string;
@@ -8,20 +19,14 @@ export interface CutInput extends CutDimension {
 	qty: number;
 }
 
-export class ListNode {
-	next: ListNode | null = null;
-	value: number;
-	constructor(value: number) {
-		this.value = value;
-	}
-}
-
 export interface BoardData {
 	name: string;
 	boardLength: number;
 	cutInputs: CutInput[];
 }
 
+
+// Projects
 export type ProjectBoards = Record<string, BoardData>;
 
 export interface ProjectSummary {
@@ -37,12 +42,17 @@ export interface Project extends ProjectSummary {
 
 export type ProjectType = "project" | "template";
 
+export interface ProjectDB extends Omit<Project, "data"> {
+	data: string;
+}
+
+
+// Users
 export type UserRole = "owner" | "editor" | "viewer";
 
 export interface User {
 	id: string;
 }
-
-export interface ProjectDB extends Omit<Project, "data"> {
-	data: string;
+export interface ProjectRole {
+	role: UserRole;
 }
