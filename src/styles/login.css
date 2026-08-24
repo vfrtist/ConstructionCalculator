@@ -1,6 +1,6 @@
 .loginWrapper {
 	display: grid;
-	grid-template-rows: 3fr 1fr 3fr;
+	grid-template-rows: 2fr auto 3fr;
 	height: 100dvh;
 	flex-wrap: nowrap;
 	place-items: center;
@@ -67,11 +67,5 @@
 				}
 			}
 		}
-	}
-}
-
-@media (orientation: landscape) {
-	.loginWrapper {
-		grid-template-rows: 3fr 1fr 3fr;
 	}
 }
