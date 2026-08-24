@@ -1,6 +1,7 @@
 "use server";
 import { UserRole } from "@/lib/structures";
 import { sql } from "./db";
+import { fetchCurrentUser } from "./serverServices";
 
 // will be useful maybe to implement getSession().session.user after fetch current.
 export async function fetchUserExists(email: string) {
@@ -21,6 +22,23 @@ export async function fetchUser(id: string) {
 	LIMIT 1;
 	`;
 	return results.length != 0;
+}
+
+export async function fetchCurrentUserRole(projectID: string) {
+	const user = await fetchCurrentUser();
+	if (!user) return;
+	try {
+		const results = await sql`
+		SELECT role
+		FROM project_users
+		WHERE userID = ${user.id}
+		AND	projectID = ${projectID};
+		`;
+		return results[0];
+	} catch (error) {
+		console.error("could not find user on project:", error);
+		throw new Error("Failed to find user project");
+	}
 }
 
 export async function createProjectUser(

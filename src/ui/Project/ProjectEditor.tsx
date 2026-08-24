@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "@/ui/Project/Card";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { BoardData, Project, ProjectBoards } from "@/lib/structures";
 import { newProjectBoards } from "@/lib/objects";
 import { updateProject } from "@/services/projectServices";
@@ -10,6 +10,8 @@ import Carousel from "@/ui/Generic/Carousel";
 import Header from "@/ui/Generic/Header";
 import Icon from "@/ui/Generic/Icon";
 import Link from "next/link";
+import { fetchCurrentUser } from "@/services/serverServices";
+import { fetchCurrentUserRole } from "@/services/userServices";
 
 interface ProjectEditorProps {
 	initialProject: Project;
@@ -31,6 +33,17 @@ export const ProjectContext = createContext<ProjectData>({
 
 export default function ProjectEditor({ initialProject }: ProjectEditorProps) {
 	const [boards, setBoards] = useState<ProjectBoards>(initialProject.data);
+
+	useEffect(() => {
+		async function UserCheck() {
+			return await fetchCurrentUserRole(initialProject.id);
+		}
+		const role = UserCheck();
+
+		// if (role && role !== "viewer") {
+
+		// }
+	}, [initialProject]);
 	useDebounce(
 		boards,
 		async (data) => {
