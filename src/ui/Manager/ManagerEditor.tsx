@@ -82,7 +82,7 @@ export default function ManagerEditor({
 			<main className="Manager">
 				<Header />
 				<div className="left">
-					{recentFiles && (
+					{recentFiles && recentFiles.length > 0 && (
 						<FileGroup
 							title={"Recent"}
 							files={recentFiles}
