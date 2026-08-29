@@ -32,12 +32,18 @@ export async function serverClient() {
 	);
 }
 
-export const fetchCurrentUser = cache(async () => {
+// export const fetchCurrentUser = cache(async () => {
+// 	const client = await serverClient();
+// 	const {
+// 		data: { user },
+// 	} = await client.auth.getUser();
+// 	return user;
+// });
+
+export const fetchCurrentUserID = cache(async () => {
 	const client = await serverClient();
-	const {
-		data: { user },
-	} = await client.auth.getUser();
-	return user;
+	const { data: claims } = await client.auth.getClaims();
+	return claims?.claims.sub;
 });
 
 export async function signUp(email: string, password: string) {

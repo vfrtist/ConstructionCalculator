@@ -1,8 +1,8 @@
-import { fetchCurrentUser } from "@/services/serverServices";
+import { fetchCurrentUserID } from "@/services/serverServices";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-	const user = await fetchCurrentUser();
+	const user = await fetchCurrentUserID();
 	if (!user) {
 		redirect("/login");
 	}

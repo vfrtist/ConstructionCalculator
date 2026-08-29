@@ -7,6 +7,8 @@ import "@/styles/Manager.css";
 import ManagerSidebar, { SideBarType } from "@/ui/Manager/ManagerSidebar";
 import FileGroup from "@/ui/Manager/FileGroup";
 import { newProjectSummary } from "@/lib/objects";
+import { signOut } from "@/services/browserServices";
+import { redirect } from "next/navigation";
 
 interface MangerEditorProps {
 	recents: ProjectSummary[];
@@ -80,7 +82,18 @@ export default function ManagerEditor({
 			}}
 		>
 			<main className="Manager">
-				<Header />
+				<Header
+					rightElements={
+						<button
+							onClick={() => {
+								signOut();
+								redirect("/login");
+							}}
+						>
+							Sign Out
+						</button>
+					}
+				/>
 				<div className="left">
 					<FileGroup
 						title={"Recent"}

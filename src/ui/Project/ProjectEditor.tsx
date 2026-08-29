@@ -10,7 +10,7 @@ import Carousel from "@/ui/Generic/Carousel";
 import Header from "@/ui/Generic/Header";
 import Icon from "@/ui/Generic/Icon";
 import Link from "next/link";
-import { fetchCurrentUser } from "@/services/serverServices";
+import { fetchCurrentUserID } from "@/services/serverServices";
 import { fetchCurrentUserRole } from "@/services/userServices";
 
 interface ProjectEditorProps {
