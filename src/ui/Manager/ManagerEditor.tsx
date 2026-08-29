@@ -40,9 +40,9 @@ export const ManagerContext = createContext<ManagerData>({
 		summary: newProjectSummary(),
 		summaryType: "project",
 	},
-	updateSelector: () => {},
-	updateSummary: () => {},
-	deleteFile: () => {},
+	updateSelector: () => { },
+	updateSummary: () => { },
+	deleteFile: () => { },
 });
 
 export default function ManagerEditor({
@@ -95,11 +95,13 @@ export default function ManagerEditor({
 					}
 				/>
 				<div className="left">
-					<FileGroup
-						title={"Recent"}
-						files={recentFiles}
-						type={"project"}
-					/>
+					{recentFiles && recentFiles.length > 0 && (
+						<FileGroup
+							title={"Recent"}
+							files={recentFiles}
+							type={"project"}
+						/>
+					)}
 					<FileGroup
 						title={"New"}
 						files={templates}
