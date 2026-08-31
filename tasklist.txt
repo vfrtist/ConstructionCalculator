@@ -28,14 +28,17 @@ Done
     -Test via mobile and ipad sizing
     -Test selecting, changing selection, creation, and edit.
     -Style logon
+    -Add guest logon option
+    -Add a background/up gradient to the totals footer
+    -Add a margin to the last board child and scroll auto vertically.
 
 General Tasks
     -Sign out/Auto sign out
-    -Add guest logon option with demo data and no edit rights
+    -User and ProjectRole are currently unused.
+        -User Role is currently only used in fetch user role which is not the final object anyway.
+        -Instead implement new UserProject which extends ProjectSummary and adds role: UserRole
 
 Project
-    -Add a background/up gradient to the totals footer
-    -Add a margin to the last board child and scroll auto vertically.
     -(stretch) Copy Board
     -(stretch) Add subtle saving ui (think video game book writing animation).
     -(stretch) Implement undo/redo
@@ -46,12 +49,13 @@ Project
     -(stretch) Plan done/undone view sectioning to facilitate task management
 
 Manager
-    (stretch) Add manager skeleton
+    -Update recents lookup to get Project + Role so only owners can delete/edit.
+    -(stretch) Add manager skeleton
 
 Logon
 
 Visuals
-    -(stretch) Add more icons
+    -(stretch) Add more icons in general
 
 
 n.TFZU6YcfUgTkg

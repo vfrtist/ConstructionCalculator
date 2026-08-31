@@ -50,9 +50,6 @@ export interface ProjectDB extends Omit<Project, "data"> {
 // Users
 export type UserRole = "owner" | "editor" | "viewer";
 
-export interface User {
-	id: string;
-}
-export interface ProjectRole {
+export interface UserProject extends ProjectSummary {
 	role: UserRole;
 }
