@@ -50,6 +50,16 @@ Project
 
 Manager
     -Update recents lookup to get Project + Role so only owners can delete/edit.
+        -To accomplish I think...
+            -Baking in user/template roles into the summary is better than a secondary property.
+            -Manager Page: get's specific inputs (User and Template Summaries)
+            -MangerEditor:
+                Selector -- remove type, and summary STAYS the parent ProjectSummary
+                Data -- remove unselect & change to const value; update stays the parent ProjectSummary
+            -FileGroup: Remove "type" from project type.
+            -FileTile:  Implement "isChild" check for users and then pass user to project tiles.
+            -Updated project/template to remove type from on click events since it's baked into roles
+            -Sidebar also update all updaters to remove type since it's baked into the summary object now.
     -(stretch) Add manager skeleton
 
 Logon
