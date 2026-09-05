@@ -13,7 +13,6 @@ export default function TemplateTile(summary: ProjectSummary) {
 				updateSelector({
 					sidebar: "new",
 					summary: summary,
-					summaryType: "template",
 				});
 			}}
 		>

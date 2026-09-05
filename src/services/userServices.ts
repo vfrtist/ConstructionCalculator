@@ -1,5 +1,5 @@
 "use server";
-import { UserRole } from "@/lib/structures";
+import { ProjectRole, UserRole } from "@/lib/structures";
 import { sql } from "./db";
 import { fetchCurrentUserID } from "./serverServices";
 
@@ -28,24 +28,24 @@ export async function fetchCurrentUserRole(projectID: string) {
 	const userID = await fetchCurrentUserID();
 	if (!userID) return;
 	try {
-		const results = await sql`
+		const results = await sql<UserRole[]>`
 		SELECT role
 		FROM project_users
 		WHERE userID = ${userID}
-		AND	projectID = ${projectID};
+		AND	projectID = ${projectID}
+		LIMIT 1;
 		`;
-		return results[0];
+		if (results.length == 0) return;
+		return results[0].role;
 	} catch (error) {
 		console.error("could not find user on project:", error);
 		throw new Error("Failed to find user project");
 	}
 }
 
-export async function createProjectUser(
-	userID: string,
-	projectID: string,
-	role: UserRole,
-) {
+export async function createProjectUser(projectID: string, role: ProjectRole) {
+	const userID = await fetchCurrentUserID();
+	if (!userID) return;
 	return await sql`
 	INSERT INTO project_users
 	(userID, projectID, role)

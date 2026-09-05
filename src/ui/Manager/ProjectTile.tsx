@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { ManagerContext } from "@/ui/Manager/ManagerEditor";
-import { ProjectSummary } from "@/lib/structures";
+import { ManagerContext, unselect } from "@/ui/Manager/ManagerEditor";
+import { UserSummary } from "@/lib/structures";
 import Icon from "@/ui/Generic/Icon";
 import Link from "next/link";
 
-export default function ProjectTile(summary: ProjectSummary) {
-	const { updateSelector, selector, unselect } = useContext(ManagerContext);
+export default function ProjectTile(summary: UserSummary) {
+	const { updateSelector, selector } = useContext(ManagerContext);
 
 	return (
 		<>
@@ -17,7 +17,6 @@ export default function ProjectTile(summary: ProjectSummary) {
 						updateSelector({
 							sidebar: "edit",
 							summary: summary,
-							summaryType: "project",
 						});
 					} else {
 						updateSelector(unselect);

@@ -1,6 +1,11 @@
 "use server";
 
-import { Project, ProjectSummary, ProjectDB } from "@/lib/structures";
+import {
+	Project,
+	ProjectSummary,
+	ProjectDB,
+	UserSummary,
+} from "@/lib/structures";
 import { sql } from "./db";
 import { createProjectUser } from "./userServices";
 import { dbToProject, newProject, projectToDB } from "@/lib/objects";
@@ -8,12 +13,13 @@ import { fetchCurrentUserID } from "./serverServices";
 
 export async function fetchUserRecentProjects(userID: string) {
 	try {
-		const projects = await sql<ProjectSummary[]>`
+		const projects = await sql<UserSummary[]>`
 		SELECT
 			p.id,
 			p.name,
 			p.description,
-			p.updated_at
+			p.updated_at,
+			pu.role
 		FROM projects p
 		JOIN project_users pu ON pu.projectID = p.id
 		WHERE pu.userID = ${userID}
@@ -33,7 +39,8 @@ export async function fetchProject(projectID: string): Promise<Project> {
 			*
 		FROM projects
 		WHERE id = ${projectID}
-		LIMIT 1;`;
+		LIMIT 1;
+		`;
 
 		return dbToProject(project[0]);
 	} catch (error) {
@@ -63,7 +70,7 @@ export async function createProject(sourceProject: Project) {
 		throw new Error("failed to create project");
 	}
 
-	if (await createProjectUser(userID, id, "owner")) return id;
+	if (await createProjectUser(id, "owner")) return id;
 }
 
 export async function updateProject(project: Project) {

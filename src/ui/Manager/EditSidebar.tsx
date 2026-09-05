@@ -1,16 +1,21 @@
-import { ManagerContext } from "@/ui/Manager/ManagerEditor";
+import { ManagerContext, unselect } from "@/ui/Manager/ManagerEditor";
 import {
 	deleteProject,
 	updateProjectSummary,
 } from "@/services/projectServices";
 import { useContext } from "react";
 import { useDebounce } from "@/hooks/debounce";
+import { isUserSummary, ProjectRole } from "@/lib/structures";
 
 export default function EditSidebar() {
-	const { selector, updateSelector, updateSummary, deleteFile, unselect } =
+	const { selector, updateSelector, updateSummary, deleteFile } =
 		useContext(ManagerContext);
 	const { name, description } = selector.summary;
 	useDebounce(selector.summary, updateProjectSummary, 2000);
+
+	const role: ProjectRole = isUserSummary(selector.summary)
+		? selector.summary.role
+		: "viewer";
 
 	return (
 		<div className="container vertical content">
@@ -53,18 +58,20 @@ export default function EditSidebar() {
 			>
 				Copy Project
 			</button>
-			<button
-				type="button"
-				id="deleteProject"
-				onClick={async () => {
-					if (await deleteProject(selector.summary.id)) {
-						deleteFile(selector.summary.id);
-						updateSelector(unselect);
-					}
-				}}
-			>
-				Delete Project
-			</button>
+			{role == "owner" && (
+				<button
+					type="button"
+					id="deleteProject"
+					onClick={async () => {
+						if (await deleteProject(selector.summary.id)) {
+							deleteFile(selector.summary.id);
+							updateSelector(unselect);
+						}
+					}}
+				>
+					Delete Project
+				</button>
+			)}
 		</div>
 	);
 }

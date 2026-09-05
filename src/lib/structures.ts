@@ -7,7 +7,6 @@ export class ListNode {
 	}
 }
 
-
 // Boards
 export interface CutDimension {
 	length: number;
@@ -25,7 +24,6 @@ export interface BoardData {
 	cutInputs: CutInput[];
 }
 
-
 // Projects
 export type ProjectBoards = Record<string, BoardData>;
 
@@ -40,16 +38,21 @@ export interface Project extends ProjectSummary {
 	data: ProjectBoards;
 }
 
-export type ProjectType = "project" | "template";
-
 export interface ProjectDB extends Omit<Project, "data"> {
 	data: string;
 }
 
+export type ProjectRole = "owner" | "editor" | "viewer";
+
+export interface UserSummary extends ProjectSummary {
+	role: ProjectRole;
+}
 
 // Users
-export type UserRole = "owner" | "editor" | "viewer";
+export interface UserRole {
+	role: ProjectRole;
+}
 
-export interface UserProject extends ProjectSummary {
-	role: UserRole;
+export function isUserSummary(summary: ProjectSummary): summary is UserSummary {
+	return "role" in summary;
 }

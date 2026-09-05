@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, createContext, Dispatch, SetStateAction } from "react";
-import { ProjectSummary, ProjectType } from "@/lib/structures";
+import { ProjectSummary, UserSummary } from "@/lib/structures";
 import Header from "@/ui/Generic/Header";
 import "@/styles/Manager.css";
 import ManagerSidebar, { SideBarType } from "@/ui/Manager/ManagerSidebar";
@@ -11,50 +11,40 @@ import { signOut } from "@/services/browserServices";
 import { redirect } from "next/navigation";
 
 interface MangerEditorProps {
-	recents: ProjectSummary[];
+	recents: UserSummary[];
 	templates: ProjectSummary[];
 }
 
 export interface ManagerSelector {
 	sidebar: SideBarType;
 	summary: ProjectSummary;
-	summaryType: ProjectType;
 }
 
 interface ManagerData {
 	selector: ManagerSelector;
-	unselect: ManagerSelector;
 	updateSelector: Dispatch<SetStateAction<ManagerSelector>>;
 	updateSummary: (summary: ProjectSummary) => void;
 	deleteFile: (id: string) => void;
 }
 
+export const unselect: ManagerSelector = {
+	sidebar: "hidden",
+	summary: newProjectSummary(),
+};
+
 export const ManagerContext = createContext<ManagerData>({
-	selector: {
-		sidebar: "hidden",
-		summary: newProjectSummary(),
-		summaryType: "project",
-	},
-	unselect: {
-		sidebar: "hidden",
-		summary: newProjectSummary(),
-		summaryType: "project",
-	},
-	updateSelector: () => { },
-	updateSummary: () => { },
-	deleteFile: () => { },
+	selector: { ...unselect },
+	updateSelector: () => {},
+	updateSummary: () => {},
+	deleteFile: () => {},
 });
 
 export default function ManagerEditor({
 	recents,
 	templates,
 }: MangerEditorProps) {
-	const [recentFiles, setRecentFiles] = useState(recents);
-	const [selection, setSelection] = useState<ManagerSelector>({
-		sidebar: "hidden",
-		summary: newProjectSummary(),
-		summaryType: "project",
-	});
+	const [recentFiles, setRecentFiles] = useState<ProjectSummary[]>(recents);
+	const [selection, setSelection] = useState<ManagerSelector>(unselect);
 
 	function deleteFile(id: string) {
 		setRecentFiles((prev) => prev.filter((sum) => sum.id !== id));
@@ -64,11 +54,6 @@ export default function ManagerEditor({
 		<ManagerContext.Provider
 			value={{
 				selector: selection,
-				unselect: {
-					sidebar: "hidden",
-					summary: newProjectSummary(),
-					summaryType: "project",
-				},
 				updateSelector: setSelection,
 				updateSummary: (summary: ProjectSummary) => {
 					setSelection((prev) => ({ ...prev, summary: summary }));
@@ -83,30 +68,22 @@ export default function ManagerEditor({
 		>
 			<main className="Manager">
 				<Header
-					rightElements={
-						<button
-							onClick={() => {
-								signOut();
-								redirect("/login");
-							}}
-						>
-							Sign Out
-						</button>
-					}
+				// rightElements={
+				// 	<button
+				// 		onClick={() => {
+				// 			signOut();
+				// 			redirect("/login");
+				// 		}}
+				// 	>
+				// 		Sign Out
+				// 	</button>
+				// }
 				/>
 				<div className="left">
 					{recentFiles && recentFiles.length > 0 && (
-						<FileGroup
-							title={"Recent"}
-							files={recentFiles}
-							type={"project"}
-						/>
+						<FileGroup title={"Recent"} files={recentFiles} />
 					)}
-					<FileGroup
-						title={"New"}
-						files={templates}
-						type={"template"}
-					/>
+					<FileGroup title={"New"} files={templates} />
 				</div>
 				<ManagerSidebar />
 			</main>

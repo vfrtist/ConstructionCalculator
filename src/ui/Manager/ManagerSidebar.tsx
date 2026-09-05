@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import NewFileSidebar from "./NewFileSidebar";
 import EditSidebar from "./EditSidebar";
-import { ManagerContext } from "@/ui/Manager/ManagerEditor";
+import { ManagerContext, unselect } from "@/ui/Manager/ManagerEditor";
 import Icon from "@/ui/Generic/Icon";
 import "@/styles/ManagerSidebar.css";
 
 export type SideBarType = "new" | "edit" | "hidden";
 
 export default function ManagerSidebar() {
-	const { selector, unselect, updateSelector } = useContext(ManagerContext);
+	const { selector, updateSelector } = useContext(ManagerContext);
 	const bar = selector.sidebar;
 
 	return (

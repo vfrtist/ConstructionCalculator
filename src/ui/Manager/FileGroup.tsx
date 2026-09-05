@@ -1,21 +1,20 @@
 "use client";
 
-import { ProjectSummary, ProjectType } from "@/lib/structures";
+import { ProjectSummary } from "@/lib/structures";
 import FileTile from "./FileTile";
 
 export interface FileGroupProps {
 	title: string;
 	files: ProjectSummary[];
-	type: ProjectType;
 }
 
-export default function FileGroup({ title, files, type }: FileGroupProps) {
+export default function FileGroup({ title, files }: FileGroupProps) {
 	return (
 		<section className="FileGroup container vertical">
 			<h2 className="FileGroupTitle">{title}</h2>
 			<ul className="FileList container horizontal">
 				{files.map((summary) => (
-					<FileTile key={summary.id} summary={summary} type={type} />
+					<FileTile key={summary.id} summary={summary} />
 				))}
 			</ul>
 		</section>

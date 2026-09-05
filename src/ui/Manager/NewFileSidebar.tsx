@@ -3,6 +3,7 @@ import { createProject, fetchProject } from "@/services/projectServices";
 import { ManagerContext } from "@/ui/Manager/ManagerEditor";
 import { fetchTemplate } from "@/services/templateServices";
 import { redirect } from "next/navigation";
+import { isUserSummary } from "@/lib/structures";
 
 export default function NewFileSidebar() {
 	const { selector } = useContext(ManagerContext);
@@ -10,10 +11,9 @@ export default function NewFileSidebar() {
 
 	async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const copyProject =
-			selector.summaryType === "project"
-				? await fetchProject(newSummary.id)
-				: await fetchTemplate(newSummary.id);
+		const copyProject = isUserSummary(selector.summary)
+			? await fetchProject(newSummary.id)
+			: await fetchTemplate(newSummary.id);
 
 		const id = await createProject({ ...copyProject, ...newSummary });
 		if (id) {
